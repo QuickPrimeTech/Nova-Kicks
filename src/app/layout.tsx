@@ -8,6 +8,7 @@ import { Navbar } from "@/layouts/navbar";
 import { Footer } from "@/layouts/footer";
 import { CartSheet } from "@/layouts/cart-sheet";
 import { ThemeProvider } from "@/components/theme-provider";
+import NextTopLoader from "nextjs-toploader";
 
 const jost = Jost({
   variable: "--font-jost",
@@ -52,6 +53,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <NextTopLoader showSpinner={false} color="var(--primary)" />
           <Navbar />
           <main className="flex-1">
             {children}

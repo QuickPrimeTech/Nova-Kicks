@@ -12,6 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
   SheetClose,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -99,13 +100,13 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-0 inset-x-0 z-50 border-b transition-all duration-300",
+          "fixed top-0 inset-x-0 z-50 border-b section transition-all duration-300",
           scrolled
             ? "bg-background/90 backdrop-blur-xl border-border/60 shadow-sm"
             : "bg-background border-transparent",
         )}
       >
-        <div className="container mx-auto h-16 px-4 flex items-center justify-between">
+        <div className="container mx-auto h-16 flex items-center justify-between">
           {/* Mobile Menu */}
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
@@ -309,9 +310,9 @@ function A11yPanel() {
           </div>
           <div>
             <SheetTitle className="text-left">Accessibility</SheetTitle>
-            <p className="text-sm text-muted-foreground">
+            <SheetDescription className="text-sm text-muted-foreground">
               Customize your experience
-            </p>
+            </SheetDescription>
           </div>
         </div>
       </SheetHeader>
