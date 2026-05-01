@@ -9,6 +9,7 @@ import { Footer } from "@/layouts/footer";
 import { CartSheet } from "@/layouts/cart-sheet";
 import { ThemeProvider } from "@/components/theme-provider";
 import NextTopLoader from "nextjs-toploader";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const jost = Jost({
   variable: "--font-jost",
@@ -54,12 +55,14 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NextTopLoader showSpinner={false} color="var(--primary)" />
-          <Navbar />
-          <main className="flex-1">
-            {children}
-            <CartSheet />
-          </main>
-          <Footer />
+          <TooltipProvider>
+            <Navbar />
+            <main className="flex-1">
+              {children}
+              <CartSheet />
+            </main>
+            <Footer />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

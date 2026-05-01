@@ -100,6 +100,7 @@
   --text-footnote: 12px;
   --text-footnote--line-height: 18px;
   --text-footnote--font-weight: 400;
+  --animate-shimmer: shimmer 2s infinite;
 }
 
 :root {
@@ -196,6 +197,15 @@
   @keyframes marquee {
     to {
       transform: translateX(-100%);
+    }
+  }
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+    }
+  to {
+    transform: translateX(200%);
     }
   }
 }

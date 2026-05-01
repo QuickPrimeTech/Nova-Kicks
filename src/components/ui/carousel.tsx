@@ -151,8 +151,8 @@ function CarouselContent({
           "flex",
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
           className,
-          { ...props },
         )}
+        {...props}
       >
         {showDefaultItem && (
           <CarouselItem className="basis-4 sm:basis-6 md:basis-8 lg:basis-12 xl:basis-16 2xl:basis-24" />

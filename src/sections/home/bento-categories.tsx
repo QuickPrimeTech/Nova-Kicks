@@ -5,7 +5,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { categories } from "@/data/products";
-import Image from "next/image";
+import { Image } from "@/components/ui/image";
 import { Button } from "@/components/ui/button";
 
 export const BentoCategories = () => {

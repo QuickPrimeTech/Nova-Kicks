@@ -6,7 +6,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { SelectProduct } from "@/db/schemas";
-import Image from "next/image";
+import { Image } from "@/components/ui/image";
 import Link from "next/link";
 
 export const FeaturedCarousel = ({

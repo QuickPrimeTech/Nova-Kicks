@@ -1,11 +1,10 @@
 // @/app/products/[slug]/page.tsx
-
 import { db } from "@/index";
 import { products } from "@/db/schemas/products";
 import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
-import { ProductThumbnail } from "@/sections/products/slug/product-thumbnail";
 import type { Metadata } from "next";
+import { ProductContent } from "@/sections/products/slug/content";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -85,5 +84,5 @@ export default async function ProductPage({ params }: PageProps) {
 
   if (!product) notFound();
 
-  return <ProductThumbnail product={product} />;
+  return <ProductContent product={product} />;
 }
