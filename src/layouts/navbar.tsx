@@ -32,6 +32,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { RiMenu2Line } from "react-icons/ri";
+import { useAccessibility } from "@/store/accessibility";
 
 /* ─── NAV LINKS ─── */
 const NAV = [
@@ -84,7 +85,8 @@ export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [a11yOpen, setA11yOpen] = React.useState(false);
+  const isOpen = useAccessibility((state) => state.isOpen);
+  const open = useAccessibility((state) => state.open);
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -112,10 +114,7 @@ export function Navbar() {
               </button>
             </SheetTrigger>
             <SheetContent side="left" className="w-[320px] p-0">
-              <MobileNavContent
-                pathname={pathname}
-                onA11y={() => setA11yOpen(true)}
-              />
+              <MobileNavContent pathname={pathname} />
             </SheetContent>
           </Sheet>
 
@@ -136,7 +135,7 @@ export function Navbar() {
                 className={cn(
                   "relative px-4 py-2 text-sm font-medium rounded-lg transition-colors",
                   item.accent
-                    ? "text-red-500 hover:text-red-600"
+                    ? "text-primary hover:text-primary/85"
                     : pathname === item.href
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground hover:bg-secondary",
@@ -163,7 +162,7 @@ export function Navbar() {
               <Search className="size-5" />
             </button>
             <button
-              onClick={() => setA11yOpen(true)}
+              onClick={() => open(true)}
               className="p-2 hover:bg-secondary rounded-full transition hidden sm:flex"
             >
               <Accessibility className="size-5" />
@@ -233,8 +232,8 @@ export function Navbar() {
       </AnimatePresence>
 
       {/* Accessibility Sheet */}
-      <Sheet open={a11yOpen} onOpenChange={setA11yOpen}>
-        <SheetContent side="right" className="w-[360px] p-0">
+      <Sheet open={isOpen} onOpenChange={open}>
+        <SheetContent side="right" className="w-9/10 sm:w-8/10 md:w-1/2 lg:1/3">
           <A11yPanel />
         </SheetContent>
       </Sheet>
@@ -243,21 +242,18 @@ export function Navbar() {
 }
 
 /* ─── Mobile Nav Content ─── */
-function MobileNavContent({
-  pathname,
-  onA11y,
-}: {
-  pathname: string;
-  onA11y: () => void;
-}) {
+function MobileNavContent({ pathname }: { pathname: string }) {
+  const open = useAccessibility((state) => state.open);
   return (
     <div className="flex flex-col h-full">
-      <SheetHeader className="px-6 pt-6 pb-2">
-        <SheetTitle className="text-left text-lg font-bold">Menu</SheetTitle>
+      <SheetHeader className="px-6 pt-6 pb-2 border-b">
+        <SheetTitle className="text-left text-lg font-bold">
+          Shoe Empire
+        </SheetTitle>
       </SheetHeader>
 
       <ScrollArea className="flex-1 px-4">
-        <div className="space-y-1">
+        <div className="space-y-1 py-4">
           {NAV.map((item, i) => (
             <motion.div
               key={item.label}
@@ -271,7 +267,7 @@ function MobileNavContent({
                   className={cn(
                     "flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors",
                     item.accent
-                      ? "text-red-500 hover:bg-red-500/10"
+                      ? "text-primary hover:bg-background"
                       : pathname === item.href
                         ? "bg-secondary text-foreground"
                         : "text-muted-foreground hover:bg-secondary hover:text-foreground",
@@ -287,10 +283,10 @@ function MobileNavContent({
 
         <Separator className="my-4" />
 
-        <button className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm font-medium hover:bg-secondary transition-colors">
+        <Button className="w-full" variant="outline" onClick={() => open(true)}>
           <Accessibility className="size-5" />
           Accessibility
-        </button>
+        </Button>
       </ScrollArea>
     </div>
   );
@@ -356,15 +352,10 @@ function A11yPanel() {
                   { key: "lg" as const, icon: Plus },
                 ] as const
               ).map((item) => (
-                <button
+                <Button
                   key={item.key}
                   onClick={() => setFontSize(item.key)}
-                  className={cn(
-                    "flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-medium transition-all",
-                    fontSize === item.key
-                      ? "bg-background shadow-sm text-foreground"
-                      : "text-muted-foreground hover:text-foreground",
-                  )}
+                  variant={fontSize === item.key ? "default" : "secondary"}
                 >
                   <item.icon className="size-4" />
                   {item.key === "sm"
@@ -372,7 +363,7 @@ function A11yPanel() {
                     : item.key === "base"
                       ? "Default"
                       : "Large"}
-                </button>
+                </Button>
               ))}
             </div>
           </section>
