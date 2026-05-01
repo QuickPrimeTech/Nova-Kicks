@@ -1,62 +1,43 @@
 // @/db/seed/products.ts
 
 import { db } from "@/index"; // Path to your drizzle db instance
-import { products } from "@/db/schemas"; // Import the products schema
+import { InsertProduct, products } from "@/db/schemas"; // Import the products schema
 
-const seedShoes = [
+const seedShoes: InsertProduct[] = [
   {
-    name: "Nike Air Max 270",
-    slug: "nike-air-max-270-black",
+    name: "Empire Air Max",
+    slug: "empire-air-max",
     description:
-      "The Nike Air Max 270 delivers visible cushioning under every step. Updated for modern comfort, it nods to the original 1991 Air Max 180.",
+      "The Empire Air Max delivers visible cushioning under every step. Updated for modern comfort, it nods to the original 1991 Air Max 180.",
     brand: "Nike",
-    price: 18500, // Price in Ksh
+    price: 4500, // Price in Ksh
     stockQuantity: 15,
     isPublished: true,
     colors: ["Black", "White", "Anthracite"],
     availableSizes: ["40", "41", "42", "43", "44"],
     images: [
       {
-        url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
-        altText: "Red Nike Running Shoe",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777650988/product-1_g9v9oq.png",
+        altText: "White Empire Air Max",
         isPrimary: true,
       },
     ],
   },
   {
-    name: "Jordan 1 Retro High",
-    slug: "jordan-1-retro-high-og",
+    name: "Empire Court 1",
+    slug: "empire-court-1",
     description:
       "The classic sneaker that started it all. Premium leather upper and the iconic Wings logo.",
-    brand: "Jordan",
-    price: 24000,
+    brand: "Nike",
+    price: 5000,
     stockQuantity: 8,
     isPublished: true,
     colors: ["Chicago Red", "Black Toe"],
     availableSizes: ["41", "42", "43", "44", "45"],
     images: [
       {
-        url: "https://images.unsplash.com/photo-1597043530274-0579730596fc",
-        altText: "Blue Jordan 1 Sneakers",
-        isPrimary: true,
-      },
-    ],
-  },
-  {
-    name: "Adidas Ultraboost 5.0",
-    slug: "adidas-ultraboost-5-black",
-    description:
-      "Energy return like no other. The Ultraboost features a Primeknit upper and Boost midsole for maximum comfort.",
-    brand: "Adidas",
-    price: 16500,
-    stockQuantity: 20,
-    isPublished: true,
-    colors: ["Core Black", "Cloud White"],
-    availableSizes: ["39", "40", "41", "42", "43"],
-    images: [
-      {
-        url: "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb",
-        altText: "White Adidas Sneakers",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777651083/product-2_fclpka.png",
+        altText: "Black Empire Court 1",
         isPrimary: true,
       },
     ],

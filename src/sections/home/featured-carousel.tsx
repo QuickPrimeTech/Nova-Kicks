@@ -5,10 +5,15 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { products } from "@/data/products";
+import { SelectProduct } from "@/db/schemas";
 import Image from "next/image";
+import Link from "next/link";
 
-export const FeaturedCarousel = () => {
+export const FeaturedCarousel = ({
+  products,
+}: {
+  products: SelectProduct[];
+}) => {
   return (
     <section className="py-20 bg-background overflow-hidden">
       {/* Header Area */}
@@ -27,18 +32,20 @@ export const FeaturedCarousel = () => {
           <CarouselContent>
             {products.map((p) => (
               <CarouselItem key={p.id} className="basis-1/2 md:basis-1/4">
-                <div className="relative aspect-square bg-muted rounded-xl overflow-hidden group">
-                  <Image
-                    src={p.image}
-                    alt={p.name}
-                    fill
-                    className="object-cover transition-transform group-hover:scale-105"
-                  />
-                </div>
-                <div className="py-4 flex justify-between">
-                  <h3 className="font-medium">{p.name}</h3>
-                  <p className="font-medium">${p.price}</p>
-                </div>
+                <Link href={`/products/${p.slug}`}>
+                  <div className="relative aspect-square bg-muted rounded-xl overflow-hidden group">
+                    <Image
+                      src={p.images[0].url}
+                      alt={p.name}
+                      fill
+                      className="object-cover transition-transform group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="py-4 flex justify-between">
+                    <h3 className="font-medium">{p.name}</h3>
+                    <p className="font-medium">Ksh {p.price}</p>
+                  </div>
+                </Link>
               </CarouselItem>
             ))}
             {/* Nike spacer */}
