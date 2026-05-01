@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { RiMenu2Line } from "react-icons/ri";
 import { useAccessibility } from "@/store/accessibility";
+import { Logo } from "@/components/logo";
 
 /* ─── NAV LINKS ─── */
 const NAV = [
@@ -120,9 +121,9 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-heading font-bold text-xl tracking-tight lg:ml-0 ml-2"
+            className="flex gap-1 items-center font-heading font-bold text-xl tracking-tight lg:ml-0 ml-2"
           >
-            Shoe Empire<span className="text-primary">.</span>
+            <Logo /> Shoe Empire<span className="text-primary">.</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -246,8 +247,8 @@ function MobileNavContent({ pathname }: { pathname: string }) {
   return (
     <div className="flex flex-col h-full">
       <SheetHeader className="px-6 pt-6 pb-2 border-b">
-        <SheetTitle className="text-left text-lg font-bold">
-          Shoe Empire
+        <SheetTitle className="flex gap-1 items-center text-left text-lg font-bold">
+          <Logo className="size-8" /> Shoe Empire
         </SheetTitle>
       </SheetHeader>
 
