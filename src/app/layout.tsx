@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Jost, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Navbar } from "@/layouts/navbar";
+import { Footer } from "@/layouts/footer";
 
 const jost = Jost({
   variable: "--font-jost",
@@ -40,7 +42,11 @@ export default function RootLayout({
         inter.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Navbar />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
