@@ -1,72 +1,82 @@
-// @/store/cart.ts
+//@/store/cart.ts
 
 import { create } from "zustand";
 
-export type Product = {
-  id: string;
+type ProductSize = {
+  size: string;
+  stock: number;
+};
+
+export type CartItem = {
+  id: string; // cartId (unique per cart item)
+  productId: string;
   name: string;
-  category: string;
   price: number;
   image: string;
-  color: string;
+  size: ProductSize;
+  quantity: number;
 };
 
-export type CartItem = Product & { size: number; qty: number };
-
-type CartState = {
+type CartStore = {
   items: CartItem[];
-  isOpen: boolean;
-  open: () => void;
-  close: () => void;
-  toggle: () => void;
-  add: (item: CartItem) => void;
-  remove: (id: string, size: number) => void;
-  inc: (id: string, size: number) => void;
-  dec: (id: string, size: number) => void;
-  total: () => number;
-  count: () => number;
+
+  addItem: (item: Omit<CartItem, "id">) => void;
+  removeItem: (id: string) => void;
+  updateQuantity: (id: string, quantity: number) => void;
+  clearCart: () => void;
+
+  // derived helpers
+  getTotalItems: () => number;
+  getTotalPrice: () => number;
 };
 
-export const useCart = create<CartState>((set, get) => ({
+export const useCartStore = create<CartStore>((set, get) => ({
   items: [],
-  isOpen: false,
-  open: () => set({ isOpen: true }),
-  close: () => set({ isOpen: false }),
-  toggle: () => set((s) => ({ isOpen: !s.isOpen })),
-  add: (item) =>
-    set((s) => {
-      const existing = s.items.find(
-        (i) => i.id === item.id && i.size === item.size,
+
+  addItem: (item) =>
+    set((state) => {
+      const existing = state.items.find(
+        (i) => i.productId === item.productId && i.size.size === item.size.size,
       );
+
+      // If same product + same size → increase quantity
       if (existing) {
         return {
-          items: s.items.map((i) =>
-            i.id === item.id && i.size === item.size
-              ? { ...i, qty: i.qty + item.qty }
+          items: state.items.map((i) =>
+            i.id === existing.id
+              ? { ...i, quantity: i.quantity + item.quantity }
               : i,
           ),
         };
       }
-      return { items: [...s.items, item] };
+
+      // Otherwise create new cart item
+      const newItem: CartItem = {
+        ...item,
+        id: crypto.randomUUID(),
+      };
+
+      return { items: [...state.items, newItem] };
     }),
-  remove: (id, size) =>
-    set((s) => ({
-      items: s.items.filter((i) => !(i.id === id && i.size === size)),
+
+  removeItem: (id) =>
+    set((state) => ({
+      items: state.items.filter((i) => i.id !== id),
     })),
-  inc: (id, size) =>
-    set((s) => ({
-      items: s.items.map((i) =>
-        i.id === id && i.size === size ? { ...i, qty: i.qty + 1 } : i,
+
+  updateQuantity: (id, quantity) =>
+    set((state) => ({
+      items: state.items.map((i) =>
+        i.id === id ? { ...i, quantity: Math.max(1, quantity) } : i,
       ),
     })),
-  dec: (id, size) =>
-    set((s) => ({
-      items: s.items
-        .map((i) =>
-          i.id === id && i.size === size ? { ...i, qty: i.qty - 1 } : i,
-        )
-        .filter((i) => i.qty > 0),
-    })),
-  total: () => get().items.reduce((sum, i) => sum + i.price * i.qty, 0),
-  count: () => get().items.reduce((sum, i) => sum + i.qty, 0),
+
+  clearCart: () => set({ items: [] }),
+
+  // 🔥 derived values
+  getTotalItems: () =>
+    get().items.reduce((acc, item) => acc + item.quantity, 0),
+
+  getTotalPrice: () =>
+    get().items.reduce((acc, item) => acc + item.price * item.quantity, 0),
 }));

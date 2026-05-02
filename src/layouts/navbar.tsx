@@ -24,7 +24,6 @@ import {
   Moon,
   Monitor,
   Search,
-  ShoppingBag,
   Heart,
   Accessibility,
   Type,
@@ -35,6 +34,7 @@ import {
 import { RiMenu2Line } from "react-icons/ri";
 import { useAccessibility } from "@/store/accessibility";
 import { Logo } from "@/components/logo";
+import { CartSheet } from "@/components/cart/cart-sheet";
 
 /* ─── NAV LINKS ─── */
 const NAV = [
@@ -170,12 +170,7 @@ export function Navbar() {
             <button className="p-2 hover:bg-secondary rounded-full transition hidden sm:block">
               <Heart className="size-5" />
             </button>
-            <button className="relative p-2 hover:bg-secondary rounded-full transition">
-              <ShoppingBag className="size-5" />
-              <span className="absolute -top-0.5 -right-0.5 bg-primary text-primary-foreground text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                2
-              </span>
-            </button>
+            <CartSheet />
           </div>
         </div>
       </header>

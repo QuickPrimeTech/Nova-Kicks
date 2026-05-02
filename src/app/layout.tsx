@@ -63,7 +63,7 @@ export default function RootLayout({
               <CartSheet />
             </main>
             <Footer />
-            <Toaster richColors />
+            <Toaster richColors position="top-right" />
           </TooltipProvider>
         </ThemeProvider>
       </body>

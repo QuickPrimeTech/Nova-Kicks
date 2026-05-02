@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Heart, Minus, Plus, ShoppingBag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
+import { useCartStore } from "@/store/cart";
 
 interface ProductContentProps {
   product: SelectProduct;
@@ -18,6 +19,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
     SelectProduct["sizes"][0] | null
   >(null);
   const [quantity, setQuantity] = useState(1);
+  const addItem = useCartStore((state) => state.addItem);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("en-KE", {
@@ -31,10 +33,23 @@ export const ProductContent = ({ product }: ProductContentProps) => {
   const isLowStock = selectedSize ? parseInt(selectedSize.size) < 5 : false;
 
   const addToCart = () => {
-    toast.error(`Please select a size`);
     if (!selectedSize) {
-      toast.error(`Please select a size`);
+      toast.error(`Please select a size`, {
+        description: `Please select a size for ${product.name}`,
+      });
+      return;
     }
+    //Add the item to cart
+    addItem({
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.images[0]?.url || "",
+      size: selectedSize,
+      quantity,
+    });
+
+    toast.success("Added to cart");
   };
 
   const addToWishlist = () => {};
@@ -199,14 +214,16 @@ export const ProductContent = ({ product }: ProductContentProps) => {
               </div>
             )}
 
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Availability</span>
-              <span className="font-medium">
-                {isOutOfStock
-                  ? "Unavailable"
-                  : `${selectedSize?.stock} in stock`}
-              </span>
-            </div>
+            {selectedSize && (
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Availability</span>
+                <span className="font-medium">
+                  {isOutOfStock
+                    ? "Unavailable"
+                    : `${selectedSize?.stock} in stock`}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </div>
