@@ -1,14 +1,9 @@
 // @/sections/products/slug/content.tsx
 "use client";
-
 import { useState } from "react";
+import { Separator } from "@/components/ui/separator";
 import { SelectProduct } from "@/db/schemas";
 import { ProductThumbnail } from "./product-thumbnail";
-
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
-import { Heart, ShoppingBag } from "lucide-react";
 
 interface ProductContentProps {
   product: SelectProduct;
@@ -16,9 +11,9 @@ interface ProductContentProps {
 
 export const ProductContent = ({ product }: ProductContentProps) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string | null>(
-    product.colors?.[0] ?? null,
-  );
+  // const [selectedColor, setSelectedColor] = useState<string | null>(
+  //   product.colors?.[0] ?? null,
+  // );
   const [quantity, setQuantity] = useState(1);
 
   const formatPrice = (price: number) => {
@@ -29,8 +24,8 @@ export const ProductContent = ({ product }: ProductContentProps) => {
     }).format(price);
   };
 
-  const isOutOfStock = product.stockQuantity <= 0;
-  const isLowStock = product.stockQuantity > 0 && product.stockQuantity <= 5;
+  // const isOutOfStock = product.stockQuantity <= 0;
+  // const isLowStock = product.stockQuantity > 0 && product.stockQuantity <= 5;
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-12">
@@ -56,10 +51,10 @@ export const ProductContent = ({ product }: ProductContentProps) => {
 
             <div className="flex items-center gap-3 pt-1">
               <span className="text-2xl md:text-3xl font-bold text-foreground">
-                {formatPrice(product.price)}
+                {/* {formatPrice(product.price)} */}
               </span>
 
-              {isOutOfStock ? (
+              {/* {isOutOfStock ? (
                 <Badge variant="destructive">Out of Stock</Badge>
               ) : isLowStock ? (
                 <Badge variant="secondary">
@@ -69,7 +64,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
                 <Badge className="bg-green-600 text-white dark:bg-green-500">
                   In Stock
                 </Badge>
-              )}
+              )} */}
             </div>
           </div>
 
@@ -83,7 +78,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
           <Separator />
 
           {/* Colors */}
-          {product.colors?.length > 0 && (
+          {/* {product.colors?.length > 0 && (
             <div className="space-y-3">
               <div className="flex justify-between text-sm">
                 <span className="font-medium">Color</span>
@@ -104,10 +99,10 @@ export const ProductContent = ({ product }: ProductContentProps) => {
                 ))}
               </div>
             </div>
-          )}
+          )} */}
 
           {/* Sizes */}
-          {product.availableSizes?.length > 0 && (
+          {/* {product.availableSizes?.length > 0 && (
             <div className="space-y-3">
               <div className="flex justify-between text-sm">
                 <span className="font-medium">Size</span>
@@ -128,7 +123,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
                 ))}
               </div>
             </div>
-          )}
+          )} */}
 
           {/* Quantity */}
           <div className="space-y-4 pt-2">
@@ -148,7 +143,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
                   {quantity}
                 </span>
 
-                <button
+                {/* <button
                   onClick={() =>
                     setQuantity((q) => Math.min(product.stockQuantity, q + 1))
                   }
@@ -156,20 +151,20 @@ export const ProductContent = ({ product }: ProductContentProps) => {
                   className="w-11 h-11 flex items-center justify-center text-muted-foreground hover:bg-accent disabled:opacity-40 rounded-r-lg"
                 >
                   +
-                </button>
+                </button> */}
               </div>
             </div>
 
             {/* CTA */}
             <div className="flex flex-col gap-3">
-              <Button size="xl" disabled={isOutOfStock}>
+              {/* <Button size="xl" disabled={isOutOfStock}>
                 {isOutOfStock ? "Out of Stock" : "Add to Cart"}{" "}
                 <ShoppingBag className="size-5 ml-1.5" />
               </Button>
 
               <Button size="xl" variant="outline" disabled={isOutOfStock}>
                 Add to Wishlist <Heart className="size-5 ml-1.5" />
-              </Button>
+              </Button> */}
             </div>
           </div>
 
@@ -210,19 +205,19 @@ export const ProductContent = ({ product }: ProductContentProps) => {
 
             <div className="flex justify-between">
               <span className="text-muted-foreground">Availability</span>
-              <span className="font-medium">
+              {/* <span className="font-medium">
                 {isOutOfStock
                   ? "Unavailable"
                   : `${product.stockQuantity} in stock`}
-              </span>
+              </span> */}
             </div>
-
+            {/* 
             {product.colors?.length > 0 && (
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Colors</span>
                 <span className="font-medium">{product.colors.join(", ")}</span>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>

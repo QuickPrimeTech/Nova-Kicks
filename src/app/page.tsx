@@ -1,18 +1,18 @@
 import { Hero } from "@/sections/home/hero";
 import { Marquee } from "@/layouts/marquee";
 import { FeaturedCarousel } from "@/sections/home/featured-carousel";
-import { db } from "@/index"; // Import your Drizzle db instance
-import { products as productTable } from "@/db/schemas";
+// Import your Drizzle db instance
+import { getFeaturedProducts } from "@/db/functions/product";
 
 export default async function Home() {
-  const products = await db.select().from(productTable); // Fetch products from the database
+  const featuredProducts = await getFeaturedProducts(); // Fetch featured products
 
   return (
     <>
       <Hero />
       <Marquee />
       {/* <BentoCategories /> */}
-      <FeaturedCarousel products={products} />
+      <FeaturedCarousel products={featuredProducts} />
     </>
   );
 }

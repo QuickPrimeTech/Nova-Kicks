@@ -4,6 +4,4 @@ export * from "./offers";
 export * from "./order-items";
 export * from "./orders";
 export * from "./payments";
-export * from "./product-variants";
 export * from "./products";
-export * from "./variant-sizes";

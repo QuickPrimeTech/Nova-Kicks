@@ -1,5 +1,13 @@
 // @/db/schemas/products.ts
-import { pgTable, uuid, text, boolean } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  uuid,
+  text,
+  boolean,
+  integer,
+  jsonb,
+  pgEnum,
+} from "drizzle-orm/pg-core";
 import { categories } from "./categories";
 import { timestamps } from "./common";
 
@@ -7,8 +15,9 @@ import { timestamps } from "./common";
 export type ProductImage = {
   url: string;
   altText: string;
-  isPrimary: boolean;
 };
+
+export const genderEnum = pgEnum("gender", ["men", "women", "unisex"]);
 
 export const products = pgTable("products", {
   // Core Identifiers
@@ -25,6 +34,16 @@ export const products = pgTable("products", {
     onUpdate: "cascade",
     onDelete: "set null",
   }),
+
+  images: jsonb("images").$type<ProductImage[]>().notNull().default([]),
+  sizes: jsonb("sizes")
+    .$type<{ size: string; stock: number }[]>()
+    .notNull()
+    .default([]),
+  price: integer("price").notNull(),
+
+  // Restricted only to men, women or unisex
+  gender: genderEnum("gender").notNull().default("unisex"),
 
   // Storing Ksh as an integer to avoid floating-point math errors
   isPublished: boolean("is_published").notNull().default(true),
