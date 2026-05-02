@@ -1,9 +1,9 @@
-// @/db/schemas/index.ts
-
-//Export all the schemas from the products file
-export * from "./products";
-export * from "./offers";
 export * from "./categories";
-export * from "./orders";
+export * from "./common";
+export * from "./offers";
 export * from "./order-items";
+export * from "./orders";
 export * from "./payments";
+export * from "./product-variants";
+export * from "./products";
+export * from "./variant-sizes";

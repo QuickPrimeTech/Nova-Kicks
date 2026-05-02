@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:seed": "tsx src/db/seed.ts"
+    "db:seed": "tsx src/db/seed.ts",
+    "generate:schemas": "tsx src/scripts/generate-schemas.ts"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
