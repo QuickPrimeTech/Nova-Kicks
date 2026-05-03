@@ -102,13 +102,34 @@ export async function getProductSlugs(): Promise<SelectProduct["slug"][]> {
 
 export async function getProductBySlug(
   slug: string,
-): Promise<SelectProduct | null> {
-  // 1. Get product
-  const productRows = await db
-    .select()
+): Promise<ProductWithOptionalOffer | null> {
+  const now = new Date();
+
+  const rows = await db
+    .select({
+      product: products,
+      offer: offers,
+    })
     .from(products)
+    .leftJoin(
+      offers,
+      and(
+        eq(products.id, offers.productId),
+        eq(offers.isActive, true),
+        lte(offers.startDate, now),
+        gte(offers.endDate, now),
+      ),
+    )
     .where(eq(products.slug, slug))
     .limit(1);
 
-  return productRows[0];
+  if (!rows.length) return null;
+
+  const { product, offer } = rows[0];
+
+  return {
+    ...product,
+    offer,
+    discountedPrice: getDiscountedPrice(product.price, offer),
+  };
 }
