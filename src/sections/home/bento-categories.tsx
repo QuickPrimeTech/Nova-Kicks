@@ -110,7 +110,7 @@ export const BentoCategories = ({ categories }: BentoCategoriesProps) => {
 
       {/* Mobile CTA */}
       <div className="mt-8 flex justify-center md:hidden">
-        <Button asChild variant="outline">
+        <Button size={"xl"} asChild variant="outline">
           <a href="/categories">
             View all categories <ArrowUpRight className="h-4 w-4 ml-1" />
           </a>

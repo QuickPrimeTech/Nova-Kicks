@@ -3,9 +3,9 @@ import { db } from "@/index";
 import { products, SelectProduct } from "@/db/schemas/products";
 import { eq } from "drizzle-orm";
 
-export async function getFeaturedProducts(): Promise<SelectProduct[]> {
+export async function getLatestProducts(): Promise<SelectProduct[]> {
   // 1. Fetch base data
-  const productsData = await db.select().from(products);
+  const productsData = await db.select().from(products).limit(8);
   return productsData;
 }
 export async function getProducts(): Promise<SelectProduct[]> {

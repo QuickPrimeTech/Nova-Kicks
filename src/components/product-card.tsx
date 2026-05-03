@@ -47,7 +47,7 @@ export const ProductCard = ({ product }: { product: SelectProduct }) => {
           isInWishlist && "border-red-200 bg-red-50 text-red-500",
         )}
         title={isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
-        onClick={(e) => {
+        onClick={() => {
           toggleItem(wishlistProduct);
         }}
       >
