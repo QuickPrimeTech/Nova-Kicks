@@ -75,11 +75,8 @@ export const ProductCard = ({ product }: { product: SelectProduct }) => {
             />
           </div>
         </Link>
-        <Carousel className="px-2 mt-1">
-          <CarouselContent
-            showDefaultItem={false}
-            className="gap-1 justify-center"
-          >
+        <Carousel className="mt-1 px-2">
+          <CarouselContent className="gap-1 justify-center">
             {product?.images.map((image) => (
               <CarouselItem
                 key={image.url}

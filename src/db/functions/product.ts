@@ -1,13 +1,20 @@
-// @/db/functions/fetch-featured-product.ts
+// @/db/functions/product.ts
 import { db } from "@/index";
 import { products, SelectProduct } from "@/db/schemas/products";
-import { eq } from "drizzle-orm";
+import { desc, eq, gte } from "drizzle-orm";
 
 export async function getLatestProducts(): Promise<SelectProduct[]> {
-  // 1. Fetch base data
-  const productsData = await db.select().from(products).limit(8);
-  return productsData;
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+  return db
+    .select()
+    .from(products)
+    .where(gte(products.createdAt, thirtyDaysAgo))
+    .orderBy(desc(products.createdAt))
+    .limit(8);
 }
+
 export async function getProducts(): Promise<SelectProduct[]> {
   // 1. Fetch base data
   const productsData = await db.select().from(products);
