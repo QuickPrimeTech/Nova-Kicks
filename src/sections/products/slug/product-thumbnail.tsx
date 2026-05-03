@@ -218,7 +218,7 @@ export function LightboxDialog({
         <Carousel setApi={setApi}>
           <CarouselContent>
             {images.map((image) => (
-              <CarouselItem key={image.url}>
+              <CarouselItem key={`${image.url}-${image.altText}`}>
                 <div
                   className={cn(
                     "relative aspect-square w-full overflow-hidden rounded-md",
@@ -270,7 +270,10 @@ export function LightboxDialog({
           <CarouselContent className="justify-center gap-0">
             {images.length > 1 &&
               images.map((img, i) => (
-                <CarouselItem key={img.url} className="basis-1/5 aspect-4/3">
+                <CarouselItem
+                  key={`${img.url}-${img.altText}`}
+                  className="basis-1/5 aspect-4/3"
+                >
                   <button
                     onClick={() => api?.scrollTo(i)}
                     className={cn(
@@ -333,7 +336,7 @@ export const ProductThumbnail = ({
         <Carousel setApi={setApi}>
           <CarouselContent showDefaultItem={false}>
             {images.map((image) => (
-              <CarouselItem key={image.url}>
+              <CarouselItem key={`${image.url}-${image.altText}`}>
                 <div
                   className="relative aspect-4/3 cursor-zoom-in overflow-hidden rounded-xl"
                   onClick={() => setOpen(true)}
@@ -356,7 +359,7 @@ export const ProductThumbnail = ({
             {images.length > 1 &&
               images.map((img, i) => (
                 <CarouselItem
-                  key={img.url}
+                  key={`${img.url}-${img.altText}`}
                   className="basis-1/4 md:basis-1/6 aspect-4/3"
                 >
                   <button

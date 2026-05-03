@@ -101,7 +101,7 @@ export const ProductCard = ({
           >
             {images.map((img) => (
               <CarouselItem
-                key={img.url}
+                key={`${img.url}-${img.altText}`}
                 className={cn(
                   "basis-1/6 aspect-square opacity-50 pl-0 border rounded-md overflow-hidden",
                   productImage?.url === img.url && "opacity-100",
@@ -114,37 +114,36 @@ export const ProductCard = ({
           </CarouselContent>
         </Carousel>
       )}
+      <Link href={href}>
+        {/* INFO */}
+        <div className="p-2">
+          <h3 className="font-medium line-clamp-1">{product.name}</h3>
+          <p className="text-xs text-muted-foreground">{product.brand}</p>
 
-      {/* INFO */}
-      <div className="p-2">
-        <h3 className="font-medium line-clamp-1">{product.name}</h3>
-        <p className="text-xs text-muted-foreground">{product.brand}</p>
+          {/* PRICE LOGIC */}
+          <div className="mt-2 flex items-center gap-2">
+            {hasOffer ? (
+              <>
+                <span className="text-primary font-bold">
+                  Ksh {finalPrice?.toLocaleString()}
+                </span>
+                <span className="line-through text-muted-foreground text-sm">
+                  Ksh {price.toLocaleString()}
+                </span>
+              </>
+            ) : (
+              <span className="font-bold">Ksh {price.toLocaleString()}</span>
+            )}
+          </div>
 
-        {/* PRICE LOGIC */}
-        <div className="mt-2 flex items-center gap-2">
-          {hasOffer ? (
-            <>
-              <span className="text-primary font-bold">
-                Ksh {finalPrice?.toLocaleString()}
-              </span>
-              <span className="line-through text-muted-foreground text-sm">
-                Ksh {price.toLocaleString()}
-              </span>
-            </>
-          ) : (
-            <span className="font-bold">Ksh {price.toLocaleString()}</span>
-          )}
-        </div>
-
-        {/* CTA */}
-        <div className="flex justify-end mt-2">
-          <Button size="icon" asChild>
-            <Link href={href}>
+          {/* CTA */}
+          <div className="flex justify-end mt-2">
+            <Button size="icon">
               <Plus />
-            </Link>
-          </Button>
+            </Button>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };
