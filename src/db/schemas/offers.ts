@@ -7,15 +7,21 @@ import {
   integer,
   timestamp,
   boolean,
+  pgEnum,
 } from "drizzle-orm/pg-core";
 import { products } from "./products";
 import { timestamps } from "./common";
+
+export const discountTypeEnum = pgEnum("discount_type", [
+  "percentage",
+  "fixed_amount",
+]);
 
 export const offers = pgTable("offers", {
   id: uuid("id").primaryKey().defaultRandom(),
   code: text("code").unique(), // e.g., 'EASTER20' or 'NIKE-FLASH'
   description: text("description").notNull(),
-  discountType: text("discount_type").notNull(), // 'percentage' or 'fixed_amount'
+  discountType: discountTypeEnum("discount_type").notNull(), // 'percentage' or 'fixed_amount'
   discountValue: integer("discount_value").notNull(),
   minOrderAmount: integer("min_order_amount").default(0),
   //Adding productId as a foreign key reference to products table

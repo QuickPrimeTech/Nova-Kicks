@@ -1,7 +1,11 @@
-// @/components/product-card.tsx
 "use client";
+
 import Link from "next/link";
+import { useState } from "react";
+import { Heart, Plus } from "lucide-react";
+
 import { Image } from "./ui/image";
+import { Button } from "./ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -9,120 +13,146 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
-import { useState } from "react";
-import { Button } from "./ui/button";
-import { Heart, Plus } from "lucide-react";
-import { SelectProduct } from "@/db/schemas";
+
+import { SelectProduct, SelectOffer } from "@/db/schemas";
 import { cn } from "@/lib/utils";
 import { useWishlistStore, WishlistItem } from "@/store/wishlist";
 
-export const ProductCard = ({ product }: { product: SelectProduct }) => {
-  const [productImage, setProductImage] = useState(product?.images[0]);
-  const toggleItem = useWishlistStore((state) => state.toggleItem);
-  const isInWishlist = useWishlistStore((state) =>
-    state.isInWishlist(product.id),
-  );
+type ProductCardProps = {
+  product: SelectProduct;
+  offer?: SelectOffer;
+  variant?: "default" | "discount";
+  showThumbnails?: boolean;
+};
+
+export const ProductCard = ({
+  product,
+  offer,
+  variant = "default",
+  showThumbnails = true,
+}: ProductCardProps) => {
+  const images = Array.isArray(product.images) ? product.images : [];
+  const [productImage, setProductImage] = useState(images[0]);
+
+  const toggleItem = useWishlistStore((s) => s.toggleItem);
+  const isInWishlist = useWishlistStore((s) => s.isInWishlist(product.id));
+
+  const hasOffer = !!offer;
+
+  const price = product.price;
+
+  const finalPrice = offer
+    ? offer.discountType === "percentage"
+      ? price - (price * offer.discountValue) / 100
+      : price - offer.discountValue
+    : price;
+
+  const discountLabel =
+    offer?.discountType === "percentage"
+      ? `${offer.discountValue}% OFF`
+      : `Ksh ${offer?.discountValue} OFF`;
 
   const wishlistProduct: WishlistItem = {
     id: product.id,
     name: product.name,
     price: product.price,
-    image: product.images[0].url,
-    size: product.sizes[0].size,
+    image: images[0]?.url ?? "",
+    size: product.sizes?.[0]?.size ?? "",
   };
 
-  const price = product.price;
-
   const href = `/products/${product.slug}`;
+
   return (
-    <div className="group relative block border bg-card h-full rounded-md">
+    <div
+      className={cn(
+        "group relative border bg-card rounded-md overflow-hidden",
+        variant === "discount" && "border-red-200",
+      )}
+    >
+      {/* Wishlist */}
       <Button
         size="icon"
         variant="secondary"
         className={cn(
-          "absolute top-3 right-3 z-20 h-9 w-9 rounded-full border bg-background/90 backdrop-blur-sm",
-          "transition-all duration-300 ease-out",
-          "hover:scale-110 hover:bg-background",
-          "active:scale-90",
-          isInWishlist && "border-red-200 bg-red-50 text-red-500",
+          "absolute top-3 right-3 z-20 h-9 w-9 rounded-full",
+          isInWishlist && "text-red-500 bg-red-50",
         )}
-        title={isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
-        onClick={() => {
-          toggleItem(wishlistProduct);
-        }}
+        onClick={() => toggleItem(wishlistProduct)}
       >
-        <Heart
-          className={cn(
-            "transition-all duration-300 ease-out",
-            isInWishlist && "fill-red-500 text-red-500 scale-110",
-          )}
-        />
-        <span className="sr-only">
-          {isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
-        </span>
+        <Heart className={isInWishlist ? "fill-red-500" : ""} />
       </Button>
 
-      {/* IMAGE CAROUSEL */}
-      <div className="relative">
-        <Link href={href} className="group block">
-          <div className="relative w-full aspect-10/8 overflow-hidden border rounded-md">
-            <Image
-              src={productImage?.url}
-              alt={productImage?.altText ?? product.name}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 780px) 33vw, 25vw"
-              className="object-cover group-focus-within:scale-110 group-hover:scale-110 transition"
-            />
-          </div>
-        </Link>
-        <Carousel className="mt-1 px-2">
-          <CarouselContent className="gap-1 justify-center">
-            {product?.images.map((image) => (
+      {/* DISCOUNT BADGE */}
+      {hasOffer && (
+        <div className="absolute top-3 left-3 z-20">
+          <span className="text-xs font-bold bg-red-500 text-white px-2 py-1 rounded-md">
+            {discountLabel}
+          </span>
+        </div>
+      )}
+
+      {/* MAIN IMAGE */}
+      <Link href={href} className="block">
+        <div className="relative aspect-square overflow-hidden">
+          <Image
+            src={productImage?.url}
+            alt={productImage?.altText ?? product.name}
+            fill
+            className="object-cover group-hover:scale-110 transition"
+          />
+        </div>
+      </Link>
+
+      {/* THUMBNAILS (OPTIONAL) */}
+      {showThumbnails && images.length > 1 && (
+        <Carousel className="px-2 mt-1">
+          <CarouselContent className="gap-1">
+            {images.map((img) => (
               <CarouselItem
-                key={image.url}
+                key={img.url}
                 className={cn(
-                  "relative basis-1/4 shadow-sm opacity-50 border pl-0 aspect-3/2 overflow-hidden transition rounded-md",
-                  productImage.url === image.url && "opacity-100",
+                  "basis-1/4 aspect-square opacity-50 border rounded-md overflow-hidden",
+                  productImage?.url === img.url && "opacity-100",
                 )}
-                onClick={() => setProductImage(() => image)}
+                onClick={() => setProductImage(img)}
               >
-                <Image
-                  src={image.url}
-                  alt={image.altText ?? product.name}
-                  fill
-                  sizes="(max-width: 640px) 25vw,(max-width: 780px) 10vw,5vw"
-                  className="object-cover hover:scale-110 transition"
-                />
+                <Image src={img.url} alt={img.altText ?? ""} fill />
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious
-            size={"icon-xs"}
-            className="absolute hidden disabled:opacity-0 lg:inline-flex left-0 top-1/2 -translate-y-1/2"
-          />
-          <CarouselNext
-            size={"icon-xs"}
-            className="absolute disabled:opacity-0 hidden lg:inline-flex right-0 top-1/2 -translate-y-1/2"
-          />
+          <CarouselPrevious size="icon-xs" />
+          <CarouselNext size="icon-xs" />
         </Carousel>
-      </div>
-      <Link href={href} className="group block p-2">
-        <div className="pt-4 mb-1 flex flex-col sm:flex-row gap-2 justify-between items-start">
-          <div className="space-y-1">
-            <h3 className="font-medium leading-tight">{product.name}</h3>
-            {/* optional brand */}
-            <p className="text-xs text-muted-foreground">{product.brand}</p>
-          </div>
+      )}
 
-          {/* PRICE */}
-          <p className="font-medium font-heading">Ksh {price ?? "—"}</p>
+      {/* INFO */}
+      <div className="p-2">
+        <h3 className="font-medium line-clamp-1">{product.name}</h3>
+        <p className="text-xs text-muted-foreground">{product.brand}</p>
+
+        {/* PRICE LOGIC */}
+        <div className="mt-2 flex items-center gap-2">
+          {hasOffer ? (
+            <>
+              <span className="text-red-500 font-bold">
+                Ksh {finalPrice?.toLocaleString()}
+              </span>
+              <span className="line-through text-muted-foreground text-sm">
+                Ksh {price.toLocaleString()}
+              </span>
+            </>
+          ) : (
+            <span className="font-bold">Ksh {price.toLocaleString()}</span>
+          )}
         </div>
-        <div className="flex justify-end">
-          <Button size={"icon"} className="">
+
+        {/* CTA */}
+        <div className="flex justify-end mt-2">
+          <Button size="icon">
             <Plus />
           </Button>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };

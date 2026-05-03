@@ -33,7 +33,7 @@ export const BentoCategories = ({ categories }: BentoCategoriesProps) => {
   };
 
   return (
-    <section className="container mx-auto section py-20">
+    <section id="categories" className="container mx-auto section py-20">
       <div className="flex items-end justify-between mb-12">
         <div>
           <p className="font-mono text-xs tracking-wide uppercase text-muted-foreground mb-3">
@@ -85,7 +85,7 @@ export const BentoCategories = ({ categories }: BentoCategoriesProps) => {
             />
 
             {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
 
             {/* Content */}
             <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-end text-white">
