@@ -9,6 +9,9 @@ import { Heart, Minus, Plus, ShoppingBag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { useCartStore } from "@/store/cart";
+import { useWishlistStore, WishlistItem } from "@/store/wishlist";
+import { formatPrice } from "@/helpers/formatters";
+import { cn } from "@/lib/utils";
 
 interface ProductContentProps {
   product: SelectProduct;
@@ -20,17 +23,21 @@ export const ProductContent = ({ product }: ProductContentProps) => {
   >(null);
   const [quantity, setQuantity] = useState(1);
   const addItem = useCartStore((state) => state.addItem);
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("en-KE", {
-      style: "currency",
-      currency: "KES",
-      minimumFractionDigits: 0,
-    }).format(price);
-  };
+  const toggleWishlist = useWishlistStore((state) => state.toggleItem);
+  const isInWishlist = useWishlistStore((state) =>
+    state.isInWishlist(product.id),
+  );
 
   const isOutOfStock = selectedSize ? parseInt(selectedSize.size) < 1 : false;
   const isLowStock = selectedSize ? parseInt(selectedSize.size) < 5 : false;
+
+  const wishlistProduct: WishlistItem = {
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    image: product.images[0].url,
+    size: product.sizes[0].size,
+  };
 
   const addToCart = () => {
     if (!selectedSize) {
@@ -51,8 +58,6 @@ export const ProductContent = ({ product }: ProductContentProps) => {
 
     toast.success("Added to cart");
   };
-
-  const addToWishlist = () => {};
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-12">
@@ -175,8 +180,19 @@ export const ProductContent = ({ product }: ProductContentProps) => {
               <ShoppingBag className="size-5 ml-1.5" />
             </Button>
 
-            <Button size="xl" variant="outline" disabled={isOutOfStock}>
-              Add to Wishlist <Heart className="size-5 ml-1.5" />
+            <Button
+              size="xl"
+              variant="outline"
+              className="group"
+              onClick={() => toggleWishlist(wishlistProduct)}
+            >
+              {isInWishlist ? "Remove from" : "Add to"} Wishlist{" "}
+              <Heart
+                className={cn(
+                  "size-5 ml-1.5",
+                  isInWishlist && "fill-red-500 text-red-500",
+                )}
+              />
             </Button>
           </div>
 

@@ -14,16 +14,16 @@ import { Button } from "./ui/button";
 import { Heart, Plus } from "lucide-react";
 import { SelectProduct } from "@/db/schemas";
 import { cn } from "@/lib/utils";
-import { useWishlistStore } from "@/store/wishlist";
+import { useWishlistStore, WishlistItem } from "@/store/wishlist";
 
 export const ProductCard = ({ product }: { product: SelectProduct }) => {
   const [productImage, setProductImage] = useState(product?.images[0]);
   const toggleItem = useWishlistStore((state) => state.toggleItem);
-  const isActive = useWishlistStore((state) =>
-    state.items.some((i) => i.id === product.id),
+  const isInWishlist = useWishlistStore((state) =>
+    state.isInWishlist(product.id),
   );
 
-  const wishlistProduct = {
+  const wishlistProduct: WishlistItem = {
     id: product.id,
     name: product.name,
     price: product.price,
@@ -44,20 +44,21 @@ export const ProductCard = ({ product }: { product: SelectProduct }) => {
           "transition-all duration-300 ease-out",
           "hover:scale-110 hover:bg-background",
           "active:scale-90",
-          isActive && "border-red-200 bg-red-50 text-red-500",
+          isInWishlist && "border-red-200 bg-red-50 text-red-500",
         )}
+        title={isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
         onClick={(e) => {
           toggleItem(wishlistProduct);
         }}
       >
         <Heart
           className={cn(
-            "h-4 w-4 transition-all duration-300 ease-out",
-            isActive && "fill-red-500 text-red-500 scale-110",
+            "transition-all duration-300 ease-out",
+            isInWishlist && "fill-red-500 text-red-500 scale-110",
           )}
         />
         <span className="sr-only">
-          {isActive ? "Remove from wishlist" : "Add to wishlist"}
+          {isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
         </span>
       </Button>
 
