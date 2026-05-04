@@ -1,7 +1,18 @@
 // @/db/functions/product.ts
 import { db } from "@/index";
 import { products, SelectProduct } from "@/db/schemas/products";
-import { and, count, desc, eq, gte, lte, sql } from "drizzle-orm";
+import {
+  and,
+  asc,
+  count,
+  desc,
+  eq,
+  gte,
+  ilike,
+  inArray,
+  lte,
+  sql,
+} from "drizzle-orm";
 import { offers, SelectOffer } from "@/db/schemas/offers";
 import {
   EnrichedProduct,
@@ -10,6 +21,7 @@ import {
 } from "@/types/product";
 import { categories } from "../schemas";
 import { cacheLife } from "next/cache";
+import { ValidFilters } from "@/lib/filter-schema";
 
 // Add this import at the top of your file
 // import { categories } from "@/db/schemas/categories";
@@ -61,21 +73,92 @@ export async function getProducts(): Promise<EnrichedProduct[]> {
   });
 }
 
-export async function getPaginatedProducts(
-  page: number = 1,
-  limit: number = 20,
-): Promise<{ data: EnrichedProduct[]; totalPages: number }> {
+export async function getPaginatedProducts(filters: ValidFilters): Promise<{
+  data: EnrichedProduct[];
+  totalPages: number;
+  totalCount: number;
+}> {
+  const { page = 1, limit = 4 } = filters;
   const offset = (page - 1) * limit;
 
-  // 1. Get total count for pagination
-  // Note: Once you implement backend filtering, you'll need to apply the same 'where' clauses here
-  const [{ totalCount }] = await db
-    .select({ totalCount: count() })
-    .from(products);
+  // Build WHERE conditions
+  const conditions = [eq(products.isPublished, true)];
 
+  if (filters.gender) {
+    conditions.push(eq(products.gender, filters.gender));
+  }
+
+  if (filters.category) {
+    const slugs = filters.category.split(",");
+    conditions.push(inArray(categories.slug, slugs));
+  }
+
+  if (filters.brand) {
+    const brands = filters.brand.split(",");
+    if (brands.length === 1) {
+      conditions.push(ilike(products.brand, brands[0]));
+    } else {
+      // Postgres array literal: '{Nike,Adidas,Puma}'
+      const arrayLiteral = `{${brands.join(",")}}`;
+      conditions.push(sql`${products.brand} ILIKE ANY(${arrayLiteral})`);
+    }
+  }
+
+  if (filters.minPrice !== undefined && filters.minPrice > 0) {
+    conditions.push(gte(products.price, filters.minPrice));
+  }
+  if (filters.maxPrice !== undefined && filters.maxPrice > 0) {
+    conditions.push(lte(products.price, filters.maxPrice));
+  }
+
+  if (filters.inStock) {
+    conditions.push(
+      sql`jsonb_path_exists(${products.sizes}, '$[*] ? (@.stock > 0)')`,
+    );
+  }
+
+  if (filters.discounted) {
+    conditions.push(sql`${offers.id} IS NOT NULL`);
+  }
+
+  const whereClause = and(...conditions);
+
+  // Count
+  const countResult = await db
+    .select({ totalCount: count() })
+    .from(products)
+    .leftJoin(categories, eq(products.categoryId, categories.id))
+    .leftJoin(
+      offers,
+      and(
+        eq(products.id, offers.productId),
+        eq(offers.isActive, true),
+        lte(offers.startDate, sql`now()`),
+        gte(offers.endDate, sql`now()`),
+      ),
+    )
+    .where(whereClause);
+
+  const totalCount = Number(countResult[0]?.totalCount ?? 0);
   const totalPages = Math.ceil(totalCount / limit);
 
-  // 2. Fetch paginated data
+  // Sort order
+  let orderBy;
+  switch (filters.sort) {
+    case "price_asc":
+      orderBy = asc(products.price);
+      break;
+    case "price_desc":
+      orderBy = desc(products.price);
+      break;
+    case "newest":
+      orderBy = desc(products.createdAt);
+      break;
+    default:
+      orderBy = desc(products.createdAt);
+  }
+
+  // Fetch paginated data
   const rows = await db
     .select({
       product: products,
@@ -93,10 +176,11 @@ export async function getPaginatedProducts(
       ),
     )
     .leftJoin(categories, eq(products.categoryId, categories.id))
+    .where(whereClause)
+    .orderBy(orderBy)
     .limit(limit)
     .offset(offset);
 
-  // 3. Map and enrich the data
   const data = rows.map(({ product, offer, category }) => {
     const sizes = product.sizes ?? [];
     const totalStock = sizes.reduce((sum, s) => sum + (s.stock ?? 0), 0);
@@ -105,14 +189,13 @@ export async function getPaginatedProducts(
       ...product,
       category: category ?? null,
       offer: offer ?? null,
-      // Assuming you have getDiscountedPrice imported/defined in this file
       discountedPrice: getDiscountedPrice(product.price, offer),
       totalStock,
       sizesWithStock: sizes,
     };
   });
 
-  return { data, totalPages };
+  return { data, totalPages, totalCount };
 }
 
 export function getDiscountedPrice(price: number, offer?: SelectOffer | null) {

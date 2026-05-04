@@ -86,7 +86,7 @@ export const ProductCard = ({
 
       {/* MAIN IMAGE */}
       <Link href={href} className="block">
-        <div className="relative aspect-square overflow-hidden">
+        <div className="relative aspect-4/3 overflow-hidden">
           <Image
             src={productImage?.url}
             alt={productImage?.altText ?? product.name}
