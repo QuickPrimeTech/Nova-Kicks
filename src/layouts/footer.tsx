@@ -1,26 +1,44 @@
 "use client";
-
-import { FaXTwitter } from "react-icons/fa6";
+import { FaFacebook } from "react-icons/fa6";
 import { FaTiktok } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
+const cols = [
+  {
+    title: "Shop",
+    links: ["New Arrivals", "Best Sellers", "Sale", "Gift Cards"],
+  },
+  {
+    title: "Help",
+    links: ["Shipping", "Returns", "Order Status", "Contact"],
+  },
+  {
+    title: "Company",
+    links: ["About", "Sustainability", "Careers", "Press"],
+  },
+];
+
+const socials = [
+  {
+    label: "Instagram",
+    url: "https://www.instagram.com/shoeempire.co.ke/",
+    icon: IoLogoInstagram,
+  },
+  {
+    label: "Tiktok",
+    url: "https://www.tiktok.com/@shoeempire",
+    icon: FaTiktok,
+  },
+  {
+    label: "Facebook",
+    url: "https://www.facebook.com/Shoeempire.co.ke/",
+    icon: FaFacebook,
+  },
+];
 export const Footer = () => {
-  const cols = [
-    {
-      title: "Shop",
-      links: ["New Arrivals", "Best Sellers", "Sale", "Gift Cards"],
-    },
-    {
-      title: "Help",
-      links: ["Shipping", "Returns", "Order Status", "Contact"],
-    },
-    {
-      title: "Company",
-      links: ["About", "Sustainability", "Careers", "Press"],
-    },
-  ];
   return (
     <footer className="border-t">
       <div className="container mx-auto section py-20">
@@ -67,14 +85,19 @@ export const Footer = () => {
             </div>
           ))}
           <div className="lg:col-span-1 flex lg:flex-col gap-3">
-            {[IoLogoInstagram, FaXTwitter, FaTiktok].map((Icon, i) => (
-              <a
-                key={i}
-                href="#"
-                className="h-10 w-10 max-sm:bg-accent rounded-full border border-background/20 flex items-center justify-center hover:bg-accent hover:border-accent hover:text-accent-foreground transition"
+            {socials.map((social, i) => (
+              <Button
+                key={social.url}
+                className="bg-secondary text-secondary-foreground hover:text-primary-foreground border"
+                aria-label={`Visit our ${social.label} profile`}
+                title={`Visit our ${social.label} profile`}
+                size={"icon-lg"}
+                asChild
               >
-                <Icon className="h-4 w-4" />
-              </a>
+                <Link href={social.url} rel="noreferre noopener" target="blank">
+                  <social.icon />
+                </Link>
+              </Button>
             ))}
           </div>
         </div>
