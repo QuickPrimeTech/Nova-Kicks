@@ -1,7 +1,7 @@
 // @/db/functions/product.ts
 import { db } from "@/index";
 import { products, SelectProduct } from "@/db/schemas/products";
-import { and, desc, eq, gte, lte } from "drizzle-orm";
+import { and, count, desc, eq, gte, lte, sql } from "drizzle-orm";
 import { offers, SelectOffer } from "@/db/schemas/offers";
 import {
   EnrichedProduct,
@@ -9,12 +9,19 @@ import {
   ProductWithOptionalOffer,
 } from "@/types/product";
 import { categories } from "../schemas";
+import { cacheLife } from "next/cache";
 
 // Add this import at the top of your file
 // import { categories } from "@/db/schemas/categories";
 
 export async function getProducts(): Promise<EnrichedProduct[]> {
-  const now = new Date();
+  "use cache";
+
+  cacheLife({
+    revalidate: 6 * 60 * 60,
+    stale: 6 * 60 * 60,
+    expire: 6 * 60 * 60,
+  });
 
   // 1. Fetch base data with joins
   const rows = await db
@@ -30,8 +37,8 @@ export async function getProducts(): Promise<EnrichedProduct[]> {
       and(
         eq(products.id, offers.productId),
         eq(offers.isActive, true),
-        lte(offers.startDate, now),
-        gte(offers.endDate, now),
+        lte(offers.startDate, sql`now()`),
+        gte(offers.endDate, sql`now()`),
       ),
     )
     // Join categories (Assuming products table has a categoryId column)
@@ -54,6 +61,60 @@ export async function getProducts(): Promise<EnrichedProduct[]> {
   });
 }
 
+export async function getPaginatedProducts(
+  page: number = 1,
+  limit: number = 20,
+): Promise<{ data: EnrichedProduct[]; totalPages: number }> {
+  const offset = (page - 1) * limit;
+
+  // 1. Get total count for pagination
+  // Note: Once you implement backend filtering, you'll need to apply the same 'where' clauses here
+  const [{ totalCount }] = await db
+    .select({ totalCount: count() })
+    .from(products);
+
+  const totalPages = Math.ceil(totalCount / limit);
+
+  // 2. Fetch paginated data
+  const rows = await db
+    .select({
+      product: products,
+      offer: offers,
+      category: categories,
+    })
+    .from(products)
+    .leftJoin(
+      offers,
+      and(
+        eq(products.id, offers.productId),
+        eq(offers.isActive, true),
+        lte(offers.startDate, sql`now()`),
+        gte(offers.endDate, sql`now()`),
+      ),
+    )
+    .leftJoin(categories, eq(products.categoryId, categories.id))
+    .limit(limit)
+    .offset(offset);
+
+  // 3. Map and enrich the data
+  const data = rows.map(({ product, offer, category }) => {
+    const sizes = product.sizes ?? [];
+    const totalStock = sizes.reduce((sum, s) => sum + (s.stock ?? 0), 0);
+
+    return {
+      ...product,
+      category: category ?? null,
+      offer: offer ?? null,
+      // Assuming you have getDiscountedPrice imported/defined in this file
+      discountedPrice: getDiscountedPrice(product.price, offer),
+      totalStock,
+      sizesWithStock: sizes,
+    };
+  });
+
+  return { data, totalPages };
+}
+
 export function getDiscountedPrice(price: number, offer?: SelectOffer | null) {
   if (!offer) return price;
 
@@ -66,11 +127,6 @@ export function getDiscountedPrice(price: number, offer?: SelectOffer | null) {
 }
 
 export async function getLatestProducts(): Promise<ProductWithOptionalOffer[]> {
-  const thirtyDaysAgo = new Date();
-  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-
-  const now = new Date();
-
   const rows = await db
     .select({
       product: products,
@@ -82,11 +138,11 @@ export async function getLatestProducts(): Promise<ProductWithOptionalOffer[]> {
       and(
         eq(products.id, offers.productId),
         eq(offers.isActive, true),
-        lte(offers.startDate, now),
-        gte(offers.endDate, now),
+        lte(offers.startDate, sql`now()`),
+        gte(offers.endDate, sql`now()`),
       ),
     )
-    .where(gte(products.createdAt, thirtyDaysAgo))
+    .where(gte(products.createdAt, sql`now() - interval '30 days'`))
     .orderBy(desc(products.createdAt))
     .limit(8);
 
@@ -100,8 +156,6 @@ export async function getLatestProducts(): Promise<ProductWithOptionalOffer[]> {
 }
 
 export async function getDiscountedProducts() {
-  const now = new Date();
-
   const rows = await db
     .select({
       product: products,
@@ -112,8 +166,8 @@ export async function getDiscountedProducts() {
     .where(
       and(
         eq(offers.isActive, true),
-        lte(offers.startDate, now),
-        gte(offers.endDate, now),
+        lte(offers.startDate, sql`now()`),
+        gte(offers.endDate, sql`now()`),
       ),
     )
     .limit(8);
@@ -147,8 +201,6 @@ export async function getProductSlugs(): Promise<SelectProduct["slug"][]> {
 export async function getProductBySlug(
   slug: string,
 ): Promise<ProductWithOptionalOffer | null> {
-  const now = new Date();
-
   const rows = await db
     .select({
       product: products,
@@ -160,8 +212,8 @@ export async function getProductBySlug(
       and(
         eq(products.id, offers.productId),
         eq(offers.isActive, true),
-        lte(offers.startDate, now),
-        gte(offers.endDate, now),
+        lte(offers.startDate, sql`now()`),
+        gte(offers.endDate, sql`now()`),
       ),
     )
     .where(eq(products.slug, slug))
@@ -179,8 +231,6 @@ export async function getProductBySlug(
 }
 
 export async function getLimitedProducts(): Promise<LimitedProduct[]> {
-  const now = new Date();
-
   const rows = await db
     .select({
       product: products,
@@ -192,8 +242,8 @@ export async function getLimitedProducts(): Promise<LimitedProduct[]> {
       and(
         eq(products.id, offers.productId),
         eq(offers.isActive, true),
-        lte(offers.startDate, now),
-        gte(offers.endDate, now),
+        lte(offers.startDate, sql`now()`),
+        gte(offers.endDate, sql`now()`),
       ),
     )
     .limit(8);

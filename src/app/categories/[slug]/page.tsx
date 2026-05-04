@@ -2,7 +2,19 @@
 
 import { getCategories, getCategoryFromSlug } from "@/db/functions/category";
 import { Metadata } from "next";
+import { cacheLife } from "next/cache";
 
+const getCategoryFromSlugCached = async (slug: string) => {
+  "use cache";
+
+  cacheLife({
+    revalidate: 6 * 60 * 60,
+    stale: 6 * 60 * 60,
+    expire: 6 * 60 * 60,
+  });
+
+  return await getCategoryFromSlug(slug);
+};
 export async function generateStaticParams() {
   const categories = await getCategories();
 
@@ -17,7 +29,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const category = await getCategoryFromSlug(slug);
+  const category = await getCategoryFromSlugCached(slug);
 
   if (!category) {
     return {

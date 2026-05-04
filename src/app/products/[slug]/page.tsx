@@ -3,6 +3,19 @@ import { Metadata } from "next";
 import { getProductBySlug, getProductSlugs } from "@/db/functions/product";
 import { ProductContent } from "@/sections/products/slug/content";
 import { notFound } from "next/navigation";
+import { cacheLife } from "next/cache";
+
+const getProductCached = async (slug: string) => {
+  "use cache";
+
+  cacheLife({
+    revalidate: 6 * 60 * 60,
+    stale: 6 * 60 * 60,
+    expire: 6 * 60 * 60,
+  });
+
+  return await getProductBySlug(slug);
+};
 
 type PageProps = {
   params: Promise<{
@@ -24,7 +37,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = await getProductBySlug(slug);
+  const product = await getProductCached(slug);
 
   if (!product) {
     return {
@@ -76,7 +89,7 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params;
-  const product = await getProductBySlug(slug);
+  const product = await getProductCached(slug);
 
   if (!product) return notFound();
 

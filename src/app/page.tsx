@@ -11,12 +11,28 @@ import { getCategories } from "@/db/functions/category";
 import { BentoCategories } from "@/sections/home/bento-categories";
 import { CrazyDiscounts } from "@/sections/home/crazy-discounts";
 import { LimitedProducts } from "@/sections/home/limited-products";
+import { cacheLife } from "next/cache";
 
-export default async function Home() {
+const getCachedPageData = async () => {
+  "use cache";
+
+  cacheLife({
+    revalidate: 6 * 60 * 60,
+    stale: 6 * 60 * 60,
+    expire: 6 * 60 * 60,
+  });
+
   const featuredProducts = await getLatestProducts(); // Fetch featured products
   const categories = await getCategories();
   const offers = await getDiscountedProducts();
   const limitedProducts = await getLimitedProducts();
+
+  return { featuredProducts, categories, offers, limitedProducts };
+};
+export default async function Home() {
+  const { featuredProducts, categories, offers, limitedProducts } =
+    await getCachedPageData();
+
   return (
     <>
       <Hero />

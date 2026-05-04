@@ -1,10 +1,10 @@
-"use client";
 import { FaFacebook } from "react-icons/fa6";
 import { FaTiktok } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { cacheLife } from "next/cache";
 
 const cols = [
   {
@@ -38,6 +38,16 @@ const socials = [
     icon: FaFacebook,
   },
 ];
+async function getCurrentYear() {
+  "use cache";
+  cacheLife({
+    revalidate: 60 * 60 * 24 * 365,
+    stale: 60 * 60 * 24 * 365,
+    expire: 60 * 60 * 24 * 365,
+  });
+  return new Date().getFullYear();
+}
+
 export const Footer = () => {
   return (
     <footer className="border-t">
@@ -105,9 +115,7 @@ export const Footer = () => {
           <p className="font-heading-3 font-bold font-heading text-2xl text-foreground uppercase">
             SHOE<span className="text-accent">.</span>EMPIRE
           </p>
-          <p>
-            © {new Date().getFullYear()} Shoe Empire. Engineered to outlast.
-          </p>
+          <p>© {getCurrentYear()} Shoe Empire. Engineered to outlast.</p>
         </div>
       </div>
     </footer>

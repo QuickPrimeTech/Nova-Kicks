@@ -5,9 +5,22 @@ import { Hero } from "@/sections/categories/hero";
 import { CategoryCard } from "@/sections/categories/category-card";
 import { CTA } from "@/sections/categories/cta";
 import { EmptyState } from "@/sections/categories/empty-state";
+import { cacheLife } from "next/cache";
+
+const getCategoriesWithCountCached = async () => {
+  "use cache";
+
+  cacheLife({
+    revalidate: 6 * 60 * 60,
+    stale: 6 * 60 * 60,
+    expire: 6 * 60 * 60,
+  });
+
+  return await getCategoriesWithCount();
+};
 
 export async function generateMetadata(): Promise<Metadata> {
-  const categoriesData = await getCategoriesWithCount();
+  const categoriesData = await getCategoriesWithCountCached();
 
   return {
     title: `Browse Categories`,
@@ -36,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function CategoriesPage() {
-  const categoriesData = await getCategoriesWithCount();
+  const categoriesData = await getCategoriesWithCountCached();
 
   return (
     <>
