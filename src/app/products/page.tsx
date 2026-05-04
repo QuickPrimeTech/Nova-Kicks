@@ -1,6 +1,7 @@
 // @/app/products/page.tsx
 import { Metadata } from "next";
 import { getProducts } from "@/db/functions/product";
+import { FilterSidebar } from "@/components/filters/filter-sidebar";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -29,5 +30,9 @@ export default async function ProductsPage() {
   ) as string[];
   const maxPrice = Math.max(...products.map((p) => p.price), 10000);
 
-  return <h1>This is the products page</h1>;
+  return (
+    <div className="min-h-screen py-10">
+      <FilterSidebar />
+    </div>
+  );
 }
