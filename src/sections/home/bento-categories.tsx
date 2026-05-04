@@ -61,61 +61,65 @@ export const BentoCategories = ({ categories }: BentoCategoriesProps) => {
       */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 auto-rows-[200px] md:auto-rows-[240px] lg:auto-rows-[280px]">
           {featuredCategories.map((cat, i) => (
-            <motion.a
+            <Link
               key={cat.id}
               href={`/categories/${cat.slug}`}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ delay: i * 0.08, duration: 0.7 }}
               className={cn(
-                "group relative overflow-hidden rounded-xl bg-secondary",
+                "block group relative overflow-hidden rounded-xl bg-secondary",
                 getGridSpans(i),
               )}
             >
-              <Image
-                src={cat.image || "/placeholder-category.jpg"}
-                alt={cat.name}
-                loading={i < 2 ? "eager" : "lazy"}
-                fill
-                sizes={cn(
-                  i === 0
-                    ? "(max-width: 768px) 100vw, (max-width: 1024px) 66vw, 50vw"
-                    : "(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw",
-                )}
-                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-              />
-
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-
-              {/* Content */}
-              <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-end text-white">
-                <h3
-                  className={cn(
-                    "font-display font-bold uppercase leading-tight",
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ delay: i * 0.08, duration: 0.7 }}
+                className="size-full"
+              >
+                <Image
+                  src={cat.image || "/placeholder-category.jpg"}
+                  alt={cat.name}
+                  loading={i < 2 ? "eager" : "lazy"}
+                  fill
+                  sizes={cn(
                     i === 0
-                      ? "text-3xl md:text-4xl lg:text-5xl"
-                      : "text-xl md:text-2xl",
+                      ? "(max-width: 768px) 100vw, (max-width: 1024px) 66vw, 50vw"
+                      : "(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw",
                   )}
-                >
-                  {cat.name}
-                </h3>
-                <span className="mt-2 inline-flex items-center gap-1 text-xs uppercase tracking-widest opacity-80 group-hover:opacity-100 transition-opacity">
-                  Explore
-                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </span>
-              </div>
-            </motion.a>
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+
+                {/* Content */}
+                <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-end text-white">
+                  <h3
+                    className={cn(
+                      "font-display font-bold uppercase leading-tight",
+                      i === 0
+                        ? "text-3xl md:text-4xl lg:text-5xl"
+                        : "text-xl md:text-2xl",
+                    )}
+                  >
+                    {cat.name}
+                  </h3>
+                  <span className="mt-2 inline-flex items-center gap-1 text-xs uppercase tracking-widest opacity-80 group-hover:opacity-100 transition-opacity">
+                    Explore
+                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </span>
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
 
         {/* Mobile CTA */}
         <div className="mt-8 flex justify-center md:hidden">
           <Button size={"xl"} asChild variant="outline">
-            <a href="/categories">
+            <Link href="/categories">
               View all categories <ArrowUpRight className="h-4 w-4 ml-1" />
-            </a>
+            </Link>
           </Button>
         </div>
       </div>
