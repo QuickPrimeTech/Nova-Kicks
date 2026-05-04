@@ -1,6 +1,6 @@
 // @/app/products/page.tsx
 import { Metadata } from "next";
-import { Suspense } from "react";
+import { Suspense, use } from "react";
 import { ProductGrid } from "@/sections/products/product-grid";
 import { FilterProductsSidebar } from "@/sections/products/filter-products-sidebar";
 import { ProductCardSkeleton } from "@/components/product-card-skeleton";
@@ -31,21 +31,30 @@ const ProductGridSkeleton = () => {
   );
 };
 
-export default async function ProductsPage({
+function ProductGridWrapper({ searchParams }: { searchParams: Promise<any> }) {
+  const resolvedParams = use(searchParams);
+  const suspenseKey = JSON.stringify(resolvedParams);
+
+  return (
+    <Suspense key={suspenseKey} fallback={<ProductGridSkeleton />}>
+      <ProductGrid searchParams={resolvedParams} />
+    </Suspense>
+  );
+}
+
+export default function ProductsPage({
   searchParams,
 }: {
-  searchParams: any;
+  searchParams: Promise<any>;
 }) {
-  const params = await searchParams;
-  const suspenseKey = new URLSearchParams(params as any).toString();
   return (
     <div className="min-h-screen relative flex bg-muted-30 max-sm:py-6 flex-col lg:flex-row w-full">
       <div className="flex max-sm:justify-end">
         <FilterProductsSidebar />
       </div>
       <div className="min-h-[200vh] flex-1 p-4 sm:p-6 lg:p-8">
-        <Suspense key={suspenseKey} fallback={<ProductGridSkeleton />}>
-          <ProductGrid searchParams={params} />
+        <Suspense fallback={<ProductGridSkeleton />}>
+          <ProductGridWrapper searchParams={searchParams} />
         </Suspense>
       </div>
     </div>

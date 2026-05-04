@@ -35,6 +35,7 @@ import { useAccessibility } from "@/store/accessibility";
 import { Logo } from "@/components/logo";
 import { CartSheet } from "@/components/cart/cart-sheet";
 import { WishlistSheet } from "@/components/cart/wishlist-sheet";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 /* ─── NAV LINKS ─── */
 const NAV = [
@@ -87,7 +88,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const isOpen = useAccessibility((state) => state.isOpen);
   const open = useAccessibility((state) => state.open);
-
+  const isDesktop = useMediaQuery("(min-width: 768px)");
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     onScroll();
@@ -222,7 +223,24 @@ export function Navbar() {
 
       {/* Accessibility Sheet */}
       <Sheet open={isOpen} onOpenChange={open}>
-        <SheetContent side="right" className="w-9/10 sm:w-8/10 md:w-1/2 lg:1/3">
+        <SheetContent
+          side={isDesktop ? "right" : "bottom"}
+          className="w-9/10 sm:w-8/10 md:w-1/2 lg:1/3"
+        >
+          <SheetHeader className="px-6 pt-6 pb-2">
+            <div className="flex items-center gap-3">
+              <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Accessibility className="size-5 text-primary" />
+              </div>
+              <div>
+                <SheetTitle className="text-left">Accessibility</SheetTitle>
+                <SheetDescription className="text-sm text-muted-foreground">
+                  Customize your experience
+                </SheetDescription>
+              </div>
+            </div>
+          </SheetHeader>
+
           <A11yPanel />
         </SheetContent>
       </Sheet>
@@ -289,20 +307,6 @@ function A11yPanel() {
 
   return (
     <div className="flex flex-col h-full">
-      <SheetHeader className="px-6 pt-6 pb-2">
-        <div className="flex items-center gap-3">
-          <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
-            <Accessibility className="size-5 text-primary" />
-          </div>
-          <div>
-            <SheetTitle className="text-left">Accessibility</SheetTitle>
-            <SheetDescription className="text-sm text-muted-foreground">
-              Customize your experience
-            </SheetDescription>
-          </div>
-        </div>
-      </SheetHeader>
-
       <ScrollArea className="flex-1 px-6 py-4">
         <div className="space-y-6">
           {/* Theme */}

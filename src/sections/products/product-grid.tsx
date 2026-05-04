@@ -3,15 +3,16 @@ import { FilterPagination } from "@/components/filters/pagination";
 import { ProductCard } from "@/components/product-card";
 import { getPaginatedProducts } from "@/db/functions/product";
 import { filterSchema, ValidFilters } from "@/lib/filter-schema";
+import { cacheLife } from "next/cache";
 
 export const getPaginatedProductsCached = async (filters: ValidFilters) => {
-  //   "use cache";
+  "use cache";
 
-  //   cacheLife({
-  //     revalidate: 6 * 60 * 60,
-  //     stale: 6 * 60 * 60,
-  //     expire: 6 * 60 * 60,
-  //   });
+  cacheLife({
+    revalidate: 6 * 60 * 60,
+    stale: 6 * 60 * 60,
+    expire: 6 * 60 * 60,
+  });
 
   return getPaginatedProducts(filters);
 };
@@ -19,9 +20,9 @@ export const getPaginatedProductsCached = async (filters: ValidFilters) => {
 export async function ProductGrid({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const rawParams = searchParams;
+  const rawParams = await searchParams;
 
   const normalized: Record<string, string> = {};
   for (const [key, value] of Object.entries(rawParams)) {
