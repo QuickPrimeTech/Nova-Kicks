@@ -1,3 +1,5 @@
+// @/section/categories/slug/hero.tsx
+
 export const Hero = () => {
   return (
     <>

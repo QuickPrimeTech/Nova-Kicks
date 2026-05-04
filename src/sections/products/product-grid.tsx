@@ -3,6 +3,7 @@ import { FilterPagination } from "@/components/filters/pagination";
 import { ProductCard } from "@/components/product-card";
 import { getPaginatedProducts } from "@/db/functions/product";
 import { filterSchema, ValidFilters } from "@/lib/filter-schema";
+import { SearchParams } from "@/types/common";
 import { cacheLife } from "next/cache";
 
 export const getPaginatedProductsCached = async (filters: ValidFilters) => {
@@ -17,11 +18,7 @@ export const getPaginatedProductsCached = async (filters: ValidFilters) => {
   return getPaginatedProducts(filters);
 };
 
-export async function ProductGrid({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
+export async function ProductGrid({ searchParams }: SearchParams) {
   const rawParams = await searchParams;
 
   const normalized: Record<string, string> = {};
@@ -33,7 +30,7 @@ export async function ProductGrid({
   const parsed = filterSchema.safeParse(normalized);
   const filters: ValidFilters = parsed.success
     ? parsed.data
-    : { page: 1, limit: 4 };
+    : { page: 1, limit: 15 };
 
   console.log("Valid filters:", filters);
 

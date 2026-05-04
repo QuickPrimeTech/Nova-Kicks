@@ -1,4 +1,4 @@
-// @/sections/categories/empty-state.tsx
+// @/sections/categories/slug/empty-state.tsx
 
 export const EmptyState = () => {
   return (

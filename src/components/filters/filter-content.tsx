@@ -20,16 +20,24 @@ type FilterContentProps = {
   products: EnrichedProduct[];
   setOpen?: Dispatch<SetStateAction<boolean>>;
   open?: boolean;
+  hideCategoryFilter?: boolean;
 };
-export function FilterContent({ products, setOpen, open }: FilterContentProps) {
+export function FilterContent({
+  products,
+  setOpen,
+  open,
+  hideCategoryFilter = false,
+}: FilterContentProps) {
   // Generate the config dynamically on render
-  const filters = getFiltersConfig(products);
+  const filters = getFiltersConfig(products, {
+    hideCategoryFilter,
+  });
   const isDesktop = useMediaQuery("(min-width: 768px)");
   return (
     <Accordion
       type="multiple"
       defaultValue={["gender", "category", "price"]}
-      className="space-y-2 group-data-[collapsible=icon]:-ml-3"
+      className="space-y-2 group-data-[collapsible=icon]:-ml-2.5"
     >
       {filters.map((filter) => (
         <AccordionItem

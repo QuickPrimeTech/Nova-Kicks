@@ -1,4 +1,4 @@
-// @/sections/categories/cta.tsx
+// @/sections/categories/slug/cta.tsx
 
 import Link from "next/link";
 

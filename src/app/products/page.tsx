@@ -3,7 +3,8 @@ import { Metadata } from "next";
 import { Suspense, use } from "react";
 import { ProductGrid } from "@/sections/products/product-grid";
 import { FilterProductsSidebar } from "@/sections/products/filter-products-sidebar";
-import { ProductCardSkeleton } from "@/components/product-card-skeleton";
+import { ProductGridSkeleton } from "@/components/product-grid-skeleton";
+import { SearchParams } from "@/types/common";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -21,23 +22,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const ProductGridSkeleton = () => {
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {Array.from({ length: 20 }).map((_, i) => (
-        <ProductCardSkeleton key={i} showThumbnails={true} />
-      ))}
-    </div>
-  );
-};
-
-function ProductGridWrapper({ searchParams }: { searchParams: Promise<any> }) {
+function ProductGridWrapper({ searchParams }: SearchParams) {
   const resolvedParams = use(searchParams);
   const suspenseKey = JSON.stringify(resolvedParams);
 
   return (
     <Suspense key={suspenseKey} fallback={<ProductGridSkeleton />}>
-      <ProductGrid searchParams={resolvedParams} />
+      <ProductGrid searchParams={searchParams} />
     </Suspense>
   );
 }

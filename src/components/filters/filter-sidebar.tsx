@@ -23,7 +23,14 @@ import {
   SidebarTrigger,
 } from "../ui/sidebar";
 
-export function FilterSidebar({ products }: { products: EnrichedProduct[] }) {
+type FilterSidebarProps = {
+  products: EnrichedProduct[];
+  hideCategoryFilter?: boolean;
+};
+export function FilterSidebar({
+  products,
+  hideCategoryFilter = false,
+}: FilterSidebarProps) {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
   const [desktopOpen, setDesktopOpen] = useState(true);
@@ -51,7 +58,10 @@ export function FilterSidebar({ products }: { products: EnrichedProduct[] }) {
           </SheetHeader>
           <ScrollArea className="h-full">
             <div className="px-6 py-6">
-              <FilterContent products={products} />
+              <FilterContent
+                products={products}
+                hideCategoryFilter={hideCategoryFilter}
+              />
             </div>
             <ScrollBar />
           </ScrollArea>
@@ -94,6 +104,7 @@ export function FilterSidebar({ products }: { products: EnrichedProduct[] }) {
           <ScrollArea className="h-full">
             <div className="p-4">
               <FilterContent
+                hideCategoryFilter={hideCategoryFilter}
                 products={products}
                 setOpen={setDesktopOpen}
                 open={desktopOpen}

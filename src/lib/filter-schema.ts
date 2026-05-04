@@ -16,7 +16,7 @@ export const filterSchema = z.object({
   ),
   sort: z.enum(["price_asc", "price_desc", "newest"]).optional(),
   page: z.coerce.number().int().min(1).default(1),
-  limit: z.coerce.number().int().min(1).default(4),
+  limit: z.coerce.number().int().min(1).default(15),
 });
 
 export type ValidFilters = z.infer<typeof filterSchema>;

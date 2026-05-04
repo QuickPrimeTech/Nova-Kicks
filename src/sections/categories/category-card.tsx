@@ -1,4 +1,4 @@
-// @/sections/categories/category-card.tsx
+// @/sections/categories/slug/category-card.tsx
 import { Image } from "@/components/ui/image";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";

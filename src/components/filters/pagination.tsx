@@ -33,7 +33,7 @@ export function FilterPagination({ totalPages }: FilterPaginationProps) {
   const searchParams = useSearchParams();
 
   const currentPage = Number(searchParams.get("page")) || 1;
-  const currentLimit = searchParams.get("limit") ?? "10"; // Default matching your schema
+  const currentLimit = searchParams.get("limit") ?? "15"; // Default matching your schema
 
   const handlePageChange = (page: number) => {
     if (page < 1 || page > totalPages) return;

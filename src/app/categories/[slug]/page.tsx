@@ -1,8 +1,14 @@
 // @/app/categories/[slug]/page.tsx
-
+import { ProductGridSkeleton } from "@/components/product-grid-skeleton";
+import { Spinner } from "@/components/ui/spinner";
 import { getCategories, getCategoryFromSlug } from "@/db/functions/category";
+import { CategoryProductsGrid } from "@/sections/categories/slug/category-products-grid";
+import { FilterCateogriesidebar } from "@/sections/categories/slug/filter-categories-sidebar";
+import { SlugParam } from "@/types/category";
+import { SearchParams } from "@/types/common";
 import { Metadata } from "next";
 import { cacheLife } from "next/cache";
+import { Suspense, use } from "react";
 
 const getCategoryFromSlugCached = async (slug: string) => {
   "use cache";
@@ -48,14 +54,51 @@ export async function generateMetadata({
   };
 }
 
-type CategoryParams = {
-  slug: string;
-};
-export default async function Category({
+function CategoryGridWrapper({
   params,
-}: {
-  params: Promise<CategoryParams>;
-}) {
-  const { slug } = await params;
-  return <h1 className="text-heading-1">Welcome to the category: {slug}</h1>;
+  searchParams,
+}: SlugParam & SearchParams) {
+  const resolvedParams = use(params);
+  const resolvedSearchParams = use(searchParams);
+  const suspenseKey = JSON.stringify({
+    ...resolvedParams,
+    ...resolvedSearchParams,
+  });
+
+  return (
+    <Suspense key={suspenseKey} fallback={<ProductGridSkeleton />}>
+      <CategoryProductsGrid params={params} searchParams={searchParams} />
+    </Suspense>
+  );
+}
+
+function FilterSidebarWrapper({ params }: SlugParam) {
+  const resolvedParams = use(params);
+  const suspenseKey = JSON.stringify(resolvedParams);
+
+  return (
+    <Suspense key={suspenseKey} fallback={<Spinner />}>
+      <FilterCateogriesidebar params={params} />
+    </Suspense>
+  );
+}
+
+export default function CategoryPage({
+  params,
+  searchParams,
+}: SlugParam & SearchParams) {
+  return (
+    <div className="min-h-screen relative flex bg-muted-30 max-sm:py-6 flex-col lg:flex-row w-full">
+      <div className="flex max-sm:justify-end">
+        <Suspense fallback={<span>Loading...</span>}>
+          <FilterSidebarWrapper params={params} />
+        </Suspense>
+      </div>
+      <div className="min-h-[200vh] flex-1 p-4 sm:p-6 lg:p-8">
+        <Suspense fallback={<ProductGridSkeleton />}>
+          <CategoryGridWrapper params={params} searchParams={searchParams} />
+        </Suspense>
+      </div>
+    </div>
+  );
 }

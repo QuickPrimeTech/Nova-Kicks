@@ -10,7 +10,13 @@ import {
 import { FilterConfig, FilterOption } from "@/types/filters";
 import { EnrichedProduct } from "@/types/product";
 
-export function getFiltersConfig(products: EnrichedProduct[]): FilterConfig[] {
+type Options = {
+  hideCategoryFilter?: boolean;
+};
+export function getFiltersConfig(
+  products: EnrichedProduct[],
+  options: Options,
+): FilterConfig[] {
   const brandMap = new Map<string, number>();
   const categoryMap = new Map<string, { label: string; count: number }>();
   const genderMap = new Map<string, number>();
@@ -59,7 +65,7 @@ export function getFiltersConfig(products: EnrichedProduct[]): FilterConfig[] {
     }),
   );
 
-  return [
+  const allFilters: FilterConfig[] = [
     {
       id: "gender",
       label: "Gender",
@@ -103,4 +109,8 @@ export function getFiltersConfig(products: EnrichedProduct[]): FilterConfig[] {
       type: "boolean",
     },
   ];
+  if (options.hideCategoryFilter) {
+    return allFilters.filter((f) => f.id !== "category");
+  }
+  return allFilters;
 }

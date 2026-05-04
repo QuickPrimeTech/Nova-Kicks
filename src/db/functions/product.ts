@@ -26,7 +26,9 @@ import { ValidFilters } from "@/lib/filter-schema";
 // Add this import at the top of your file
 // import { categories } from "@/db/schemas/categories";
 
-export async function getProducts(): Promise<EnrichedProduct[]> {
+export async function getProducts(
+  categorySlug?: string,
+): Promise<EnrichedProduct[]> {
   "use cache";
 
   cacheLife({
@@ -36,7 +38,7 @@ export async function getProducts(): Promise<EnrichedProduct[]> {
   });
 
   // 1. Fetch base data with joins
-  const rows = await db
+  const query = db
     .select({
       product: products,
       offer: offers,
@@ -56,6 +58,10 @@ export async function getProducts(): Promise<EnrichedProduct[]> {
     // Join categories (Assuming products table has a categoryId column)
     .leftJoin(categories, eq(products.categoryId, categories.id));
 
+  const rows = categorySlug
+    ? await query.where(eq(categories.slug, categorySlug))
+    : await query;
+
   // 2. Map and enrich the data
   return rows.map(({ product, offer, category }) => {
     // Calculate stock size based on the pattern used in getLimitedProducts
@@ -73,16 +79,23 @@ export async function getProducts(): Promise<EnrichedProduct[]> {
   });
 }
 
-export async function getPaginatedProducts(filters: ValidFilters): Promise<{
+export async function getPaginatedProducts(
+  filters: ValidFilters,
+  categorySlug?: string,
+): Promise<{
   data: EnrichedProduct[];
   totalPages: number;
   totalCount: number;
 }> {
-  const { page = 1, limit = 4 } = filters;
+  const { page = 1, limit = 15 } = filters;
   const offset = (page - 1) * limit;
 
   // Build WHERE conditions
   const conditions = [eq(products.isPublished, true)];
+
+  if (categorySlug) {
+    conditions.push(eq(categories.slug, categorySlug));
+  }
 
   if (filters.gender) {
     conditions.push(eq(products.gender, filters.gender));
