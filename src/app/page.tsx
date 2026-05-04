@@ -12,6 +12,7 @@ import { BentoCategories } from "@/sections/home/bento-categories";
 import { CrazyDiscounts } from "@/sections/home/crazy-discounts";
 import { LimitedProducts } from "@/sections/home/limited-products";
 import { cacheLife } from "next/cache";
+import { FindUs } from "@/sections/home/find-us";
 
 const getCachedPageData = async () => {
   "use cache";
@@ -41,6 +42,7 @@ export default async function Home() {
       <CrazyDiscounts offers={offers} />
       <LatestProducts products={featuredProducts} />
       <LimitedProducts products={limitedProducts} />
+      <FindUs />
     </>
   );
 }

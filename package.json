@@ -12,6 +12,7 @@
     "generate:seeds": "tsx src/scripts/generate-seeds.ts"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.20.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.4.2",
