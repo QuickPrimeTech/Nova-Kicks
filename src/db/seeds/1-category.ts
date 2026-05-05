@@ -4,28 +4,22 @@ import { categories } from "@/db/schemas";
 
 const seedCategories = [
   {
-    name: "Running Shoes",
-    slug: "running-shoes",
+    name: "Sneakers",
+    slug: "sneakers",
     image:
-      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777786966/running-shoes_xjboxk.png",
+      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777991101/imgi_3_662364953_18099137689999564_3191625143083664886_n_h0phld.webp",
   },
   {
-    name: "Basketball Shoes",
-    slug: "basketball-shoes",
+    name: "Jackets",
+    slug: "jackets",
     image:
-      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777786965/basketball-shoes_x9vap4.png",
+      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777991974/21ad232f-217b-4873-8576-f622c3751bd7.png",
   },
   {
-    name: "Training Shoes",
-    slug: "training-shoes",
+    name: "T-Shirts",
+    slug: "tshirts",
     image:
-      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777786965/training-shoes_toscdy.png",
-  },
-  {
-    name: "Lifestyle",
-    slug: "lifestyle",
-    image:
-      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777786965/ifestyle-shoes_ddz061.png",
+      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777992631/imgi_53_684091150_18556491055066504_8429370676855758771_n_w3fnlz.webp",
   },
 ];
 

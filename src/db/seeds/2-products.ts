@@ -3,429 +3,348 @@
 import { db } from "@/index"; // Path to your drizzle db instance
 import { categories, InsertProduct, products } from "@/db/schemas"; // Import the products schema
 
-const realProducts: (InsertProduct & { categorySlug: string })[] = [
+const seedShoes: (InsertProduct & { categorySlug: string })[] = [
   {
-    name: "Air Jordan 1 Charcoal Gray",
-    slug: "air-jordan-1-charcoal-gray",
-    price: 4500,
-    categorySlug: "basketball-shoes",
+    name: "Nike Air Jordan 3",
+    slug: "nike-air-jordan-3",
+    price: 5499,
+    categorySlug: "sneakers",
     description:
-      "The Air Jordan 1 is the iconic sneaker that started it all. Premium leather upper and the iconic Wings logo.",
+      "The Air Jordan 3 is the iconic sneaker that started it all. Premium leather upper and the iconic Wings logo.",
     brand: "Nike",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777718181/imgi_34_air-jordan-1-low-eastside-golf-dv1759-448-release-date_lq9abc.jpg",
-        altText:
-          "Side view of the Air Jordan 1 in Charcoal Gray, showcasing its sleek silhouette and visible Air cushioning.",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777991112/imgi_2_653468192_18142298389494025_1447067660891353521_n_ddhuxd.webp",
+        altText: "Rear view of the Air Jordan 3",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777718110/imgi_18_air-jordan-1-low-eastside-golf-dv1759-448-release-date_sw3f3z.jpg",
-        altText: "Sole view of the Air Jordan 1 in Charcoal Gray.",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777991101/imgi_3_662364953_18099137689999564_3191625143083664886_n_h0phld.webp",
+        altText: "Top view of the Air Jordan 3.",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777718060/imgi_22_air-jordan-1-low-eastside-golf-dv1759-448-release-date_fydghg.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777991075/imgi_4_641296922_18157480075437845_5715647547826937651_n_qdaddp.webp",
         altText:
-          "Top view of the Air Jordan 1 in Charcoal Gray, highlighting the lacing system and tongue branding.",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777718213/imgi_30_air-jordan-1-low-eastside-golf-dv1759-448-release-date_hjv2tl.jpg",
-        altText:
-          "Top view of the Air Jordan 1 in Charcoal Gray, highlighting the lacing system and tongue branding.",
+          "Top view of the Air Jordan 3 in Charcoal Gray, highlighting the lacing system and tongue branding.",
       },
     ],
     sizes: [
       {
-        size: "40",
-        stock: 2,
+        size: "37",
+        stock: 8,
       },
       {
         size: "39",
         stock: 7,
       },
+      {
+        size: "40",
+        stock: 6,
+      },
+      {
+        size: "41",
+        stock: 9,
+      },
+      {
+        size: "41",
+        stock: 4,
+      },
     ],
     gender: "men",
   },
   {
-    name: "Air Jordan 1 Obsidian",
-    slug: "air-jordan-1-obsidian",
-    price: 4500,
+    name: "JM Simprose Jacket",
+    slug: "jm-simprose-jacket",
+    price: 3499,
+    categorySlug: "jackets",
     description:
-      "The Air Jordan 1 is the iconic sneaker that started it all. Premium leather upper and the iconic Wings logo.",
+      "The JM Simprose Jacket is a sleek everyday layer designed for comfort and style. Made from lightweight, durable fabric with a modern fit. Perfect for casual wear and cool-weather layering.",
     brand: "Nike",
-    categorySlug: "basketball-shoes",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Side view of the Air Jordan 1 in Obsidian colour",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726096/imgi_35_UNCLow_fu7yd5.jpg",
-        altText: "Sole view of the Air Jordan 1 in Obsidian colour.",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726119/imgi_37_UNCLow3_u30qth.jpg",
-        altText: "Bottom view of the Air Jordan 1 in Obsidian colour",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777991974/21ad232f-217b-4873-8576-f622c3751bd7.png",
+        altText: "Front view of the JM Simprose Jacket",
       },
     ],
     sizes: [
       {
-        size: "40",
+        size: "SM",
         stock: 2,
       },
       {
-        size: "39",
+        size: "L",
         stock: 7,
+      },
+      {
+        size: "XL",
+        stock: 12,
       },
     ],
     gender: "men",
   },
-];
-
-const otherProducts: (InsertProduct & { categorySlug: string })[] = [
-  // ---------------- RUNNING SHOES ----------------
   {
-    name: "Nike Air Zoom Pegasus 40",
-    slug: "nike-air-zoom-pegasus-40",
-    price: 5200,
-    categorySlug: "running-shoes",
-    brand: "Nike",
-    description: "Responsive running shoe with lightweight cushioning.",
-    gender: "men",
+    name: "Golden State CA Graphic T-Shirt",
+    slug: "golden-state-ca-graphic-tshirt",
+    price: 599,
+    categorySlug: "tshirts",
+    description:
+      "A bold white graphic tee featuring 'CA California' print with a modern streetwear vibe. Made from soft, breathable fabric for all-day comfort. Perfect for casual outfits and everyday wear.",
+    brand: "Local",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Pegasus view 1",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Pegasus view 2",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777992366/imgi_31_684151832_18556491037066504_7408789894184489841_n_mnajhn.webp",
+        altText: "White Golden State CA graphic t-shirt front view",
       },
     ],
     sizes: [
-      { size: "39", stock: 5 },
+      { size: "S", stock: 10 },
+      { size: "M", stock: 15 },
+      { size: "L", stock: 12 },
+      { size: "XL", stock: 8 },
+    ],
+    gender: "men",
+  },
+  {
+    name: "Dark Heart Split Art Graphic T-Shirt",
+    slug: "dark-heart-split-art-graphic-tshirt",
+    price: 599,
+    categorySlug: "tshirts",
+    description:
+      "A bold black graphic tee featuring a split-face art design with vibrant color accents and 'Heart' print. Made from soft, breathable fabric for everyday comfort. Perfect for standout streetwear looks.",
+    brand: "Local",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777992530/imgi_52_684287693_18556491046066504_5339136104216363424_n_gkikwy.webp",
+        altText:
+          "Black t-shirt with colorful split face graphic and Heart text",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777993013/imgi_52_671163427_18552799648066504_1486377443870978384_n_c5zwbl.webp",
+        altText: "Close up of the heart split art graphic t-shirt",
+      },
+    ],
+    sizes: [
+      { size: "S", stock: 10 },
+      { size: "M", stock: 14 },
+      { size: "L", stock: 11 },
+      { size: "XL", stock: 7 },
+    ],
+    gender: "men",
+  },
+  {
+    name: "White Heart Split Art Graphic T-Shirt",
+    slug: "white-heart-split-art-graphic-tshirt",
+    price: 599,
+    categorySlug: "tshirts",
+    description:
+      "A bold white graphic tee featuring a split-face art design with vibrant color accents and 'Heart' print. Made from soft, breathable fabric for everyday comfort. Perfect for standout streetwear looks.",
+    brand: "Local",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777992530/imgi_52_684287693_18556491046066504_5339136104216363424_n_gkikwy.webp",
+        altText:
+          "White t-shirt with colorful split face graphic and Heart text",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777993370/imgi_54_670919832_18552619780066504_2308094157522197738_n_1_yktfig.webp",
+        altText: "Close up of the heart split art graphic t-shirt",
+      },
+    ],
+    sizes: [
+      { size: "S", stock: 10 },
+      { size: "M", stock: 14 },
+      { size: "L", stock: 11 },
+      { size: "XL", stock: 7 },
+    ],
+    gender: "men",
+  },
+  {
+    name: "Abstract Color Face Graphic T-Shirt",
+    slug: "abstract-color-face-graphic-tshirt",
+    price: 599,
+    categorySlug: "tshirts",
+    description:
+      "A bold black graphic tee featuring a vibrant abstract face design with artistic color splashes. Made from soft, breathable fabric for all-day comfort. Perfect for expressive streetwear and standout casual looks.",
+    brand: "Local",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777992631/imgi_53_684091150_18556491055066504_8429370676855758771_n_w3fnlz.webp",
+        altText: "Black t-shirt with colorful abstract face graphic design",
+      },
+    ],
+    sizes: [
+      { size: "S", stock: 1 },
+      { size: "M", stock: 6 },
+      { size: "L", stock: 4 },
+      { size: "XL", stock: 6 },
+    ],
+    gender: "men",
+  },
+  {
+    name: "Dark Niko Kadi Graphic T-Shirt",
+    slug: "dark-niko-kadi-graphic-tshirt",
+    price: 1499,
+    categorySlug: "tshirts",
+    description:
+      "A bold black graphic tee featuring vibrant graffiti-style artwork for a modern streetwear look. Made from soft, breathable fabric for all-day comfort. Perfect for casual fits and standout everyday style.",
+    brand: "Nike",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777992727/imgi_54_684250569_18556491061066504_8378018526485052068_n_nkispv.webp",
+        altText: "Black t-shirt with colorful graffiti-style graphic design",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777993761/imgi_45_657592954_18549721198066504_9044102371773990183_n_rbqclj.webp",
+        altText: "Young Mand dressed in the black Genz niko cadi t-shirt",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777993839/imgi_41_658208484_18550140751066504_3215716991118193497_n_bxhbev.webp",
+        altText:
+          "Young Guy in the streets dressed in the black Genz niko cadi t-shirt",
+      },
+    ],
+    sizes: [
+      { size: "S", stock: 8 },
+      { size: "M", stock: 14 },
+      { size: "L", stock: 10 },
+      { size: "XL", stock: 6 },
+    ],
+    gender: "men",
+  },
+  {
+    name: "White Niko Kadi Graphic T-Shirt",
+    slug: "white-niko-kadi-graphic-tshirt",
+    price: 1499,
+    categorySlug: "tshirts",
+    description:
+      "A bold white graphic tee featuring vibrant graffiti-style artwork for a modern streetwear look. Made from soft, breathable fabric for all-day comfort. Perfect for casual fits and standout everyday style.",
+    brand: "Nike",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777993500/imgi_45_670620870_18552966625066504_1049849113773375027_n_pv0xse.webp",
+        altText: "White t-shirt with colorful graffiti-style graphic design",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777993545/imgi_37_659589919_18553236925066504_7585413946016555255_n_ck4oz3.webp",
+        altText: "Young Gen Z Niko Kadi T-shirt",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777993680/imgi_46_657937674_18549668581066504_7445162835051175387_n_dykdsx.webp",
+        altText: "Young Lady Dressed in the Gen Z Niko Kadi T-shirt",
+      },
+    ],
+    sizes: [
+      { size: "S", stock: 3 },
+      { size: "M", stock: 1 },
+      { size: "L", stock: 7 },
+      { size: "XL", stock: 6 },
+    ],
+    gender: "men",
+  },
+  {
+    name: "Nike Graphic T-Shirt",
+    slug: "nike-graphic-tshirt",
+    price: 1999,
+    categorySlug: "tshirts",
+    description:
+      "A bold black graphic tee featuring a modern statue-inspired design with vibrant color accents. Made from soft, breathable fabric for all-day comfort. Perfect for expressive streetwear and standout casual fits.",
+    brand: "Nike",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777992828/imgi_39_681329858_18555147979066504_2873080453593655092_n_mdhqab.webp",
+        altText: "Black and white t-shirt with colorful statue graphic design",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777992917/imgi_37_657594756_18555303181066504_6203485777767969880_n_grrpzd.webp",
+        altText: "Two guys wearing black and white nike t-shirts",
+      },
+    ],
+    sizes: [
+      { size: "S", stock: 9 },
+      { size: "M", stock: 13 },
+      { size: "L", stock: 11 },
+      { size: "XL", stock: 7 },
+    ],
+    gender: "men",
+  },
+  {
+    name: "New Balance 530 Grey Matter",
+    slug: "new-balance-530-grey-matter",
+    price: 3999,
+    categorySlug: "sneakers",
+    description:
+      "The New Balance 530 Grey Matter blends classic running style with modern comfort. Built with breathable mesh and supportive cushioning for all-day wear. Perfect for casual outfits and everyday versatility.",
+    brand: "New Balance",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777994033/6540c9c4-19cd-484b-9537-c84085d5fd4b.png",
+        altText: "Side view of the New Balance 530 Grey Matter",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777994472/afa780de-0280-4b57-8c3c-000d61c94810.png",
+        altText: "Right Side view of the New Balance 530 Grey Matter",
+      },
+    ],
+    sizes: [
+      { size: "39", stock: 12 },
       { size: "40", stock: 6 },
+      { size: "41", stock: 0 },
+      { size: "42", stock: 7 },
     ],
+    gender: "unisex",
   },
   {
-    name: "Adidas Ultraboost Light",
-    slug: "adidas-ultraboost-light",
-    price: 6800,
-    categorySlug: "running-shoes",
-    brand: "Adidas",
-    description: "High-energy return running sneaker.",
-    gender: "women",
+    name: "Nike Sacai LDWaffle Summit White",
+    slug: "nike-sacai-ldwaffle-summit-white",
+    price: 3999,
+    categorySlug: "sneakers",
+    description:
+      "The New Balance 530 Grey Matter blends classic running style with modern comfort. Built with breathable mesh and supportive cushioning for all-day wear. Perfect for casual outfits and everyday versatility.",
+    brand: "Nike",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Ultraboost 1",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777994788/7498ea58-1231-4d8e-91be-bc60cd7347a0.png",
+        altText: "Front view of the Nike Sacai LDWaffle Summit White",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Ultraboost 2",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777994711/09f25fa8-88cf-4a60-a5ee-a234deaedc7e.png",
+        altText: "Rear view of the Nike Sacai LDWaffle Summit White",
       },
     ],
     sizes: [
-      { size: "38", stock: 4 },
-      { size: "39", stock: 7 },
+      { size: "39", stock: 12 },
+      { size: "40", stock: 6 },
+      { size: "41", stock: 0 },
+      { size: "42", stock: 7 },
     ],
-  },
-  {
-    name: "Puma Velocity Nitro 2",
-    slug: "puma-velocity-nitro-2",
-    price: 4800,
-    categorySlug: "running-shoes",
-    brand: "Puma",
-    description: "Smooth ride with nitrogen-infused foam.",
-    gender: "men",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Puma Nitro",
-      },
-    ],
-    sizes: [{ size: "40", stock: 5 }],
-  },
-  {
-    name: "Asics Gel-Kayano 30",
-    slug: "asics-gel-kayano-30",
-    price: 7200,
-    categorySlug: "running-shoes",
-    brand: "Asics",
-    description: "Stability running shoe with gel cushioning.",
-    gender: "women",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Kayano",
-      },
-    ],
-    sizes: [{ size: "39", stock: 6 }],
-  },
-  {
-    name: "New Balance Fresh Foam X",
-    slug: "new-balance-fresh-foam-x",
-    price: 6100,
-    categorySlug: "running-shoes",
-    brand: "New Balance",
-    description: "Ultra-soft foam for long-distance comfort.",
-    gender: "men",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "NB Foam",
-      },
-    ],
-    sizes: [{ size: "41", stock: 3 }],
-  },
-
-  // ---------------- BASKETBALL ----------------
-  {
-    name: "Air Jordan 1 Retro High",
-    slug: "air-jordan-1-retro-high",
-    price: 7500,
-    categorySlug: "basketball-shoes",
-    brand: "Nike",
-    description: "Iconic basketball sneaker.",
-    gender: "men",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Jordan 1",
-      },
-    ],
-    sizes: [{ size: "42", stock: 4 }],
-  },
-  {
-    name: "Nike LeBron Witness 7",
-    slug: "nike-lebron-witness-7",
-    price: 6900,
-    categorySlug: "basketball-shoes",
-    brand: "Nike",
-    description: "Built for explosive performance.",
-    gender: "men",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "LeBron",
-      },
-    ],
-    sizes: [{ size: "43", stock: 5 }],
-  },
-  {
-    name: "Adidas Harden Vol 7",
-    slug: "adidas-harden-vol-7",
-    price: 7100,
-    categorySlug: "basketball-shoes",
-    brand: "Adidas",
-    description: "James Harden signature shoe.",
-    gender: "men",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Harden",
-      },
-    ],
-    sizes: [{ size: "41", stock: 6 }],
-  },
-  {
-    name: "Puma MB.03",
-    slug: "puma-mb-03",
-    price: 6800,
-    categorySlug: "basketball-shoes",
-    brand: "Puma",
-    description: "LaMelo Ball signature sneaker.",
-    gender: "men",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "MB03",
-      },
-    ],
-    sizes: [{ size: "42", stock: 5 }],
-  },
-  {
-    name: "Under Armour Curry Flow 10",
-    slug: "ua-curry-flow-10",
-    price: 7300,
-    categorySlug: "basketball-shoes",
-    brand: "Under Armour",
-    description: "Stephen Curry signature shoe.",
-    gender: "men",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Curry",
-      },
-    ],
-    sizes: [{ size: "41", stock: 4 }],
-  },
-
-  // ---------------- TRAINING ----------------
-  {
-    name: "Nike Metcon 9",
-    slug: "nike-metcon-9",
-    price: 6400,
-    categorySlug: "training-shoes",
-    brand: "Nike",
-    description: "Durable gym training shoe.",
-    gender: "men",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Metcon",
-      },
-    ],
-    sizes: [{ size: "42", stock: 6 }],
-  },
-  {
-    name: "Reebok Nano X3",
-    slug: "reebok-nano-x3",
-    price: 5900,
-    categorySlug: "training-shoes",
-    brand: "Reebok",
-    description: "Versatile cross-training shoe.",
-    gender: "women",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Nano",
-      },
-    ],
-    sizes: [{ size: "39", stock: 5 }],
-  },
-  {
-    name: "Adidas Dropset Trainer",
-    slug: "adidas-dropset-trainer",
-    price: 5700,
-    categorySlug: "training-shoes",
-    brand: "Adidas",
-    description: "Stable lifting shoe.",
-    gender: "men",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Dropset",
-      },
-    ],
-    sizes: [{ size: "41", stock: 5 }],
-  },
-  {
-    name: "Puma Fuse 2.0",
-    slug: "puma-fuse-2",
-    price: 5500,
-    categorySlug: "training-shoes",
-    brand: "Puma",
-    description: "Strong grip and durability.",
-    gender: "men",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Fuse",
-      },
-    ],
-    sizes: [{ size: "42", stock: 4 }],
-  },
-  {
-    name: "UA TriBase Reign 5",
-    slug: "ua-tribase-reign-5",
-    price: 6000,
-    categorySlug: "training-shoes",
-    brand: "Under Armour",
-    description: "Built for stability and strength.",
-    gender: "men",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "TriBase",
-      },
-    ],
-    sizes: [{ size: "41", stock: 6 }],
-  },
-
-  // ---------------- LIFESTYLE ----------------
-  {
-    name: "Nike Air Force 1",
-    slug: "nike-air-force-1",
-    price: 6500,
-    categorySlug: "lifestyle",
-    brand: "Nike",
-    description: "Classic everyday sneaker.",
-    gender: "men",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "AF1",
-      },
-    ],
-    sizes: [{ size: "42", stock: 10 }],
-  },
-  {
-    name: "Adidas Stan Smith",
-    slug: "adidas-stan-smith",
-    price: 5200,
-    categorySlug: "lifestyle",
-    brand: "Adidas",
-    description: "Minimalist tennis-inspired sneaker.",
-    gender: "women",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Stan Smith",
-      },
-    ],
-    sizes: [{ size: "38", stock: 6 }],
-  },
-  {
-    name: "Puma Suede Classic",
-    slug: "puma-suede-classic",
-    price: 4800,
-    categorySlug: "lifestyle",
-    brand: "Puma",
-    description: "Retro suede sneaker.",
-    gender: "men",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Suede",
-      },
-    ],
-    sizes: [{ size: "41", stock: 5 }],
-  },
-  {
-    name: "New Balance 550",
-    slug: "new-balance-550",
-    price: 6200,
-    categorySlug: "lifestyle",
-    brand: "New Balance",
-    description: "Vintage basketball-inspired design.",
-    gender: "men",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "NB550",
-      },
-    ],
-    sizes: [{ size: "42", stock: 5 }],
-  },
-  {
-    name: "Vans Old Skool",
-    slug: "vans-old-skool",
-    price: 4500,
-    categorySlug: "lifestyle",
-    brand: "Vans",
-    description: "Skate-inspired everyday sneaker.",
     gender: "unisex",
+  },
+  {
+    name: "Nike Air Max Plus TN",
+    slug: "nike-air-max-plus-tn",
+    price: 3999,
+    categorySlug: "sneakers",
+    description:
+      "The Nike Air Max Plus TN blends classic running style with modern comfort. Built with breathable mesh and supportive cushioning for all-day wear. Perfect for casual outfits and everyday versatility.",
+    brand: "Nike",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777726051/imgi_36_UNCLow2_oq7few.jpg",
-        altText: "Vans",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777995038/09f00191-53c0-4072-a08b-8bed6228a4dd.png",
+        altText: "Top view of the Nike Air Max Plus TN",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777995359/b1d043f9-11b6-4ce8-8555-9c29abfa1064.png",
+        altText: "Wide angle shot Nike Air Max Plus TN",
       },
     ],
-    sizes: [{ size: "40", stock: 8 }],
+    sizes: [
+      { size: "39", stock: 1 },
+      { size: "40", stock: 2 },
+      { size: "41", stock: 4 },
+      { size: "42", stock: 7 },
+    ],
+    gender: "women",
   },
 ];
-
-const seedShoes = [...realProducts, ...otherProducts];
 
 export default async function seed() {
   console.log("🌱 Seeding products...");
