@@ -41,7 +41,7 @@ export const BentoCategories = ({ categories }: BentoCategoriesProps) => {
       */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 auto-rows-[200px] md:auto-rows-[240px] lg:auto-rows-[280px]">
           {featuredCategories.map((cat, i) => (
-            <CategoryCard cat={cat} index={i} />
+            <CategoryCard key={cat.id} cat={cat} index={i} />
           ))}
         </div>
 

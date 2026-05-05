@@ -3,7 +3,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
   Sheet,
@@ -19,11 +19,9 @@ import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
-  X,
   Sun,
   Moon,
   Monitor,
-  Search,
   Accessibility,
   Type,
   Minus,
@@ -47,6 +45,8 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { CategoryCard } from "@/components/category-card";
+import { SearchProduct } from "@/components/search-product";
+import { EnrichedProduct } from "@/types/product";
 
 /* ─── NAV LINKS ─── */
 const NAV = [
@@ -92,15 +92,15 @@ type NavbarProps = {
   categories: (Omit<SelectCategory, "createdAt" | "updatedAt"> & {
     productCount: number;
   })[];
+  products: EnrichedProduct[];
 };
 
 /* ═════════════════════════════════════════
     NAVBAR
     ═════════════════════════════════════════ */
-export function Navbar({ categories }: NavbarProps) {
+export function Navbar({ categories, products }: NavbarProps) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
-  const [searchOpen, setSearchOpen] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const isOpen = useAccessibility((state) => state.isOpen);
   const open = useAccessibility((state) => state.open);
@@ -196,12 +196,7 @@ export function Navbar({ categories }: NavbarProps) {
 
           {/* Right Actions */}
           <div className="flex items-center gap-0.5">
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="p-2 hover:bg-secondary rounded-full transition"
-            >
-              <Search className="size-5" />
-            </button>
+            <SearchProduct products={products} />
             <button
               onClick={() => open(true)}
               className="p-2 hover:bg-secondary rounded-full transition hidden sm:flex"
@@ -213,57 +208,6 @@ export function Navbar({ categories }: NavbarProps) {
           </div>
         </div>
       </header>
-
-      {/* Search Overlay */}
-      <AnimatePresence>
-        {searchOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl"
-            onClick={() => setSearchOpen(false)}
-          >
-            <motion.div
-              initial={{ y: -30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -30, opacity: 0 }}
-              className="container mx-auto pt-28 px-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="relative">
-                <Search className="absolute left-0 bottom-4 size-6 text-muted-foreground" />
-                <input
-                  autoFocus
-                  placeholder="Search products, brands..."
-                  className="w-full bg-transparent text-3xl md:text-4xl font-bold border-b-2 border-foreground/20 focus:border-primary outline-none pb-4 pl-10 placeholder:text-muted-foreground/40"
-                />
-                <button
-                  onClick={() => setSearchOpen(false)}
-                  className="absolute right-0 bottom-3 p-2 hover:bg-secondary rounded-full transition"
-                >
-                  <X className="size-5" />
-                </button>
-              </div>
-              <div className="mt-8">
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
-                  Trending
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {["Air Max", "Running", "Jordan", "New Balance"].map((t) => (
-                    <span
-                      key={t}
-                      className="px-4 py-2 border rounded-full text-sm hover:border-primary hover:text-foreground cursor-pointer transition"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Accessibility Sheet */}
       <Sheet open={isOpen} onOpenChange={open}>

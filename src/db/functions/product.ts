@@ -20,7 +20,6 @@ import {
   ProductWithOptionalOffer,
 } from "@/types/product";
 import { categories } from "../schemas";
-import { cacheLife } from "next/cache";
 import { ValidFilters } from "@/lib/filter-schema";
 
 // Add this import at the top of your file
@@ -29,14 +28,6 @@ import { ValidFilters } from "@/lib/filter-schema";
 export async function getProducts(
   categorySlug?: string,
 ): Promise<EnrichedProduct[]> {
-  "use cache";
-
-  cacheLife({
-    revalidate: 6 * 60 * 60,
-    stale: 6 * 60 * 60,
-    expire: 6 * 60 * 60,
-  });
-
   // 1. Fetch base data with joins
   const query = db
     .select({

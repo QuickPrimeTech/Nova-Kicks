@@ -53,8 +53,8 @@ export async function CategoryProductsGrid({
   console.log("Total Pages  ---->", totalPages);
   return (
     <div className="space-y-8">
-      <div className="flex gap-2 items-center">
-        <Button size={"sm"} variant={"link"} asChild>
+      <div className="flex flex-col gap-2">
+        <Button size={"sm"} variant={"link"} className="w-fit" asChild>
           <Link href={"/categories"}>
             <ArrowLeft />
             All Categories
