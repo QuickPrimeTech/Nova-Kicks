@@ -3,7 +3,7 @@ import { Image } from "@/components/ui/image";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
-type CategoryCardProps = {
+export type CategoryCardProps = {
   category: {
     id: string;
     name: string;
@@ -14,6 +14,9 @@ type CategoryCardProps = {
 };
 
 export const CategoryCard = ({ category }: CategoryCardProps) => {
+  if (!category.slug) {
+    return null;
+  }
   return (
     <Link
       href={`/categories/${category.slug}`}

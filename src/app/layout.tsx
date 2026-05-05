@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 import { Jost, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Navbar } from "@/layouts/navbar";
 import { Footer } from "@/layouts/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import NextTopLoader from "nextjs-toploader";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "sonner";
+import { AppHeader } from "@/layouts/app-header";
 
 const jost = Jost({
   variable: "--font-jost",
@@ -55,7 +55,7 @@ export default function RootLayout({
         >
           <NextTopLoader showSpinner={false} color="var(--primary)" />
           <TooltipProvider>
-            <Navbar />
+            <AppHeader />
             <main className="flex-1">{children}</main>
             <Footer />
             <Toaster richColors position="top-right" />

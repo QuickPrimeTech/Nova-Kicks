@@ -17,7 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   X,
   Sun,
@@ -29,6 +29,7 @@ import {
   Minus,
   Plus,
   ChevronRight,
+  ArrowUpRight,
 } from "lucide-react";
 import { RiMenu2Line } from "react-icons/ri";
 import { useAccessibility } from "@/store/accessibility";
@@ -36,12 +37,21 @@ import { Logo } from "@/components/logo";
 import { CartSheet } from "@/components/cart/cart-sheet";
 import { WishlistSheet } from "@/components/cart/wishlist-sheet";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { SelectCategory } from "@/db/schema";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import { CategoryCard } from "@/components/category-card";
 
 /* ─── NAV LINKS ─── */
 const NAV = [
-  { label: "New", href: "/new" },
-  { label: "Men", href: "/men" },
-  { label: "Women", href: "/women" },
+  { label: "Men", href: "/men?gender=men" },
+  { label: "Women", href: "/women?gender=women" },
 ];
 
 /* ─── THEME OPTIONS ─── */
@@ -78,10 +88,16 @@ function useA11y() {
   return { mounted, fontSize, setFontSize, reducedMotion, setReducedMotion };
 }
 
+type NavbarProps = {
+  categories: (Omit<SelectCategory, "createdAt" | "updatedAt"> & {
+    productCount: number;
+  })[];
+};
+
 /* ═════════════════════════════════════════
     NAVBAR
     ═════════════════════════════════════════ */
-export function Navbar() {
+export function Navbar({ categories }: NavbarProps) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
   const [searchOpen, setSearchOpen] = React.useState(false);
@@ -148,6 +164,34 @@ export function Navbar() {
                 )}
               </Link>
             ))}
+            <NavigationMenu className="max-w-lg">
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="bg-transparent h-auto px-4 py-2 text-sm font-medium rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors">
+                    Categories
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ScrollArea className="w-xl">
+                      <div className="w-3xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 auto-rows-[80px] md:auto-rows-[240px] lg:auto-rows-[120px]">
+                        {categories.map((cat, index) => (
+                          <NavigationMenuLink asChild key={cat.id}>
+                            <CategoryCard cat={cat} index={index} />
+                          </NavigationMenuLink>
+                        ))}
+                      </div>
+                      <ScrollBar orientation="horizontal" />
+                    </ScrollArea>
+                    <div className="p-4 pt-0 border-t mt-4 flex justify-end">
+                      <Button variant="link" size="sm" asChild className="mt-2">
+                        <Link href="/categories">
+                          View all <ArrowUpRight className="ml-1 h-4 w-4" />
+                        </Link>
+                      </Button>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
           </nav>
 
           {/* Right Actions */}
