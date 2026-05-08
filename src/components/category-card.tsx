@@ -37,7 +37,7 @@ export const CategoryCard = ({
     <Link
       href={`/categories/${cat.slug}`}
       className={cn(
-        "block group relative overflow-hidden rounded-xl bg-secondary",
+        "block group relative overflow-hidden rounded-xl",
         getGridSpans(index),
       )}
     >

@@ -25,7 +25,7 @@ export function MapCard() {
   return (
     <>
       {/* Map Card */}
-      <Card className="overflow-hidden shadow-lg py-0 flex-3">
+      <Card className="overflow-hidden shadow-lg py-0 flex-3 border">
         <CardContent className="p-0">
           <div className="aspect-video">
             {isLoaded ? (

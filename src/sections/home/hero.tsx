@@ -34,7 +34,7 @@ const content = [
 export const Hero = () => {
   const [index, setIndex] = useState(0);
   const active = content[index];
-  const isMobile = useMediaQuery("(max-width: 640px)");
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   // Auto-slide every 5 seconds
   useEffect(() => {
@@ -48,7 +48,7 @@ export const Hero = () => {
     <section
       className={cn(
         "relative md:py-10 overflow-hidden",
-        !isMobile && "section",
+        isDesktop && "section",
       )}
     >
       <div className="container max-md:h-screen relative max-sm:pt-32 max-sm:pb-32 px-4 overflow-hidden border sm:px-6 rounded-b-3xl sm:rounded-3xl bg-[radial-gradient(ellipse_at_top,var(--background)_0%,var(--background)_120%)] mx-auto z-10 flex min-h-[80vh] flex-col justify-center">

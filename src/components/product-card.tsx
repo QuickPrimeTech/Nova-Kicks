@@ -13,7 +13,7 @@ import { Badge } from "./ui/badge";
 type ProductCardProps = {
   product: SelectProduct;
   offer?: SelectOffer;
-  variant?: "default" | "discount";
+  variant?: "default" | "minimal";
   showThumbnails?: boolean;
   stock?: number;
 };
@@ -23,7 +23,7 @@ export const ProductCard = ({
   offer,
   variant = "default",
   stock,
-  showThumbnails = true,
+  showThumbnails = false,
 }: ProductCardProps) => {
   const images = Array.isArray(product.images) ? product.images : [];
   const [productImage, setProductImage] = useState(images[0]);
@@ -56,6 +56,10 @@ export const ProductCard = ({
 
   const href = `/products/${product.slug}`;
 
+  const wishlistLabel = isInWishlist
+    ? "Remove from wishlist"
+    : "Add to wishlist";
+
   return (
     <div
       className={cn(
@@ -69,8 +73,12 @@ export const ProductCard = ({
         className={cn(
           "absolute top-3 right-3 z-20 h-9 w-9 rounded-full",
           isInWishlist && "text-red-500 bg-red-50",
+          variant === "minimal" &&
+            "opacity-0 group-hover:opacity-100 transition",
         )}
         onClick={() => toggleItem(wishlistProduct)}
+        aria-label={wishlistLabel}
+        title={wishlistLabel}
       >
         <Heart className={isInWishlist ? "fill-red-500" : ""} />
       </Button>
@@ -86,7 +94,7 @@ export const ProductCard = ({
 
       {/* MAIN IMAGE */}
       <Link href={href} className="block">
-        <div className="relative aspect-4/3 overflow-hidden">
+        <div className="relative aspect-square overflow-hidden">
           <Image
             src={productImage?.url}
             alt={productImage?.altText ?? product.name}
@@ -120,20 +128,15 @@ export const ProductCard = ({
       <Link href={href}>
         {/* INFO */}
         <div className="p-4">
-          <h3 className="font-medium line-clamp-1">{product.name}</h3>
           <p className="text-xs text-muted-foreground">{product.brand}</p>
+          <h3 className="font-medium line-clamp-1">{product.name}</h3>
 
           {/* PRICE LOGIC */}
           <div className="mt-2 flex items-center gap-2">
             {hasOffer ? (
-              <>
-                <span className="text-primary font-bold">
-                  Ksh {finalPrice?.toLocaleString()}
-                </span>
-                <span className="line-through text-muted-foreground text-sm">
-                  Ksh {price.toLocaleString()}
-                </span>
-              </>
+              <span className="line-through text-muted-foreground text-sm">
+                Ksh {price.toLocaleString()}
+              </span>
             ) : (
               <span className="font-bold">Ksh {price.toLocaleString()}</span>
             )}

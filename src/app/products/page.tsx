@@ -39,7 +39,7 @@ export default function ProductsPage({
   searchParams: Promise<any>;
 }) {
   return (
-    <div className="min-h-screen relative flex bg-muted-30 max-sm:py-6 flex-col lg:flex-row w-full">
+    <div className="relative flex bg-muted-30 max-sm:py-6 flex-col lg:flex-row w-full">
       <div className="flex max-sm:justify-end">
         <FilterProductsSidebar />
       </div>

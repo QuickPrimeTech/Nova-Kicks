@@ -49,7 +49,11 @@ export const LatestProducts = ({
               key={p.id}
               className="basis-7/10 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
             >
-              <ProductCard product={p} offer={p.offer ?? undefined} />
+              <ProductCard
+                variant="minimal"
+                product={p}
+                offer={p.offer ?? undefined}
+              />
             </CarouselItem>
           ))}
         </CarouselContent>

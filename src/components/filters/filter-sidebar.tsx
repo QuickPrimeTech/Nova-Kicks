@@ -90,7 +90,7 @@ export function FilterSidebar({
     >
       <Sidebar
         collapsible="icon"
-        className="sticky inset-auto h-[calc(100vh-64px)] top-16 border-r bg-card rounded-r-xl overflow-hidden"
+        className="sticky inset-auto top-16 border-r bg-card rounded-r-xl overflow-hidden"
       >
         <SidebarHeader className="border-b px-4 py-4 flex-row items-center justify-between overflow-hidden">
           <div className="flex items-center gap-2 font-semibold group-data-[collapsible=icon]:hidden">
@@ -101,7 +101,10 @@ export function FilterSidebar({
             <ClearAllButton />
           </div>
 
-          <SidebarTrigger />
+          <SidebarTrigger
+            closeContent="Open filters"
+            openContent="Close filters"
+          />
         </SidebarHeader>
 
         <SidebarContent>

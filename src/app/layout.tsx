@@ -7,7 +7,7 @@ import { Footer } from "@/layouts/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import NextTopLoader from "nextjs-toploader";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Toaster } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
 import { AppHeader } from "@/layouts/app-header";
 
 const jost = Jost({

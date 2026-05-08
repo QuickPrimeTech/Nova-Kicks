@@ -319,9 +319,6 @@ export const ProductContent = ({ product }: ProductContentProps) => {
               onClick={() => {
                 addToCart("Buy");
               }}
-              className={cn(
-                hasOffer && "bg-destructive hover:bg-destructive/90",
-              )}
             >
               {isOutOfStock ? "Out of Stock" : "Buy Now"}
               <ArrowRight className="size-5 ml-1.5" />

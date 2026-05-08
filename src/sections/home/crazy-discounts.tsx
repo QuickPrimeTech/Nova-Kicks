@@ -48,7 +48,7 @@ export const CrazyDiscounts = ({ offers }: { offers: ProductWithOffer[] }) => {
               <ProductCard
                 product={offer}
                 offer={offer.offer}
-                variant="discount"
+                variant="minimal"
                 showThumbnails={false}
               />
             </CarouselItem>

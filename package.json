@@ -1,5 +1,5 @@
 {
-  "name": "shoe-empire-shop",
+  "name": "nova-kicks",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:seed": "tsx src/db/seed.ts",
-    "generate:schemas": "tsx src/scripts/generate-schemas.ts",
-    "generate:seeds": "tsx src/scripts/generate-seeds.ts"
+    "db:seed": "tsx src/scripts/generate-seeds.ts && tsx src/db/seed.ts",
+    "db:generate": "tsx src/scripts/generate-schemas.ts && drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "knip": "knip"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -51,6 +53,7 @@
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "knip": "^6.12.1",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5"

@@ -138,7 +138,7 @@ export function Navbar({ categories, products }: NavbarProps) {
             href="/"
             className="flex gap-1 items-center font-heading font-bold text-xl tracking-tight lg:ml-0 ml-2"
           >
-            <Logo /> Shoe Empire<span className="text-primary">.</span>
+            <Logo /> Nova Kicks<span className="text-primary">.</span>
           </Link>
 
           {/* Desktop Nav */}
