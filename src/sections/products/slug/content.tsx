@@ -133,7 +133,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
                 <Heart
                   className={cn(
                     "size-5",
-                    isInWishlist && "fill-red-500 text-red-500",
+                    isInWishlist && "fill-destructive text-destructive",
                   )}
                 />
               </Button>
@@ -177,19 +177,16 @@ export const ProductContent = ({ product }: ProductContentProps) => {
             </h1>
 
             <div className="flex flex-col pt-1 gap-4">
-              <div className="flex flex-wrap items-baseline gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 {hasOffer ? (
                   <>
-                    <span className="text-2xl md:text-3xl font-bold text-destructive">
+                    <span className="text-2xl md:text-3xl font-bold text-primary">
                       Ksh {formatPrice(discountedPrice)}
                     </span>
-                    <span className="text-lg text-muted-foreground line-through decoration-destructive/50">
+                    <span className="text-lg text-muted-foreground line-through">
                       Ksh {formatPrice(product.price)}
                     </span>
-                    <Badge
-                      variant="outline"
-                      className="text-destructive border-destructive/30"
-                    >
+                    <Badge variant="outline">
                       Save Ksh {formatPrice(savings)}
                     </Badge>
                   </>
@@ -247,7 +244,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
             {/* Sizes */}
             {product.sizes?.length > 0 && (
               <div className="space-y-2">
-                <div className="flex justify-between text-sm">
+                <div className="flex justify-between items-center text-sm">
                   <p className="font-medium">
                     Size{" "}
                     <span className="text-muted-foreground">
@@ -258,26 +255,61 @@ export const ProductContent = ({ product }: ProductContentProps) => {
                       )
                     </span>
                   </p>
+                  <p className="underline text-muted-foreground">Size Guide</p>
                 </div>
 
                 <div className="flex w-full flex-wrap gap-2">
-                  {product.sizes.map((size) => (
-                    <Button
-                      key={size.size}
-                      size="sm"
-                      onClick={() => setSelectedSize(size)}
-                      className="w-24"
-                      variant={
-                        selectedSize?.size === size.size ? "default" : "outline"
-                      }
-                      disabled={size.stock < 1}
-                    >
-                      {size.size}
-                      {size.stock < 1 && (
-                        <span className="sr-only">Out of stock</span>
-                      )}
-                    </Button>
-                  ))}
+                  {product.sizes.map((size) => {
+                    const isOutOfStock = size.stock < 1;
+                    const isSelected = selectedSize?.size === size.size;
+
+                    return (
+                      <Button
+                        key={size.size}
+                        size="sm"
+                        onClick={() => {
+                          if (isOutOfStock) {
+                            toast.warning(
+                              `The size ${size.size} is currently out of stock!`,
+                            );
+
+                            return;
+                          }
+
+                          setSelectedSize(size);
+                        }}
+                        className={cn(
+                          "relative w-24 overflow-hidden",
+                          isOutOfStock && "opacity-50",
+                        )}
+                        variant={isSelected ? "default" : "outline"}
+                        aria-disabled={isOutOfStock}
+                        data-disabled={isOutOfStock}
+                        title={
+                          isOutOfStock
+                            ? "Out of stock"
+                            : `Choose size ${size.size}`
+                        }
+                      >
+                        {isOutOfStock && (
+                          <>
+                            {/* Diagonal line */}
+                            <span className="absolute top-1/2 -translate-y-1/2 h-px -inset-1 -rotate-18 bg-current opacity-60 pointer-events-none" />
+
+                            <span className="sr-only">Out of stock</span>
+                          </>
+                        )}
+
+                        <span
+                          className={cn(
+                            isOutOfStock && "cursor-not-allowed opacity-50",
+                          )}
+                        >
+                          {size.size}
+                        </span>
+                      </Button>
+                    );
+                  })}
                 </div>
               </div>
             )}

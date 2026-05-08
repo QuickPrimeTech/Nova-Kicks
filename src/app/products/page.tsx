@@ -43,7 +43,7 @@ export default function ProductsPage({
       <div className="flex max-sm:justify-end">
         <FilterProductsSidebar />
       </div>
-      <div className="min-h-[200vh] flex-1 p-4 sm:p-6 lg:p-8">
+      <div className="@container container min-h-[200vh] flex-1 p-4 sm:p-6 lg:p-8">
         <Suspense fallback={<ProductGridSkeleton />}>
           <ProductGridWrapper searchParams={searchParams} />
         </Suspense>
