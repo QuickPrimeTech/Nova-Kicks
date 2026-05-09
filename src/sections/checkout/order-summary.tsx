@@ -126,6 +126,7 @@ export default function OrderSummary({ showCart = true }: OrderSummaryProps) {
           {/* Checkout CTA (only on cart step) */}
           {step === "cart" && (
             <Button
+              variant={"secondary"}
               size={"xl"}
               className="w-full cursor-pointer"
               onClick={() => setStep("checkout")}
@@ -166,11 +167,7 @@ export default function OrderSummary({ showCart = true }: OrderSummaryProps) {
             },
           ].map((item) => (
             <div key={item.title} className="flex items-start gap-3">
-              <item.icon
-                name={item.icon as any}
-                size={16}
-                className="text-primary shrink-0 mt-0.5"
-              />
+              <item.icon size={16} className="text-primary shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs font-semibold text-foreground">
                   {item.title}
