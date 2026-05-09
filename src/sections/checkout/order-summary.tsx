@@ -11,8 +11,12 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { ArrowRight, RefreshCcw, ShieldCheck, Truck } from "lucide-react";
 import { BiMobile } from "react-icons/bi";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
-export default function OrderSummary() {
+type OrderSummaryProps = {
+  showCart?: boolean;
+};
+export default function OrderSummary({ showCart = true }: OrderSummaryProps) {
   const cart = useCartStore((state) => state.items);
   const step = useCartUIStore((state) => state.step);
   const setStep = useCartUIStore((state) => state.setStep);
@@ -41,20 +45,27 @@ export default function OrderSummary() {
   return (
     <div className="sticky top-24 flex flex-col gap-4">
       {/* Summary Card */}
-      <div className="rounded-2xl border border-border bg-card p-5 md:p-6">
-        <h2 className="text-base font-800 text-foreground mb-5">
-          Order Summary
-        </h2>
-
-        {/* Items */}
-        <div className="flex flex-col gap-3 mb-5 max-h-48 overflow-y-auto no-scrollbar">
-          {cart.map((cartItem) => (
-            <CartItemCard key={cartItem.id} cartItem={cartItem} />
-          ))}
+      <div className="rounded-2xl border border-border bg-card">
+        <div className="px-4 pt-4">
+          <h2 className="text-base font-800 text-foreground mb-5">
+            Order Summary
+          </h2>
         </div>
+        {showCart && (
+          <div className="max-h-50 grid grid-rows-[minmax(0,1fr)]">
+            <ScrollArea className="h-full bg-muted px-4">
+              <div className="flex flex-col gap-3 py-4">
+                {cart.map((cartItem) => (
+                  <CartItemCard key={cartItem.id} cartItem={cartItem} />
+                ))}
+              </div>
+              <ScrollBar />
+            </ScrollArea>
+          </div>
+        )}
 
         {/* Discount code */}
-        <div className="flex gap-2 mb-5">
+        <div className="flex gap-2 px-4 py-5 rounded-t-md border-t">
           <Input
             type="text"
             placeholder="Promo code (e.g. KICKSLOVE)"
@@ -81,7 +92,7 @@ export default function OrderSummary() {
         </div>
 
         {/* Price breakdown */}
-        <div className="flex flex-col gap-2.5 border-t border-border pt-4 mb-4">
+        <div className="flex flex-col gap-2.5 border-t border-border pt-4 mb-4 px-4">
           <div className="flex items-center justify-between text-sm">
             <span className="text-muted-foreground">Subtotal</span>
             <span className="font-semibold text-foreground">
@@ -111,18 +122,19 @@ export default function OrderSummary() {
             </span>
           </div>
         </div>
-
-        {/* Checkout CTA (only on cart step) */}
-        {step === "cart" && (
-          <Button
-            size={"xl"}
-            className="w-full cursor-pointer"
-            onClick={() => setStep("checkout")}
-          >
-            Checkout · KES {total.toLocaleString()}
-            <ArrowRight size={16} />
-          </Button>
-        )}
+        <div className="p-4">
+          {/* Checkout CTA (only on cart step) */}
+          {step === "cart" && (
+            <Button
+              size={"xl"}
+              className="w-full cursor-pointer"
+              onClick={() => setStep("checkout")}
+            >
+              Checkout · KES {total.toLocaleString()}
+              <ArrowRight size={16} />
+            </Button>
+          )}
+        </div>
       </div>
 
       {/* Trust + Delivery info */}

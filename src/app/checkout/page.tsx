@@ -60,7 +60,7 @@ export default function CartCheckoutPage() {
 
           {/* Right: Order Summary */}
           <div className="lg:col-span-5">
-            <OrderSummary />
+            <OrderSummary showCart={step === "cart" ? false : true} />
           </div>
         </div>
       )}
