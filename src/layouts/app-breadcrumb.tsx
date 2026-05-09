@@ -22,8 +22,8 @@ export function AppBreadcrumb({
 
   return (
     <Breadcrumb {...props}>
-      <BreadcrumbList>
-        <BreadcrumbItem>
+      <BreadcrumbList className="flex-nowrap overflow-hidden">
+        <BreadcrumbItem className="shrink-0">
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
         </BreadcrumbItem>
 
@@ -31,19 +31,21 @@ export function AppBreadcrumb({
           const href = `/${segments.slice(0, index + 1).join("/")}`;
           const isLast = index === segments.length - 1;
 
-          // Format label: replace hyphens with spaces and capitalize
           const label =
             segment.charAt(0).toUpperCase() +
             segment.slice(1).replace(/-/g, " ");
 
           return (
             <Fragment key={href}>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
+              <BreadcrumbSeparator className="shrink-0" />
+
+              <BreadcrumbItem className="min-w-0">
                 {isLast ? (
-                  <BreadcrumbPage>{label}</BreadcrumbPage>
+                  <BreadcrumbPage className="truncate">{label}</BreadcrumbPage>
                 ) : (
-                  <BreadcrumbLink href={href}>{label}</BreadcrumbLink>
+                  <BreadcrumbLink href={href} className="block truncate">
+                    {label}
+                  </BreadcrumbLink>
                 )}
               </BreadcrumbItem>
             </Fragment>
