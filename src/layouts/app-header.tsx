@@ -26,7 +26,5 @@ const getNavDataCached = async () => {
 export const AppHeader = async () => {
   const { categories, products, brands } = await getNavDataCached();
 
-  console.log("brands ------->", brands);
-
-  return <Navbar categories={categories} products={products} />;
+  return <Navbar categories={categories} brands={brands} products={products} />;
 };

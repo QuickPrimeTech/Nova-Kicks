@@ -13,25 +13,59 @@ import { WishlistSheet } from "@/components/cart/wishlist-sheet";
 import { CartSheet } from "@/components/cart/cart-sheet";
 import { AccessibilitySheet } from "./accessibility-sheet";
 
-/* ─── NAV LINKS ─── */
-const links = [
-  { label: "Men", href: "/products?gender=men" },
-  { label: "Women", href: "/products?gender=women" },
-];
-
-/* ─── ACCESSIBILITY STORE (localStorage-backed) ─── */
-
 type NavbarProps = {
   categories: (Omit<SelectCategory, "createdAt" | "updatedAt"> & {
     productCount: number;
   })[];
   products: NavProducts;
+  brands: string[];
 };
 
-/* ═════════════════════════════════════════
-    NAVBAR
-    ═════════════════════════════════════════ */
-export function Navbar({ categories, products }: NavbarProps) {
+type DirectLink = {
+  kind: "link";
+  label: string;
+  href: string;
+};
+
+type SubmenuLink = {
+  kind: "submenu";
+  label: string;
+  items: { label: string; href: string }[];
+};
+
+export type NavItem = DirectLink | SubmenuLink;
+
+type UseNavProps = {
+  categories: NavbarProps["categories"];
+  brands: string[];
+};
+
+const useNav = ({ categories, brands }: UseNavProps): NavItem[] => {
+  return [
+    { kind: "link", label: "Men", href: "/products?gender=men" },
+    { kind: "link", label: "Women", href: "/products?gender=women" },
+    { kind: "link", label: "Kids", href: "/products?gender=unisex" },
+    {
+      kind: "submenu",
+      label: "Brands",
+      items: brands.map((brand) => ({
+        label: brand,
+        href: `/products?brand=${encodeURIComponent(brand)}`,
+      })),
+    },
+    {
+      kind: "submenu",
+      label: "Categories",
+      items: categories.map((cat) => ({
+        label: `${cat.name}(${cat.productCount})`,
+        href: `/categories/${cat.slug}`,
+      })),
+    },
+  ];
+};
+
+export function Navbar({ categories, brands, products }: NavbarProps) {
+  const links = useNav({ categories, brands });
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const [scrolled, setScrolled] = useState(false);
 
@@ -53,17 +87,11 @@ export function Navbar({ categories, products }: NavbarProps) {
         {!isDesktop && <MobileNav links={links} />}
         <Link
           href="/"
-          className="flex gap-1 items-center font-heading font-bold text-xl tracking-tight lg:ml-0 ml-2"
+          className="flex gap-1 items-center font-heading font-bold text-xl text-nowrap text-ellipsis tracking-tight lg:ml-0 ml-2"
         >
           <Logo /> Nova Kicks<span className="text-primary">.</span>
         </Link>
-        {isDesktop && (
-          <DesktopNav
-            links={links}
-            categories={categories}
-            products={products}
-          />
-        )}
+        {isDesktop && <DesktopNav links={links} categories={categories} />}
         <div className="flex items-center gap-0.5">
           <SearchProduct products={products} />
           {isDesktop && <AccessibilitySheet />}
