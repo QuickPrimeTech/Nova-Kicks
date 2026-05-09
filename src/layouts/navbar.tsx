@@ -11,8 +11,10 @@ import { Logo } from "@/components/logo";
 import { SearchProduct } from "@/components/search-product";
 import { WishlistSheet } from "@/components/cart/wishlist-sheet";
 import { CartSheet } from "@/components/cart/cart-sheet";
-import { AccessibilitySheet } from "./accessibility-sheet";
 import { siteConfig } from "@/site-config";
+import { useAccessibilityStore } from "@/store/accessibility";
+import { Button } from "@/components/ui/button";
+import { Accessibility } from "lucide-react";
 
 type NavbarProps = {
   categories: (Omit<SelectCategory, "createdAt" | "updatedAt"> & {
@@ -69,6 +71,7 @@ export function Navbar({ categories, brands, products }: NavbarProps) {
   const links = useNav({ categories, brands });
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const [scrolled, setScrolled] = useState(false);
+  const setOpen = useAccessibilityStore((state) => state.setOpen);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -97,7 +100,17 @@ export function Navbar({ categories, brands, products }: NavbarProps) {
         {isDesktop && <DesktopNav links={links} categories={categories} />}
         <div className="flex items-center gap-0.5">
           <SearchProduct products={products} />
-          {isDesktop && <AccessibilitySheet />}
+          {isDesktop && (
+            <Button
+              variant={"ghost"}
+              className="size-10"
+              title="Accessiblity settings"
+              onClick={() => setOpen(() => true)}
+            >
+              <Accessibility className="size-5" />
+              <span className="sr-only">Accessibility setting</span>
+            </Button>
+          )}
           <WishlistSheet />
           <CartSheet />
         </div>

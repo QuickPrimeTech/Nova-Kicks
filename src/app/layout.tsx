@@ -10,6 +10,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { AppHeader } from "@/layouts/app-header";
 import { siteConfig } from "@/site-config";
+import { AccessibilitySheet } from "@/layouts/accessibility-sheet";
 
 const jost = Jost({
   variable: "--font-jost",
@@ -56,7 +57,10 @@ export default function RootLayout({
           <NextTopLoader showSpinner={false} color="var(--primary)" />
           <TooltipProvider>
             <AppHeader />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1">
+              {children}
+              <AccessibilitySheet />
+            </main>
             <Footer />
             <Toaster richColors position="top-right" />
           </TooltipProvider>

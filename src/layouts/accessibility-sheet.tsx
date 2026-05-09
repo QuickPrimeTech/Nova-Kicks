@@ -1,4 +1,7 @@
 // @/layouts/accessibility-sheet.tsx
+
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
@@ -8,12 +11,12 @@ import {
   SheetHeader,
   SheetTitle,
   SheetDescription,
-  SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
 import { Switch } from "@/components/ui/switch";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
+import { useAccessibilityStore } from "@/store/accessibility";
 import {
   Accessibility,
   Minus,
@@ -62,6 +65,8 @@ function useA11y() {
 export const AccessibilitySheet = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const isMobile = useMediaQuery("(max-width: 640px)");
+  const open = useAccessibilityStore((state) => state.open);
+  const setOpen = useAccessibilityStore((state) => state.setOpen);
   const { theme, setTheme } = useTheme();
   const { mounted, fontSize, setFontSize, reducedMotion, setReducedMotion } =
     useA11y();
@@ -69,17 +74,7 @@ export const AccessibilitySheet = () => {
   if (!mounted) return null;
 
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button
-          variant={"ghost"}
-          className="size-10"
-          title="Accessiblity settings"
-        >
-          <Accessibility className="size-5" />
-          <span className="sr-only">Accessibility setting</span>
-        </Button>
-      </SheetTrigger>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetContent
         side={isDesktop ? "right" : "bottom"}
         className={cn(

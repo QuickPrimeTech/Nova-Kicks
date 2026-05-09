@@ -28,6 +28,7 @@ import { useState } from "react";
 import { RiMenu2Line } from "react-icons/ri";
 import { useCartStore } from "@/store/cart";
 import { siteConfig } from "@/site-config";
+import { useAccessibilityStore } from "@/store/accessibility";
 
 type View =
   | { type: "main" }
@@ -73,19 +74,21 @@ const slideBack = {
 
 export const MobileNav = ({ links }: { links: NavItem[] }) => {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
   const [view, setView] = useState<View>({ type: "main" });
+  const [navOpen, setNavOpen] = useState<boolean>(false);
+  const open = useAccessibilityStore((state) => state.open);
+  const setOpen = useAccessibilityStore((state) => state.setOpen);
 
-  const handleOpenChange = (next: boolean) => {
-    setOpen(next);
-    if (!next) setTimeout(() => setView({ type: "main" }), 300);
+  const handleNavOpenChange = (open: boolean) => {
+    setNavOpen(open);
+    if (!open) setTimeout(() => setView({ type: "main" }), 300);
   };
   const totalItems = useCartStore((state) => state.getTotalItems());
 
   const currentAnim = view.type === "main" ? slideBack : slideIn;
 
   return (
-    <Sheet open={open} onOpenChange={handleOpenChange}>
+    <Sheet open={navOpen} onOpenChange={handleNavOpenChange}>
       <SheetTrigger asChild>
         <button className="p-2 -ml-2 hover:bg-secondary rounded-full transition lg:hidden">
           <RiMenu2Line className="size-5" />
@@ -188,6 +191,7 @@ export const MobileNav = ({ links }: { links: NavItem[] }) => {
                         size={"lg"}
                         className="w-full justify-start"
                         variant="ghost"
+                        onClick={() => setOpen(() => true)}
                       >
                         <Accessibility className="size-4 mr-2" />
                         Accessibility
