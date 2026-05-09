@@ -44,10 +44,6 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
         size: "41",
         stock: 9,
       },
-      {
-        size: "41",
-        stock: 4,
-      },
     ],
     gender: "men",
   },

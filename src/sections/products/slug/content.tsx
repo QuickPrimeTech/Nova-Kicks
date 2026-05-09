@@ -24,6 +24,7 @@ import { ShareButton } from "@/components/ui/share-button";
 import { ProductWithOptionalOffer } from "@/types/product";
 import { useCartUIStore } from "@/store/cart-ui";
 import { AppBreadcrumb } from "@/layouts/app-breadcrumb";
+import { SizeGuideDialog } from "@/sections/categories/slug/size-guide-dialog";
 
 interface ProductContentProps {
   product: ProductWithOptionalOffer;
@@ -259,9 +260,8 @@ export const ProductContent = ({ product }: ProductContentProps) => {
                       )
                     </span>
                   </p>
-                  <p className="underline text-muted-foreground">Size Guide</p>
+                  <SizeGuideDialog />
                 </div>
-
                 <div className="flex w-full flex-wrap gap-2">
                   {product.sizes.map((size) => {
                     const isOutOfStock = size.stock < 1;
