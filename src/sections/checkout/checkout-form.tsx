@@ -256,14 +256,18 @@ export default function CheckoutForm() {
                 key={pm.id}
                 type="button"
                 onClick={() => form.setValue("paymentMethod", pm.id as any)}
-                className={`flex items-center gap-4 p-4 rounded-xl border-2 text-left transition-all ${paymentMethod === pm.id ? (pm.id === "mpesa" ? "border-[#00A651] bg-[#00A651]/5" : "border-primary bg-primary/5") : "border-border"}`}
+                className={`flex flex-wrap justify-between items-center gap-5 p-4 rounded-xl border-2 text-left transition-all ${paymentMethod === pm.id ? (pm.id === "mpesa" ? "border-[#00A651] bg-[#00A651]/5" : "border-primary bg-primary/5") : "border-border"}`}
               >
-                {pm.icon}
-                <div className="flex-1">
-                  <p className="text-sm font-800 text-foreground">{pm.title}</p>
-                  <p className="text-xs text-muted-foreground font-500">
-                    {pm.desc}
-                  </p>
+                <div className="flex items-center gap-4">
+                  {pm.icon}
+                  <div className="flex-1">
+                    <p className="text-sm font-800 text-foreground">
+                      {pm.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground font-500">
+                      {pm.desc}
+                    </p>
+                  </div>
                 </div>
                 {pm.id === "mpesa" && (
                   <span className="px-2 py-0.5 bg-emerald-500/20 text-emerald-500 text-[10px] font-800 rounded border border-emerald-600/20 shrink-0">

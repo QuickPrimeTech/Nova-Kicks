@@ -1,14 +1,7 @@
 // @/sections/checkout/checkout-steps.tsx
 "use client";
-
 import React from "react";
 import { useCartUIStore } from "@/store/cart-ui";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 const STEPS = ["Cart", "Checkout", "Confirmed"];
 const STEP_MAP: Record<string, number> = {
@@ -22,48 +15,52 @@ export const CheckoutSteps = () => {
   const currentIdx = STEP_MAP[step] ?? 0;
 
   return (
-    <TooltipProvider delayDuration={0}>
-      <div className="flex items-center gap-2 mb-12 px-2">
+    <nav aria-label="Checkout progress" className="mb-12 px-2">
+      <ol className="flex items-center gap-2">
         {STEPS.map((s, i) => {
           const isCompleted = i < currentIdx;
           const isActive = i === currentIdx;
 
           return (
             <React.Fragment key={s}>
-              {/* Progress Line */}
               {i > 0 && (
                 <div
+                  aria-hidden="true"
                   className={`h-0.5 flex-1 transition-colors duration-300 ${
                     i <= currentIdx ? "bg-primary" : "bg-border"
                   }`}
                 />
               )}
 
-              {/* Step Circle with Tooltip */}
-              <Tooltip open>
-                <TooltipTrigger asChild>
-                  <div
-                    className={`relative flex flex-col items-center cursor-default shrink-0 z-10`}
-                  >
-                    <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-900 transition-all duration-300 shadow-sm ${
-                        isCompleted || isActive
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted text-muted-foreground border border-border"
-                      } ${isActive ? "ring-4 ring-primary/20 scale-110" : ""}`}
-                    >
-                      {isCompleted ? "✓" : i + 1}
-                    </div>
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent side="top" sideOffset={8}>
+              <li
+                aria-current={isActive ? "step" : undefined}
+                className="relative flex shrink-0 flex-col items-center"
+              >
+                <div
+                  className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-black transition-all duration-300 shadow-sm ${
+                    isCompleted || isActive
+                      ? "bg-primary text-primary-foreground"
+                      : "border border-border bg-muted text-muted-foreground"
+                  } ${isActive ? "ring-4 ring-primary/20 scale-110" : ""}`}
+                >
+                  {isCompleted ? "✓" : i + 1}
+                </div>
+
+                {/* Always-visible label, positioned absolutely so it doesn't widen the <li> */}
+                <span
+                  className={`absolute top-full mt-1.5 text-[10px] sm:text-xs font-medium whitespace-nowrap select-none ${
+                    isActive
+                      ? "text-primary font-semibold"
+                      : "text-muted-foreground"
+                  }`}
+                >
                   {s}
-                </TooltipContent>
-              </Tooltip>
+                </span>
+              </li>
             </React.Fragment>
           );
         })}
-      </div>
-    </TooltipProvider>
+      </ol>
+    </nav>
   );
 };
