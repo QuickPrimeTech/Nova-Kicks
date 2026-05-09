@@ -1,6 +1,5 @@
 // @/layouts/mobile-nav.tsx
 "use client";
-
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -15,7 +14,7 @@ import {
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { Accessibility, ChevronRight } from "lucide-react";
+import { Accessibility } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { RiMenu2Line } from "react-icons/ri";
@@ -55,14 +54,13 @@ export const MobileNav = ({
                     <Link
                       href={item.href}
                       className={cn(
-                        "flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors",
+                        "flex font-heading items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors",
                         pathname === item.href
                           ? "bg-secondary text-foreground"
                           : "text-muted-foreground hover:bg-secondary hover:text-foreground",
                       )}
                     >
                       {item.label}
-                      <ChevronRight className="size-4 text-muted-foreground" />
                     </Link>
                   </SheetClose>
                 </motion.div>

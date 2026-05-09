@@ -135,8 +135,6 @@ export async function getProducts(
   });
 }
 
-// @/db/functions/product.ts
-
 export async function getProductsForNav() {
   "use cache";
   const rows = await db
@@ -159,6 +157,19 @@ export async function getProductsForNav() {
     brand: p.brand,
     image: p.images?.[0] ?? null, // Extract only the first image
   }));
+}
+
+export async function getBrands() {
+  "use cache";
+
+  const rows = await db
+    .selectDistinct({
+      brand: products.brand,
+    })
+    .from(products)
+    .where(eq(products.isPublished, true));
+
+  return rows.map((row) => row.brand);
 }
 
 export async function getPaginatedProducts(
