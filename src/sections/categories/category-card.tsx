@@ -80,31 +80,9 @@ export const CategoryCard = ({ category }: CategoryCardProps) => {
               )}
               .
             </p>
-
-            {/* Progress Bar Visual */}
-            <div className="mt-4 pt-4 border-t border-border">
-              <div className="flex items-center justify-between text-xs text-muted-foreground mb-1.5">
-                <span>Availability</span>
-                <span>
-                  {category.productCount > 0 ? "In Stock" : "Coming Soon"}
-                </span>
-              </div>
-              <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
-                <div
-                  className={`h-full rounded-full transition-all duration-1000 ease-out ${
-                    category.productCount > 0
-                      ? "bg-primary w-full"
-                      : "bg-muted-foreground/20 w-0"
-                  }`}
-                />
-              </div>
-            </div>
           </div>
         </div>
       </div>
-
-      {/* Active/Hover Glow Effect */}
-      <div className="absolute inset-0 rounded-2xl ring-2 ring-primary/0 group-active:ring-primary/10 md:group-hover:ring-primary/20 transition-all duration-500 pointer-events-none" />
     </Link>
   );
 };
