@@ -96,7 +96,7 @@ export function CartSheet() {
               </span>
             </div>
 
-            <SheetFooter className="flex flex-row gap-2 border-t px-2">
+            <SheetFooter className="flex flex-row gap-2 border-t px-4">
               <SheetClose asChild>
                 <Button size={"xl"} variant="secondary">
                   Continue Shopping

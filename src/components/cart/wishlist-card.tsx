@@ -34,6 +34,8 @@ export const WishlistCard = ({ item }: WishlistCardProps) => {
         ? { size: item.size, stock: 10 } // Replace with real stock lookup
         : { size: "Default", stock: 10 },
       quantity: 1,
+      availableSizes: item.availableSizes,
+      slug: item.slug,
     });
     removeItem(item.id);
   };

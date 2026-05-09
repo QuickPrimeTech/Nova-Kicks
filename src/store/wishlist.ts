@@ -2,6 +2,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist, createJSONStorage } from "zustand/middleware";
+import { ProductSize } from "@/types/product";
 
 export type WishlistItem = {
   id: string; // productId (unique identifier)
@@ -9,6 +10,8 @@ export type WishlistItem = {
   price: number;
   image: string;
   size?: string; // optional: if they selected a preferred size
+  availableSizes: ProductSize[];
+  slug: string;
 };
 
 type WishlistStore = {

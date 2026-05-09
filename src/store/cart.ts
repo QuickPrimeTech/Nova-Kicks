@@ -2,11 +2,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist, createJSONStorage } from "zustand/middleware";
-
-type ProductSize = {
-  size: string;
-  stock: number;
-};
+import { ProductSize } from "@/types/product";
 
 export type CartItem = {
   id: string; // cartId (unique per cart item)
@@ -16,6 +12,7 @@ export type CartItem = {
   image: string;
   size: ProductSize;
   quantity: number;
+  slug: string;
   availableSizes: ProductSize[];
 };
 

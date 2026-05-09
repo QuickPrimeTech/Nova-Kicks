@@ -51,7 +51,7 @@ export const Hero = () => {
         isDesktop && "section",
       )}
     >
-      <div className="container max-md:h-screen relative max-sm:pt-32 max-sm:pb-32 px-4 overflow-hidden border sm:px-6 rounded-b-3xl sm:rounded-3xl bg-[radial-gradient(ellipse_at_top,var(--background)_0%,var(--background)_120%)] mx-auto z-10 flex min-h-[80vh] flex-col justify-center">
+      <div className="container max-md:h-screen relative max-sm:pt-32 max-sm:pb-32 px-4 overflow-hidden border sm:px-6 rounded-b-3xl sm:rounded-3xl  mx-auto z-10 flex min-h-[80vh] flex-col bg-[radial-gradient(ellipse_at_top,var(--background)_0%,var(--background)_120%)] lg:justify-center">
         {/* Background Grid & Glows */}
         <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,theme(colors.slate.500/0.1)_1px,transparent_1px),linear-gradient(to_bottom,theme(colors.slate.500/0.1)_1px,transparent_1px),radial-gradient(circle_500px_at_20%_80%,theme(colors.violet.500/0.15),transparent),radial-gradient(circle_500px_at_80%_20%,theme(colors.blue.500/0.15),transparent)] bg-[size:48px_48px,48px_48px,100%_100%,100%_100%]" />
 

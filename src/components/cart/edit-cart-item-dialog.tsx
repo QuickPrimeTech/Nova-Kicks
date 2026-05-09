@@ -12,10 +12,11 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
-import { Minus, Plus } from "lucide-react";
+import { Edit, Minus, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatPrice } from "@/helpers/formatters";
 import { toast } from "sonner";
+import Link from "next/link";
 
 type ProductSize = CartItem["size"];
 
@@ -54,6 +55,7 @@ export const EditCartItemDialog = ({
         size: selectedSize,
         quantity,
         availableSizes: cartItem.availableSizes,
+        slug: cartItem.slug,
       });
     } else {
       updateQuantity(cartItem.id, quantity);
@@ -66,9 +68,9 @@ export const EditCartItemDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-sm gap-6">
+      <DialogContent className="gap-6 max-w-[90vw]">
         <DialogHeader>
-          <DialogTitle className="text-base leading-snug line-clamp-2 pr-6">
+          <DialogTitle className="text-base font-bold leading-snug line-clamp-2 pr-6">
             {cartItem.name}
           </DialogTitle>
         </DialogHeader>
@@ -154,13 +156,19 @@ export const EditCartItemDialog = ({
           )}
         </div>
 
+        <Button variant={"link"} className="w-fit" asChild>
+          <Link href={`/products/${cartItem.slug}`}>
+            <Edit />
+            Details
+          </Link>
+        </Button>
         <DialogFooter className="gap-2 sm:gap-2">
           <DialogClose asChild>
-            <Button variant="outline" className="flex-1">
+            <Button variant="outline" className="md:flex-1">
               Cancel
             </Button>
           </DialogClose>
-          <Button className="flex-1" onClick={handleSave}>
+          <Button className="md:flex-1" onClick={handleSave}>
             Save changes
           </Button>
         </DialogFooter>
