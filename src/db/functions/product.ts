@@ -145,6 +145,7 @@ export async function getProductsForNav() {
       name: products.name,
       slug: products.slug,
       price: products.price,
+      brand: products.brand,
       images: products.images, // We will pick the first one in the map
     })
     .from(products)
@@ -155,6 +156,7 @@ export async function getProductsForNav() {
     name: p.name,
     slug: p.slug,
     price: p.price,
+    brand: p.brand,
     image: p.images?.[0] ?? null, // Extract only the first image
   }));
 }

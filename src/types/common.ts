@@ -18,5 +18,6 @@ export type NavProducts = {
   name: string;
   slug: string;
   price: number;
+  brand: string;
   image: ProductImage;
 }[];

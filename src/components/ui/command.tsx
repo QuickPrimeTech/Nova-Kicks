@@ -1,8 +1,6 @@
 "use client";
-
 import * as React from "react";
 import { Command as CommandPrimitive } from "cmdk";
-
 import { cn } from "@/lib/utils";
 import {
   Dialog,
@@ -12,7 +10,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { InputGroup, InputGroupAddon } from "@/components/ui/input-group";
-import { SearchIcon, CheckIcon } from "lucide-react";
+import { SearchIcon } from "lucide-react";
+import { ScrollArea, ScrollBar } from "./scroll-area";
 
 function Command({
   className,
@@ -86,6 +85,7 @@ function CommandInput({
 }
 
 function CommandList({
+  children,
   className,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.List>) {
@@ -93,11 +93,16 @@ function CommandList({
     <CommandPrimitive.List
       data-slot="command-list"
       className={cn(
-        "no-scrollbar max-h-72 scroll-py-1 overflow-x-hidden overflow-y-auto outline-none",
+        "max-h-72 grid grid-rows-[minmax(0,1fr)] outline-none px-1 mt-3",
         className,
       )}
       {...props}
-    />
+    >
+      <ScrollArea className="h-full bg-muted">
+        {children}
+        <ScrollBar />
+      </ScrollArea>
+    </CommandPrimitive.List>
   );
 }
 
@@ -152,13 +157,12 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "group/command-item relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none in-data-[slot=dialog-content]:rounded-lg! data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-selected:bg-muted data-selected:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-selected:**:[svg]:text-foreground",
+        "group/command-item relative flex cursor-default px-2 items-center gap-2 rounded-sm py-1.5 text-sm outline-hidden select-none in-data-[slot=dialog-content]:rounded-lg! data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-selected:bg-muted data-selected:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-selected:**:[svg]:text-foreground",
         className,
       )}
       {...props}
     >
       {children}
-      <CheckIcon className="ml-auto opacity-0 group-has-data-[slot=command-shortcut]/command-item:hidden group-data-[checked=true]/command-item:opacity-100" />
     </CommandPrimitive.Item>
   );
 }

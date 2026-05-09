@@ -101,6 +101,7 @@ export const ProductCard = ({
             src={productImage?.url}
             alt={productImage?.altText ?? product.name}
             fill
+            sizes="330px"
             className="object-cover group-hover:scale-110 transition"
           />
           <Button

@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/command";
 import { Image } from "./ui/image";
 import { NavProducts } from "@/types/common";
+import { formatPrice } from "@/helpers/formatters";
 
 export const SearchProduct = ({ products }: { products: NavProducts }) => {
   const [open, setOpen] = React.useState(false);
@@ -68,7 +69,9 @@ export const SearchProduct = ({ products }: { products: NavProducts }) => {
         <CommandDialog
           open={open}
           onOpenChange={setOpen}
-          className="py-4 px-2 gap-0"
+          className="top-16 py-4 px-2 gap-0"
+          title="Search Products"
+          description="Look for specific brands, names or tags"
         >
           <CommandInput placeholder="Search products, brands..." />
           <CommandList>
@@ -84,21 +87,24 @@ export const SearchProduct = ({ products }: { products: NavProducts }) => {
                       router.push(`/products/${product.slug || product.id}`),
                     );
                   }}
-                  className="cursor-pointer"
+                  className="cursor-pointer w-full"
                 >
-                  <div className="flex gap-3">
-                    <div className="relative flex h-12 aspect-square rounded-sm overflow-hidden">
+                  <div className="flex gap-3 bg-background w-full">
+                    <div className="relative flex h-16 aspect-square rounded-sm overflow-hidden">
                       <Image
                         src={product.image.url}
                         alt={product.image.altText}
                         fill
                         sizes="48px"
+                        className="object-cover"
                       />
                     </div>
-                    <div className="space-y-1">
-                      <p className="font-heading font-bold">{product.name}</p>
+                    <div className="space-y-1 py-1 flex flex-col justify-center">
+                      <p className="font-heading font-bold">
+                        {product.name}({product.brand})
+                      </p>
                       <p className="text-primary font-bold text-sm">
-                        {product.price}
+                        Ksh {formatPrice(product.price)}
                       </p>
                     </div>
                   </div>

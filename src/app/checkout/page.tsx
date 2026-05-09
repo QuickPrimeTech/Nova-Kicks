@@ -25,7 +25,7 @@ export default function CartCheckoutPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto section pt-16 pb-20">
+    <div className="max-w-7xl mx-auto section pt-8 pb-20">
       {/* Header */}
       <div className="space-y-8 mb-8">
         <Button variant={"link"} asChild>
