@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { cacheLife } from "next/cache";
+import { siteConfig } from "@/site-config";
 
 const cols = [
   {
@@ -137,9 +138,11 @@ export const Footer = () => {
         </div>
         <div className="mt-20 pt-8 border-t border-background/10 flex flex-col md:flex-row justify-between gap-4 text-xs text-muted-foreground">
           <p className="font-heading-3 font-bold font-heading text-2xl text-foreground uppercase">
-            SHOE<span className="text-accent">.</span>EMPIRE
+            {siteConfig.name}
           </p>
-          <p>© {getCurrentYear()} Shoe Empire. Engineered to outlast.</p>
+          <p>
+            © {getCurrentYear()} {siteConfig.name}. Engineered to outlast.
+          </p>
         </div>
       </div>
     </footer>

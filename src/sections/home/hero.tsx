@@ -7,14 +7,14 @@ import { Image } from "@/components/ui/image";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import Link from "next/link";
+import { siteConfig } from "@/site-config";
 
 const content = [
   {
     id: 1,
     title: "BEST SNEAKER DEALS",
     caption: "New Drop · Limited Edition",
-    description:
-      "Discover unbeatable sneaker deals at Shoe Empire. Built for comfort and turning heads from CBD to Westlands.",
+    description: `Discover unbeatable sneaker deals at ${siteConfig.name}. Built for comfort and turning heads from CBD to Westlands.`,
     image:
       "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777644343/hero-sneaker_litw48.png",
     link: "/products?category=sneakers",

@@ -9,6 +9,7 @@ import { ProductContent } from "@/sections/products/slug/content";
 import { notFound } from "next/navigation";
 import { SimilarProducts } from "@/sections/products/slug/similar-products";
 import { unstable_cache } from "next/cache";
+import { siteConfig } from "@/site-config";
 
 // Cache at the Next.js level — shared across workers during build
 const getProductCached = unstable_cache(
@@ -44,7 +45,7 @@ export async function generateMetadata({
 
   if (!product) {
     return {
-      title: "Product Not Found | Shoe Empire",
+      title: `Product Not Found | ${siteConfig.name}`,
       description: "The product you are looking for does not exist.",
     };
   }

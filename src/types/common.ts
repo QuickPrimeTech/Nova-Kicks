@@ -21,3 +21,14 @@ export type NavProducts = {
   brand: string;
   image: ProductImage;
 }[];
+
+// Define a type that accepts both Lucide and React Icons
+export type Contact = {
+  label: string;
+  value: string;
+  subValue?: string;
+  url: string;
+  icon: React.ElementType;
+  description?: string;
+  colorClass: string; // Tailored colors
+};

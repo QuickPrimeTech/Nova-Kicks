@@ -1,6 +1,7 @@
 // @/db/seeds/category.ts
 import { db } from "@/index";
 import { categories } from "@/db/schemas";
+import { siteConfig } from "@/site-config";
 
 const seedCategories = [
   {
@@ -24,7 +25,7 @@ const seedCategories = [
 ];
 
 export default async function seed() {
-  console.log("Starting Seeding Shoe Empire categories...");
+  console.log(`Starting Seeding ${siteConfig.name} categories...`);
   try {
     console.log("Clearing existing categories...");
     await db.delete(categories);

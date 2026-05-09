@@ -9,6 +9,7 @@ import NextTopLoader from "nextjs-toploader";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { AppHeader } from "@/layouts/app-header";
+import { siteConfig } from "@/site-config";
 
 const jost = Jost({
   variable: "--font-jost",
@@ -23,9 +24,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shoe Empire - Best Online Shoe Store in Nairobi",
-  description:
-    "Discover the best online shoe store in Nairobi at Shoe Empire. We offer a wide selection of stylish and comfortable shoes for men, women, and children. Shop now and step up your shoe game with our trendy and affordable footwear collection.",
+  title: siteConfig.title,
+  description: siteConfig.description,
 };
 
 export default function RootLayout({

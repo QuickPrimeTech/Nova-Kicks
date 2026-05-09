@@ -12,6 +12,7 @@ import { SearchProduct } from "@/components/search-product";
 import { WishlistSheet } from "@/components/cart/wishlist-sheet";
 import { CartSheet } from "@/components/cart/cart-sheet";
 import { AccessibilitySheet } from "./accessibility-sheet";
+import { siteConfig } from "@/site-config";
 
 type NavbarProps = {
   categories: (Omit<SelectCategory, "createdAt" | "updatedAt"> & {
@@ -89,7 +90,9 @@ export function Navbar({ categories, brands, products }: NavbarProps) {
           href="/"
           className="flex gap-1 items-center font-heading font-bold text-xl text-nowrap text-ellipsis tracking-tight lg:ml-0 ml-2"
         >
-          <Logo /> Nova Kicks<span className="text-primary">.</span>
+          <Logo />
+          {siteConfig.name}
+          <span className="text-primary">.</span>
         </Link>
         {isDesktop && <DesktopNav links={links} categories={categories} />}
         <div className="flex items-center gap-0.5">

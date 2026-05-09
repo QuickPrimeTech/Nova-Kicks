@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { siteConfig } from "@/site-config";
 
 const containerStyle = {
   width: "100%",
@@ -13,8 +14,8 @@ const containerStyle = {
 };
 
 const center = {
-  lat: -1.2822459265610915,
-  lng: 36.82102119893441,
+  lat: siteConfig.latitude,
+  lng: siteConfig.longitude,
 };
 
 export function MapCard() {
@@ -46,7 +47,7 @@ export function MapCard() {
             <Link
               rel="noopener noreferrer"
               target="_blank"
-              href="https://www.google.com/maps/place/Shoeempire/@-1.282415,36.8203514,19.7z/data=!4m10!1m2!2m1!1sshoe+empire!3m6!1s0x182f10d4126dd1bf:0x3b5b7acba01d070e!8m2!3d-1.2822572!4d36.8210239!15sCgtzaG9lIGVtcGlyZVoNIgtzaG9lIGVtcGlyZZIBDmNsb3RoaW5nX3N0b3Jl4AEA!16s%2Fg%2F11f3wly07y?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D"
+              href={siteConfig.mapsLink}
             >
               <MapPin />
               Open in Google Maps
