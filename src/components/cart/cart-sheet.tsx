@@ -34,7 +34,7 @@ export function CartSheet() {
           variant="ghost"
           size="icon"
           title="view cart"
-          className="relative size-10 rounded-full hover:bg-accent transition-colors"
+          className="relative size-10"
         >
           <ShoppingBag className="size-5" />
           <span className="absolute top-1 right-0 flex size-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground shadow-sm ring-2 ring-background animate-in zoom-in-50 duration-200">
