@@ -338,7 +338,7 @@ export const ProductThumbnail = ({
             {images.map((image) => (
               <CarouselItem key={`${image.url}-${image.altText}`}>
                 <div
-                  className="relative aspect-4/3 cursor-zoom-in overflow-hidden rounded-xl"
+                  className="relative aspect-square cursor-zoom-in overflow-hidden rounded-xl"
                   onClick={() => setOpen(true)}
                 >
                   <Image
@@ -360,7 +360,7 @@ export const ProductThumbnail = ({
               images.map((img, i) => (
                 <CarouselItem
                   key={`${img.url}-${img.altText}`}
-                  className="basis-1/4 md:basis-1/6 aspect-4/3"
+                  className="basis-1/4 md:basis-1/6 aspect-square"
                 >
                   <button
                     onClick={() => api?.scrollTo(i)}

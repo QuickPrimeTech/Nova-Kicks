@@ -101,6 +101,12 @@ export const ProductCard = ({
             fill
             className="object-cover group-hover:scale-110 transition"
           />
+          <Button
+            size="icon"
+            className="absolute z-10 bottom-2 right-2 cursor-pointer"
+          >
+            <Plus />
+          </Button>
         </div>
       </Link>
 
@@ -119,7 +125,12 @@ export const ProductCard = ({
                 )}
                 onClick={() => setProductImage(img)}
               >
-                <Image src={img.url} alt={img.altText ?? ""} fill />
+                <Image
+                  src={img.url}
+                  alt={img.altText ?? ""}
+                  fill
+                  sizes="(max-width: 640px) 50vw, 33vw"
+                />
               </CarouselItem>
             ))}
           </CarouselContent>
@@ -134,31 +145,32 @@ export const ProductCard = ({
           {/* PRICE LOGIC */}
           <div className="mt-2 flex items-center gap-2">
             {hasOffer ? (
-              <span className="line-through text-muted-foreground text-sm">
-                Ksh {price.toLocaleString()}
-              </span>
+              <>
+                <span className="line-through text-muted-foreground text-sm">
+                  Ksh {price.toLocaleString()}
+                </span>
+                <span className="font-bold">Ksh {price.toLocaleString()}</span>
+                {stock && (
+                  <Badge variant={"destructive"}>
+                    <Clock />
+                    {stock} Left in stock
+                  </Badge>
+                )}
+              </>
             ) : (
-              <span className="font-bold">Ksh {price.toLocaleString()}</span>
+              <>
+                {stock && (
+                  <Badge variant={"destructive"}>
+                    <Clock />
+                    {stock} Left in stock
+                  </Badge>
+                )}
+                <span className="font-bold">Ksh {price.toLocaleString()}</span>
+              </>
             )}
           </div>
 
           {/* CTA */}
-          <div
-            className={cn(
-              "flex justify-end mt-2 items-center",
-              stock && "justify-between",
-            )}
-          >
-            {stock && (
-              <Badge variant={"destructive"}>
-                <Clock />
-                {stock} Left in stock
-              </Badge>
-            )}
-            <Button size="icon">
-              <Plus />
-            </Button>
-          </div>
         </div>
       </Link>
     </div>
