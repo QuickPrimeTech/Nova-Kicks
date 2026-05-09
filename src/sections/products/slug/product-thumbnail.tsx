@@ -236,7 +236,7 @@ export function LightboxDialog({
                     src={image.url}
                     alt={image.altText}
                     fill
-                    sizes="100vw"
+                    sizes="(max-width: 640px) 100vw, (max-width:768px) 50vw, 33vw"
                     priority
                     className={cn(
                       "object-cover will-change-transform",
@@ -287,6 +287,7 @@ export function LightboxDialog({
                       src={img.url}
                       alt={img.altText}
                       fill
+                      sizes={"100px"}
                       className="object-cover"
                     />
                   </button>
@@ -345,6 +346,7 @@ export const ProductThumbnail = ({
                     src={image.url}
                     alt={image.altText}
                     fill
+                    sizes="(max-width: 1028px) 95vw, 50vw"
                     className="object-cover"
                   />
                 </div>
@@ -355,12 +357,12 @@ export const ProductThumbnail = ({
 
         {/* THUMBNAILS */}
         <Carousel className="mt-2">
-          <CarouselContent className="justify-center gap-0">
+          <CarouselContent className="justify-center gap-3">
             {images.length > 1 &&
               images.map((img, i) => (
                 <CarouselItem
                   key={`${img.url}-${img.altText}`}
-                  className="basis-1/4 md:basis-1/6 aspect-square"
+                  className="basis-1/5 md:basis-1/6 pl-0 aspect-square"
                 >
                   <button
                     onClick={() => api?.scrollTo(i)}
