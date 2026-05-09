@@ -92,6 +92,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
       image: product.images[0]?.url || "",
       size: selectedSize,
       quantity,
+      availableSizes: product.sizes,
     });
     if (type === "Buy") {
       openCart(true);

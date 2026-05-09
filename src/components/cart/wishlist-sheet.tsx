@@ -16,7 +16,6 @@ import { useWishlistStore } from "@/store/wishlist";
 import { WishlistCard } from "./wishlist-card";
 
 export function WishlistSheet() {
-  const removeItem = useWishlistStore((state) => state.removeItem);
   const totalItems = useWishlistStore((state) => state.getTotalItems());
   const wishlistProducts = useWishlistStore((state) => state.items);
   const isEmpty = totalItems < 1;

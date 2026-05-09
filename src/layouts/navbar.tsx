@@ -200,8 +200,10 @@ export function Navbar({ categories, products }: NavbarProps) {
             <button
               onClick={() => open(true)}
               className="p-2 hover:bg-secondary rounded-full transition hidden sm:flex"
+              title="Accessiblity settings"
             >
               <Accessibility className="size-5" />
+              <span className="sr-only">Accessibility setting</span>
             </button>
             <WishlistSheet />
             <CartSheet />

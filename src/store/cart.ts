@@ -16,6 +16,7 @@ export type CartItem = {
   image: string;
   size: ProductSize;
   quantity: number;
+  availableSizes: ProductSize[];
 };
 
 type CartStore = {
