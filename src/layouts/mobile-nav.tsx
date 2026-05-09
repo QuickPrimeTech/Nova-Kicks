@@ -48,7 +48,7 @@ const itemVariants = {
   show: {
     opacity: 1,
     x: 0,
-    transition: { type: "spring", stiffness: 300, damping: 24 },
+    transition: { type: "spring" as const, stiffness: 300, damping: 24 },
   },
 };
 
@@ -57,7 +57,7 @@ const slideIn = {
   animate: {
     opacity: 1,
     x: 0,
-    transition: { type: "spring", stiffness: 300, damping: 26 },
+    transition: { type: "spring" as const, stiffness: 300, damping: 26 },
   },
   exit: { opacity: 0, x: 32, transition: { duration: 0.15 } },
 };
@@ -67,7 +67,7 @@ const slideBack = {
   animate: {
     opacity: 1,
     x: 0,
-    transition: { type: "spring", stiffness: 300, damping: 26 },
+    transition: { type: "spring" as const, stiffness: 300, damping: 26 },
   },
   exit: { opacity: 0, x: -32, transition: { duration: 0.15 } },
 };
@@ -191,7 +191,7 @@ export const MobileNav = ({ links }: { links: NavItem[] }) => {
                         size={"lg"}
                         className="w-full justify-start"
                         variant="ghost"
-                        onClick={() => setOpen(() => true)}
+                        onClick={() => setOpen(true)}
                       >
                         <Accessibility className="size-4 mr-2" />
                         Accessibility

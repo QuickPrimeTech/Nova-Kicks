@@ -105,7 +105,7 @@ export function Navbar({ categories, brands, products }: NavbarProps) {
               variant={"ghost"}
               className="size-10"
               title="Accessiblity settings"
-              onClick={() => setOpen(() => true)}
+              onClick={() => setOpen(true)}
             >
               <Accessibility className="size-5" />
               <span className="sr-only">Accessibility setting</span>
