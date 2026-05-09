@@ -34,7 +34,7 @@ export const SimilarProducts = ({
               <ProductCard
                 product={similarProduct}
                 offer={similarProduct.offer ?? undefined}
-                variant="discount"
+                variant="minimal"
                 showThumbnails={false}
               />
             </CarouselItem>

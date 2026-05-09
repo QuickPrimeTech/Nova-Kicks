@@ -94,7 +94,7 @@ export default function CategoryPage({
           <FilterSidebarWrapper params={params} />
         </Suspense>
       </div>
-      <div className="min-h-[200vh] flex-1 p-4 sm:p-6 lg:p-8">
+      <div className="@container min-h-[200vh] flex-1 p-4 sm:p-6 lg:p-8">
         <Suspense fallback={<ProductGridSkeleton />}>
           <CategoryGridWrapper params={params} searchParams={searchParams} />
         </Suspense>
