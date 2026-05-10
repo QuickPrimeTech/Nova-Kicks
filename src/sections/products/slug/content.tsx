@@ -17,7 +17,7 @@ import { useCartUIStore } from "@/store/cart-ui";
 import { AppBreadcrumb } from "@/layouts/app-breadcrumb";
 import { SizeGuideDialog } from "@/sections/categories/slug/size-guide-dialog";
 import { QuantitySelector } from "./quantity-selector";
-import { SizeButton } from "./size-button";
+import { SizeSelector } from "./size-selector";
 
 interface ProductContentProps {
   product: ProductWithOptionalOffer;
@@ -255,7 +255,8 @@ export const ProductContent = ({ product }: ProductContentProps) => {
                 </div>
                 <div className="flex w-full flex-wrap gap-2">
                   {product.sizes.map((size) => (
-                    <SizeButton
+                    <SizeSelector
+                      key={size.size}
                       size={size}
                       quantity={quantity}
                       setQuantity={setQuantity}
@@ -268,6 +269,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
             )}
 
             <QuantitySelector
+              className="w-fit"
               quantity={quantity}
               setQuantity={setQuantity}
               selectedSize={selectedSize}

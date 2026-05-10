@@ -1,4 +1,4 @@
-// @/sections/products/size-button.tsx
+// @/sections/products/size-selector.tsx
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ProductSize } from "@/types/product";
@@ -14,7 +14,7 @@ type SizeButtonProps = {
   className?: string;
 };
 
-export const SizeButton = ({
+export const SizeSelector = ({
   className,
   size,
   selectedSize,

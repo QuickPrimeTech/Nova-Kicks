@@ -22,7 +22,9 @@ export const QuantitySelector = ({
   const reachedLimit = selectedSize ? quantity >= selectedSize.stock : false;
 
   return (
-    <div className={cn("flex flex-col justify-center gap-2", className)}>
+    <div
+      className={cn("relative flex flex-col justify-center gap-2", className)}
+    >
       {variant === "default" && (
         <span className="text-sm font-medium">Quantity</span>
       )}
@@ -59,9 +61,11 @@ export const QuantitySelector = ({
         </Button>
       </div>
       {reachedLimit && (
-        <p className={"text-xs text-muted-foreground"}>
-          Only <strong>{selectedSize?.stock}</strong> in stock
-        </p>
+        <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-muted border px-2 rounded-md">
+          <p className={"text-nowrap text-xs text-muted-foreground"}>
+            Only <strong>{selectedSize?.stock}</strong> in stock
+          </p>
+        </div>
       )}
     </div>
   );

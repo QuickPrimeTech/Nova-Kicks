@@ -12,11 +12,11 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Edit } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { formatPrice } from "@/helpers/formatters";
 import { toast } from "sonner";
 import Link from "next/link";
 import { QuantitySelector } from "@/sections/products/slug/quantity-selector";
+import { SizeSelector } from "@/sections/products/slug/size-selector";
 
 type ProductSize = CartItem["size"];
 
@@ -84,34 +84,27 @@ export const EditCartItemDialog = ({
             </span>
           </p>
           <div className="flex flex-wrap gap-2">
-            {sizes.map((s) => {
-              const outOfStock = s.stock < 1;
-              const isSelected = selectedSize.size === s.size;
-              return (
-                <Button
-                  key={s.size}
-                  size="sm"
-                  variant={isSelected ? "default" : "outline"}
-                  disabled={outOfStock}
-                  className={cn(
-                    "relative w-16 overflow-hidden",
-                    outOfStock && "opacity-40",
-                  )}
-                  onClick={() => {
-                    setSelectedSize(s);
-                    // Clamp quantity to new size's stock
-                    if (quantity > s.stock) setQuantity(s.stock);
-                  }}
-                >
-                  {outOfStock && (
-                    <span className="absolute inset-0 flex items-center">
-                      <span className="absolute h-px w-full -rotate-12 bg-current opacity-50" />
-                    </span>
-                  )}
-                  {s.size}
-                </Button>
-              );
-            })}
+            {sizes.map((size) => (
+              <SizeSelector
+                key={size.size}
+                className="w-16"
+                size={size}
+                selectedSize={selectedSize}
+                setSelectedSize={(value) => {
+                  if (typeof value === "function") {
+                    const next = value(selectedSize);
+
+                    if (next) {
+                      setSelectedSize(next);
+                    }
+                  } else if (value) {
+                    setSelectedSize(value);
+                  }
+                }}
+                quantity={quantity}
+                setQuantity={setQuantity}
+              />
+            ))}
           </div>
         </div>
 
@@ -129,11 +122,6 @@ export const EditCartItemDialog = ({
               Ksh {formatPrice(cartItem.price * quantity)}
             </span>
           </div>
-          {isAtStockLimit && (
-            <p className="text-xs text-muted-foreground">
-              Only {selectedSize.stock} in stock
-            </p>
-          )}
         </div>
 
         <Button variant={"link"} className="w-fit" asChild>
