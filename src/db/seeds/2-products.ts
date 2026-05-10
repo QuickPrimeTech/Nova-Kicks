@@ -665,20 +665,16 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
     brand: "Nike",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778400233/c749d4f4-584a-4213-88be-91a7cefbc3b2.png",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778418502/1ded2222-53ed-43af-967d-ade143c391d7.png",
         altText: "Front view of the Nike MC Trainer 3",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778400172/679a96f6-9912-4247-9658-2a960cde1466.png",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778418474/6b96e0b8-8416-4dda-9241-7d527792c80d.png",
         altText: "Side view showing the supportive midsole",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778400131/e56f7672-aeee-402c-b632-5508b0bd9b1a.png",
-        altText: "Back heel view of the Nike MC Trainer 3",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778400082/c5f75cd2-c6f1-484c-a7ce-00470175f8b9.png",
-        altText: "Top-down view of the training upper",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778418488/da21c333-ce13-4839-9602-e8ab24bc3029.png",
+        altText: "Bottom view",
       },
     ],
     sizes: [
@@ -701,19 +697,19 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
     brand: "Asics",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000113/everyday-jolt-01.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778418138/ec2c3af5-4b3d-4f91-a65e-57e949e4b7b6.png",
         altText: "Front view of the Asics Jolt 4",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000114/everyday-jolt-02.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778418069/f5915ea8-0e99-4e86-999a-c975d78a707b.png",
         altText: "Side view showing the cushioned sole",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000115/everyday-jolt-03.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778418167/037c37cc-89e7-4805-9751-d0246139b504.png",
         altText: "Back heel view of the Asics Jolt 4",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000116/everyday-jolt-04.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778418110/ea3678a2-a5ed-4581-888b-8eedd8b123e2.png",
         altText: "Top-down view of the breathable upper",
       },
     ],

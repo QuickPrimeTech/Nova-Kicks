@@ -90,7 +90,7 @@ export const SearchProduct = ({ products }: { products: NavProducts }) => {
                   className="cursor-pointer w-full"
                 >
                   <div className="flex gap-3 bg-background w-full">
-                    <div className="relative flex h-16 aspect-square rounded-sm overflow-hidden">
+                    <div className="relative flex h-16 aspect-square bg-[#F5F6F7] rounded-sm overflow-hidden">
                       <Image
                         src={product.image.url}
                         alt={product.image.altText}

@@ -272,12 +272,12 @@ export function LightboxDialog({
               images.map((img, i) => (
                 <CarouselItem
                   key={`${img.url}-${img.altText}`}
-                  className="basis-1/5 aspect-4/3 bg-[#F5F6F7]"
+                  className="basis-1/5 aspect-4/3"
                 >
                   <button
                     onClick={() => api?.scrollTo(i)}
                     className={cn(
-                      "relative h-full w-full rounded-md overflow-hidden border transition",
+                      "relative h-full w-full rounded-md overflow-hidden border transition bg-[#F5F6F7]",
                       current === i
                         ? "border-primary ring-2 ring-primary"
                         : "border-border opacity-60 hover:opacity-100",
@@ -362,12 +362,12 @@ export const ProductThumbnail = ({
               images.map((img, i) => (
                 <CarouselItem
                   key={`${img.url}-${img.altText}`}
-                  className="basis-1/5 md:basis-1/6 pl-0 aspect-square bg-[#F5F6F7]"
+                  className="basis-1/5 md:basis-1/6 pl-0 aspect-square"
                 >
                   <button
                     onClick={() => api?.scrollTo(i)}
                     className={cn(
-                      "relative h-full w-full rounded-md overflow-hidden border transition",
+                      "relative h-full w-full rounded-md overflow-hidden border transition bg-[#F5F6F7]",
                       current === i
                         ? "border-primary ring-2 ring-primary"
                         : "border-border opacity-60 hover:opacity-100",

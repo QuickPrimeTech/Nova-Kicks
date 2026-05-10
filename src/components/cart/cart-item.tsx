@@ -41,7 +41,7 @@ export const CartItemCard = ({ cartItem }: CartItemProps) => {
         />
         {/* Product Image */}
         <div
-          className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-lg border bg-muted cursor-pointer"
+          className="relative aspect-square w-24 shrink-0 overflow-hidden bg-[#F5F6F7] rounded-lg border cursor-pointer"
           onClick={() => setOpenEditCartItem(() => true)}
         >
           <Image
