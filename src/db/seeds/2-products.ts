@@ -1124,42 +1124,6 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
     gender: "unisex",
   },
   {
-    name: "New Balance Fresh Foam X 1080v13",
-    slug: "new-balance-fresh-foam-x-1080v13",
-    price: 4499,
-    categorySlug: "running-shoes",
-    description:
-      "The New Balance Fresh Foam X 1080v13 combines premium cushioning with a smooth ride. Fresh Foam X technology and a breathable upper make it ideal for daily mileage.",
-    brand: "New Balance",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000173/run-1080v13-01.jpg",
-        altText: "Front view of the New Balance Fresh Foam X 1080v13",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000174/run-1080v13-02.jpg",
-        altText: "Side view showing the Fresh Foam X cushioning",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000175/run-1080v13-03.jpg",
-        altText: "Back heel view of the 1080v13",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000176/run-1080v13-04.jpg",
-        altText: "Top-down view of the engineered mesh upper",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 4 },
-      { size: "39", stock: 7 },
-      { size: "40", stock: 10 },
-      { size: "41", stock: 12 },
-      { size: "42", stock: 8 },
-      { size: "43", stock: 5 },
-    ],
-    gender: "unisex",
-  },
-  {
     name: "Puma Deviate Nitro 3",
     slug: "puma-deviate-nitro-3",
     price: 3999,
