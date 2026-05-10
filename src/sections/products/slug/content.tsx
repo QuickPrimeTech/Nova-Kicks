@@ -2,7 +2,6 @@
 "use client";
 import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
-import { SelectProduct } from "@/db/schemas";
 import { ProductThumbnail } from "./product-thumbnail";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Heart, ShoppingBag, Tag, Timer } from "lucide-react";
@@ -13,20 +12,19 @@ import { useWishlistStore, WishlistItem } from "@/store/wishlist";
 import { formatPrice } from "@/helpers/formatters";
 import { cn } from "@/lib/utils";
 import { ShareButton } from "@/components/ui/share-button";
-import { ProductWithOptionalOffer } from "@/types/product";
+import { ProductSize, ProductWithOptionalOffer } from "@/types/product";
 import { useCartUIStore } from "@/store/cart-ui";
 import { AppBreadcrumb } from "@/layouts/app-breadcrumb";
 import { SizeGuideDialog } from "@/sections/categories/slug/size-guide-dialog";
 import { QuantitySelector } from "./quantity-selector";
+import { SizeButton } from "./size-button";
 
 interface ProductContentProps {
   product: ProductWithOptionalOffer;
 }
 
 export const ProductContent = ({ product }: ProductContentProps) => {
-  const [selectedSize, setSelectedSize] = useState<
-    SelectProduct["sizes"][0] | null
-  >(null);
+  const [selectedSize, setSelectedSize] = useState<ProductSize | null>(null);
   const [quantity, setQuantity] = useState(1);
   const addItem = useCartStore((state) => state.addItem);
   const toggleWishlist = useWishlistStore((state) => state.toggleItem);
@@ -63,7 +61,6 @@ export const ProductContent = ({ product }: ProductContentProps) => {
 
   const isOutOfStock = selectedSize ? selectedSize.stock < 1 : false;
   const isLowStock = selectedSize ? selectedSize.stock < 5 : false;
-  const reachedLimit = selectedSize ? quantity >= selectedSize.stock : false;
 
   const wishlistProduct: WishlistItem = {
     id: product.id,
@@ -239,10 +236,10 @@ export const ProductContent = ({ product }: ProductContentProps) => {
 
           <Separator />
 
-          <div className="space-y-4">
+          <div className="space-y-6">
             {/* Sizes */}
             {product.sizes?.length > 0 && (
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <div className="flex justify-between items-center text-sm">
                   <p className="font-medium">
                     Size{" "}
@@ -257,59 +254,15 @@ export const ProductContent = ({ product }: ProductContentProps) => {
                   <SizeGuideDialog />
                 </div>
                 <div className="flex w-full flex-wrap gap-2">
-                  {product.sizes.map((size) => {
-                    const isOutOfStock = size.stock < 1;
-                    const isSelected = selectedSize?.size === size.size;
-
-                    return (
-                      <Button
-                        key={size.size}
-                        size="sm"
-                        onClick={() => {
-                          if (isOutOfStock) {
-                            toast.warning(
-                              `The size ${size.size} is currently out of stock!`,
-                            );
-
-                            return;
-                          }
-                          setSelectedSize(size);
-                          if (quantity > size.stock) {
-                            setQuantity(() => size.stock);
-                          }
-                        }}
-                        className={cn(
-                          "relative w-24 overflow-hidden",
-                          isOutOfStock && "opacity-50",
-                        )}
-                        variant={isSelected ? "default" : "outline"}
-                        aria-disabled={isOutOfStock}
-                        data-disabled={isOutOfStock}
-                        title={
-                          isOutOfStock
-                            ? "Out of stock"
-                            : `Choose size ${size.size}`
-                        }
-                      >
-                        {isOutOfStock && (
-                          <>
-                            {/* Diagonal line */}
-                            <span className="absolute top-1/2 -translate-y-1/2 h-px -inset-1 -rotate-18 bg-current opacity-60 pointer-events-none" />
-
-                            <span className="sr-only">Out of stock</span>
-                          </>
-                        )}
-
-                        <span
-                          className={cn(
-                            isOutOfStock && "cursor-not-allowed opacity-50",
-                          )}
-                        >
-                          {size.size}
-                        </span>
-                      </Button>
-                    );
-                  })}
+                  {product.sizes.map((size) => (
+                    <SizeButton
+                      size={size}
+                      quantity={quantity}
+                      setQuantity={setQuantity}
+                      selectedSize={selectedSize}
+                      setSelectedSize={setSelectedSize}
+                    />
+                  ))}
                 </div>
               </div>
             )}

@@ -2,10 +2,7 @@
 
 import { SelectCategory, SelectOffer, SelectProduct } from "@/db/schemas";
 
-export type ProductSize = {
-  size: string;
-  stock: number;
-};
+export type ProductSize = SelectProduct["sizes"][0];
 
 export type ProductWithOffer = SelectProduct & {
   offer: SelectOffer;

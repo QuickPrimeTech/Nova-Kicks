@@ -1,14 +1,14 @@
 // @/sections/products/slug/quantity.tsx
 import { Button } from "@/components/ui/button";
-import { SelectProduct } from "@/db/schema";
 import { cn } from "@/lib/utils";
+import { ProductSize } from "@/types/product";
 import { Minus, Plus } from "lucide-react";
 import React from "react";
 
 type QuantitySelectorProps = {
   quantity: number;
   setQuantity: (quantity: number) => void;
-  selectedSize: SelectProduct["sizes"][0] | null;
+  selectedSize: ProductSize | null;
   variant?: "default" | "sm";
 };
 
@@ -59,12 +59,7 @@ export const QuantitySelector = ({
         </Button>
       </div>
       {reachedLimit && (
-        <p
-          className={cn(
-            "text-sm text-muted-foreground",
-            variant === "sm" && "text-xs",
-          )}
-        >
+        <p className={"text-xs text-muted-foreground"}>
           Only <strong>{selectedSize?.stock}</strong> in stock
         </p>
       )}
