@@ -1,11 +1,9 @@
-import { FaFacebook } from "react-icons/fa6";
-import { FaTiktok } from "react-icons/fa";
-import { IoLogoInstagram } from "react-icons/io";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { cacheLife } from "next/cache";
 import { siteConfig } from "@/site-config";
+import { Logo } from "@/components/logo";
 
 const cols = [
   {
@@ -46,23 +44,6 @@ const cols = [
   },
 ];
 
-const socials = [
-  {
-    label: "Instagram",
-    url: "https://www.instagram.com/shoeempire.co.ke/",
-    icon: IoLogoInstagram,
-  },
-  {
-    label: "Tiktok",
-    url: "https://www.tiktok.com/@shoeempire",
-    icon: FaTiktok,
-  },
-  {
-    label: "Facebook",
-    url: "https://www.facebook.com/Shoeempire.co.ke/",
-    icon: FaFacebook,
-  },
-];
 async function getCurrentYear() {
   "use cache";
   cacheLife({
@@ -120,7 +101,7 @@ export const Footer = () => {
             </div>
           ))}
           <div className="lg:col-span-1 flex lg:flex-col gap-3">
-            {socials.map((social) => (
+            {siteConfig.socials.map((social) => (
               <Button
                 key={social.url}
                 className="bg-secondary text-secondary-foreground hover:text-primary-foreground border"
@@ -136,10 +117,26 @@ export const Footer = () => {
             ))}
           </div>
         </div>
-        <div className="mt-20 pt-8 border-t border-background/10 flex flex-col md:flex-row justify-between gap-4 text-xs text-muted-foreground">
-          <p className="font-heading-3 font-bold font-heading text-2xl text-foreground uppercase">
+        <div className="mt-20 pt-8 items-center border-t border-background/10 flex flex-col md:flex-row justify-between gap-4 text-xs text-muted-foreground">
+          <Link
+            href={"/"}
+            className="flex items-center gap-1.5 font-heading-3 font-bold font-heading text-2xl text-foreground uppercase"
+          >
+            <Logo />
             {siteConfig.name}
-          </p>
+          </Link>
+          <div className="flex items-center gap-2">
+            <p>Made by</p>
+            <Button variant={"link"} className="h-4 px-0" size={"sm"} asChild>
+              <Link
+                href={"https://quickprimetech.com"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                QuickPrimeTech
+              </Link>
+            </Button>
+          </div>
           <p>
             © {getCurrentYear()} {siteConfig.name}. Engineered to outlast.
           </p>

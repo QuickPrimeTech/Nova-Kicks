@@ -3,6 +3,9 @@
 import { MapPin, PhoneCall } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { Contact } from "./types/common";
+import { FaFacebook } from "react-icons/fa6";
+import { FaTiktok } from "react-icons/fa";
+import { IoLogoInstagram } from "react-icons/io";
 
 export const siteConfig = {
   name: "Nova Kicks",
@@ -43,4 +46,21 @@ export const siteConfig = {
       colorClass: "green", // Green for WhatsApp
     },
   ] satisfies Contact[],
+  socials: [
+    {
+      label: "Instagram",
+      url: "https://www.instagram.com/quickprimetech/",
+      icon: IoLogoInstagram,
+    },
+    {
+      label: "Tiktok",
+      url: "https://www.tiktok.com/@quickprimetech",
+      icon: FaTiktok,
+    },
+    {
+      label: "Facebook",
+      url: "https://www.facebook.com/profile.php?id=61582841615260",
+      icon: FaFacebook,
+    },
+  ],
 };
