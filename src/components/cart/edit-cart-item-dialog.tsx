@@ -56,6 +56,7 @@ export const EditCartItemDialog = ({
         quantity,
         availableSizes: cartItem.availableSizes,
         slug: cartItem.slug,
+        offer: cartItem.offer,
       });
     } else {
       updateQuantity(cartItem.id, quantity);

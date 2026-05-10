@@ -70,6 +70,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
     size: product.sizes[0]?.size ?? "",
     availableSizes: product.sizes,
     slug: product.slug,
+    offer: product.offer,
   };
 
   const addToCart = (type: "Buy" | "cart") => {
@@ -88,6 +89,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
       quantity,
       availableSizes: product.sizes,
       slug: product.slug,
+      offer: product.offer,
     });
     if (type === "Buy") {
       openCart(true);

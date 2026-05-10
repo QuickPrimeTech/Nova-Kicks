@@ -36,6 +36,7 @@ export const WishlistCard = ({ item }: WishlistCardProps) => {
       quantity: 1,
       availableSizes: item.availableSizes,
       slug: item.slug,
+      offer: item.offer,
     });
     removeItem(item.id);
   };

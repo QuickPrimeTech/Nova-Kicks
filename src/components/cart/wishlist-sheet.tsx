@@ -1,6 +1,6 @@
 // @/components/cart/wishlist-sheet.tsx
 "use client";
-import { PackageOpen, Heart } from "lucide-react";
+import { PackageOpen, Heart, ArrowLeft } from "lucide-react";
 import { Button } from "../ui/button";
 import {
   Sheet,
@@ -65,7 +65,8 @@ export function WishlistSheet() {
               </p>
             </div>
             <SheetClose asChild>
-              <Button size={"xl"} className="mt-2">
+              <Button size={"xl"} className="group mt-2">
+                <ArrowLeft className="mr-1.5 group-hover:-translate-x-1.5 transition-all" />
                 Continue Shopping
               </Button>
             </SheetClose>

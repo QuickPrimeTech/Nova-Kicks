@@ -1,6 +1,6 @@
 // @/components/cart/cart-popover.tsx
 "use client";
-import { ShoppingBag, PackageOpen, ArrowRight } from "lucide-react";
+import { ShoppingBag, PackageOpen, ArrowRight, ArrowLeft } from "lucide-react";
 import { Button } from "../ui/button";
 import { useCartStore } from "@/store/cart";
 import {
@@ -72,7 +72,8 @@ export function CartSheet() {
               </p>
             </div>
             <SheetClose asChild>
-              <Button variant="outline" size={"xl"} className="mt-2">
+              <Button size={"xl"} className="group mt-2">
+                <ArrowLeft className="mr-1.5 group-hover:-translate-x-1.5 transition-all" />
                 Continue Shopping
               </Button>
             </SheetClose>
