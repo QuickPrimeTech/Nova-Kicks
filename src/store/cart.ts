@@ -2,7 +2,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { ProductSize} from "@/types/product";
+import { ProductSize } from "@/types/product";
 
 export type CartItem = {
   id: string; // cartId (unique per cart item)
@@ -71,7 +71,11 @@ export const useCartStore = create<CartStore>()(
         get().items.reduce((acc, item) => acc + item.quantity, 0),
 
       getTotalPrice: () =>
-        get().items.reduce((acc, item) => acc + item.price * item.quantity, 0),
+        get().items.reduce(
+          (acc, item) =>
+            acc + (item.discountedPrice ?? item.price) * item.quantity,
+          0,
+        ),
     })),
     {
       name: "cart",
