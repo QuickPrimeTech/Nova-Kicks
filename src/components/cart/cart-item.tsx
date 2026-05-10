@@ -1,11 +1,9 @@
 "use client";
-
 // @/components/cart/cart-item.tsx
-
 import { CartItem, useCartStore } from "@/store/cart";
 import { Image } from "../ui/image";
 import { Button } from "../ui/button";
-import { Minus, Plus, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { formatPrice } from "@/helpers/formatters";
 import {
   AlertDialog,
@@ -20,6 +18,7 @@ import {
 } from "../ui/alert-dialog";
 import { useState } from "react";
 import { EditCartItemDialog } from "./edit-cart-item-dialog";
+import { QuantitySelector } from "@/sections/products/slug/quantity";
 
 type CartItemProps = {
   cartItem: CartItem;
@@ -102,41 +101,13 @@ export const CartItemCard = ({ cartItem }: CartItemProps) => {
           />
           <div className="flex flex-wrap-reverse items-center justify-between">
             {/* Quantity Stepper */}
-            <div className="z-1 flex items-center rounded-xl border">
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label={`Decrease the quantity of ${cartItem.name} to ${cartItem.quantity - 1}`}
-                title={`Decrease the quantity to ${cartItem.quantity - 1}`}
-                className="h-8 w-8 rounded-r-none hover:bg-accent"
-                onClick={() =>
-                  updateQuantity(cartItem.id, cartItem.quantity - 1)
-                }
-                disabled={cartItem.quantity <= 1}
-              >
-                <Minus className="size-3" />
-              </Button>
-              <span className="flex border-x h-8 w-10 items-center justify-center text-xs font-semibold tabular-nums">
-                {cartItem.quantity}
-              </span>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-l-none hover:bg-accent"
-                aria-label={`Increase the quantity of ${cartItem.name} to ${cartItem.quantity + 1}`}
-                onClick={() =>
-                  updateQuantity(cartItem.id, cartItem.quantity + 1)
-                }
-                title={
-                  cartItem.quantity >= cartItem.size.stock
-                    ? "You've reached the stock limit"
-                    : `Increase quantity to ${cartItem.quantity + 1}`
-                }
-                disabled={cartItem.quantity >= cartItem.size.stock}
-              >
-                <Plus className="h-3 w-3" />
-              </Button>
-            </div>
+            <QuantitySelector
+              variant="sm"
+              className="relative"
+              quantity={cartItem.quantity}
+              setQuantity={(q) => updateQuantity(cartItem.id, q)}
+              selectedSize={cartItem.size}
+            />
 
             {/* Price */}
             <p className="text-sm font-semibold">

@@ -5,15 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { SelectProduct } from "@/db/schemas";
 import { ProductThumbnail } from "./product-thumbnail";
 import { Button } from "@/components/ui/button";
-import {
-  ArrowRight,
-  Heart,
-  Minus,
-  Plus,
-  ShoppingBag,
-  Tag,
-  Timer,
-} from "lucide-react";
+import { ArrowRight, Heart, ShoppingBag, Tag, Timer } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { useCartStore } from "@/store/cart";
@@ -25,6 +17,7 @@ import { ProductWithOptionalOffer } from "@/types/product";
 import { useCartUIStore } from "@/store/cart-ui";
 import { AppBreadcrumb } from "@/layouts/app-breadcrumb";
 import { SizeGuideDialog } from "@/sections/categories/slug/size-guide-dialog";
+import { QuantitySelector } from "./quantity";
 
 interface ProductContentProps {
   product: ProductWithOptionalOffer;
@@ -70,6 +63,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
 
   const isOutOfStock = selectedSize ? selectedSize.stock < 1 : false;
   const isLowStock = selectedSize ? selectedSize.stock < 5 : false;
+  const reachedLimit = selectedSize ? quantity >= selectedSize.stock : false;
 
   const wishlistProduct: WishlistItem = {
     id: product.id,
@@ -279,8 +273,10 @@ export const ProductContent = ({ product }: ProductContentProps) => {
 
                             return;
                           }
-
                           setSelectedSize(size);
+                          if (quantity > size.stock) {
+                            setQuantity(() => size.stock);
+                          }
                         }}
                         className={cn(
                           "relative w-24 overflow-hidden",
@@ -318,33 +314,11 @@ export const ProductContent = ({ product }: ProductContentProps) => {
               </div>
             )}
 
-            <div className="flex flex-col justify-center gap-2">
-              <span className="text-sm font-medium">Quantity</span>
-              <div className="flex items-center border w-fit rounded-lg overflow-hidden">
-                <Button
-                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  disabled={quantity <= 1}
-                  className="rounded-none"
-                  variant="ghost"
-                  aria-label={`Decrease quantity to ${quantity - 1}`}
-                >
-                  <Minus className="w-4 h-4" />
-                </Button>
-
-                <span className="w-12 h-full flex items-center justify-center text-sm font-semibold border-x tabular-nums">
-                  {quantity}
-                </span>
-
-                <Button
-                  className="rounded-none"
-                  variant="ghost"
-                  aria-label={`Increase quantity to ${quantity + 1}`}
-                  onClick={() => setQuantity((q) => q + 1)}
-                >
-                  <Plus className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
+            <QuantitySelector
+              quantity={quantity}
+              setQuantity={setQuantity}
+              selectedSize={selectedSize}
+            />
           </div>
 
           {/* CTA */}
