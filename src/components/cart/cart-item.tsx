@@ -19,6 +19,7 @@ import {
 import { useState } from "react";
 import { EditCartItemDialog } from "./edit-cart-item-dialog";
 import { QuantitySelector } from "@/sections/products/slug/quantity-selector";
+import { cn } from "@/lib/utils";
 
 type CartItemProps = {
   cartItem: CartItem;
@@ -27,6 +28,18 @@ export const CartItemCard = ({ cartItem }: CartItemProps) => {
   const removeItem = useCartStore((state) => state.removeItem);
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const [openEditCartItem, setOpenEditCartItem] = useState(false);
+  const finalPrice = Math.ceil(
+    cartItem.offer
+      ? cartItem.offer.discountType === "percentage"
+        ? cartItem.price - (cartItem.price * cartItem.offer.discountValue) / 100
+        : cartItem.price - cartItem.offer.discountValue
+      : cartItem.price,
+  );
+
+  const discountLabel =
+    cartItem.offer?.discountType === "percentage"
+      ? `${cartItem.offer.discountValue}% OFF`
+      : `Ksh ${cartItem.offer?.discountValue} OFF`;
 
   return (
     <>
@@ -34,6 +47,14 @@ export const CartItemCard = ({ cartItem }: CartItemProps) => {
         key={cartItem.id}
         className="group flex gap-4 rounded-xl border bg-card p-3 relative"
       >
+        {cartItem.offer && (
+          <div className="absolute -top-3 -left-2 z-20">
+            <span className="text-[9px] font-bold bg-primary text-primary-foreground px-2 py-1 rounded-md">
+              {discountLabel}
+            </span>
+          </div>
+        )}
+
         <div
           className="absolute inset-0 cursor-pointer"
           onClick={() => setOpenEditCartItem(() => true)}
@@ -99,7 +120,7 @@ export const CartItemCard = ({ cartItem }: CartItemProps) => {
             className="absolute inset-0 cursor-pointer"
             onClick={() => setOpenEditCartItem(() => true)}
           />
-          <div className="flex flex-wrap-reverse items-center justify-between">
+          <div className="flex flex-wrap-reverse items-center gap-2 justify-between">
             {/* Quantity Stepper */}
             <QuantitySelector
               variant="sm"
@@ -108,11 +129,22 @@ export const CartItemCard = ({ cartItem }: CartItemProps) => {
               setQuantity={(q) => updateQuantity(cartItem.id, q)}
               selectedSize={cartItem.size}
             />
-
-            {/* Price */}
-            <p className="text-sm font-semibold">
-              Ksh {formatPrice(cartItem.price * cartItem.quantity)}
-            </p>
+            <div className="flex items-center gap-1 5">
+              <p
+                className={cn(
+                  "text-sm font-semibold",
+                  cartItem.offer &&
+                    "line-through text-muted-foreground text-xs",
+                )}
+              >
+                Ksh {formatPrice(cartItem.price * cartItem.quantity)}
+              </p>
+              {cartItem.offer && (
+                <p className="text-sm font-semibold">
+                  Ksh {formatPrice(finalPrice * cartItem.quantity)}
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>
