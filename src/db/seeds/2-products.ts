@@ -440,177 +440,213 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
 
   // ─── Everyday Shoes (10) ───
   {
-    name: "Nike Revolution 7",
-    slug: "nike-revolution-7",
+    name: "Adidas Lite Racer Adapt 7.0",
+    slug: "adidas-lite-racer-adapt-7",
     price: 1299,
     categorySlug: "everyday-shoes",
     description:
-      "The Nike Revolution 7 is built for everyday comfort. Soft foam cushioning and a breathable upper make it the perfect choice for daily walks, errands, and casual outings.",
-    brand: "Nike",
+      "The Adidas Lite Racer Adapt 7.0 delivers slip-on convenience and lightweight comfort for daily wear. Its soft Cloudfoam cushioning and breathable upper make every step feel effortless.",
+    brand: "Adidas",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000041/everyday-rev7-01.jpg",
-        altText: "Front view of the Nike Revolution 7",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778397510/imgi_90_Lite_Racer_Adapt_7.0_Shoes_Black_IE6327_04_standard_jqm0ji.jpg",
+        altText: "Front view of the Adidas Lite Racer Adapt 7.0",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000042/everyday-rev7-02.jpg",
-        altText: "Side view showing the Revolution 7 foam midsole",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778397557/imgi_17_Lite_Racer_Adapt_7.0_Shoes_Black_IE6327_06_standard_jhxhix.jpg",
+        altText: "Side view showing the Cloudfoam midsole",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000043/everyday-rev7-03.jpg",
-        altText: "Angled view of the breathable mesh upper",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778397577/imgi_123_Lite_Racer_Adapt_7.0_Shoes_Black_IE6327_41_detail_csq9la.jpg",
+        altText: "Back heel view of the Lite Racer Adapt 7.0",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000044/everyday-rev7-04.jpg",
-        altText: "Heel view with Revolution 7 branding",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778397585/imgi_103_Lite_Racer_Adapt_7.0_Shoes_Black_IE6327_02_standard_hover_p3orb8.jpg",
+        altText: "Top-down view of the slip-on upper",
       },
     ],
     sizes: [
-      { size: "38", stock: 12 },
-      { size: "39", stock: 15 },
+      { size: "38", stock: 11 },
+      { size: "39", stock: 13 },
       { size: "40", stock: 10 },
-      { size: "41", stock: 8 },
+      { size: "41", stock: 7 },
       { size: "42", stock: 5 },
       { size: "43", stock: 3 },
     ],
     gender: "unisex",
   },
   {
-    name: "Nike Downshifter 13",
-    slug: "nike-downshifter-13",
-    price: 1399,
+    name: "New Balance Fresh Foam Arishi V4",
+    slug: "new-balance-fresh-foam-arishi-v4",
+    price: 1599,
     categorySlug: "everyday-shoes",
     description:
-      "The Nike Downshifter 13 delivers lightweight comfort for your daily routine. Breathable mesh and soft cushioning keep you comfortable whether you're walking or running errands.",
-    brand: "Nike",
+      "The New Balance Fresh Foam Arishi V4 combines sporty style with plush cushioning. Its lightweight construction and Fresh Foam midsole make it ideal for everyday comfort and casual activity.",
+    brand: "New Balance",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000045/everyday-downshifter-01.jpg",
-        altText: "Front view of the Nike Downshifter 13",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778397753/a1109146-b005-4b02-a8be-2a9ca2ed3586.png",
+        altText: "Front view of the New Balance Fresh Foam Arishi V4",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000046/everyday-downshifter-02.jpg",
-        altText: "Side view of the Downshifter 13 lightweight upper",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778397786/0e7e8dbb-eb1d-406d-b04e-a44259d5beb5.png",
+        altText: "Side view showing the Fresh Foam midsole",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000047/everyday-downshifter-03.jpg",
-        altText: "Back view showing the heel counter",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778397843/4a8eb56c-e930-4a1b-b0dd-ae3da7237392.png",
+        altText: "Angled view of the breathable mesh upper",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000048/everyday-downshifter-04.jpg",
-        altText: "Top-down view of the lacing system",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778397831/11a9af06-02f6-4888-b9b3-602b3d9b5ea6.png",
+        altText: "Top-down view with New Balance branding",
       },
     ],
     sizes: [
-      { size: "38", stock: 8 },
-      { size: "39", stock: 11 },
-      { size: "40", stock: 14 },
-      { size: "41", stock: 10 },
-      { size: "42", stock: 7 },
+      { size: "38", stock: 7 },
+      { size: "39", stock: 10 },
+      { size: "40", stock: 12 },
+      { size: "41", stock: 9 },
+      { size: "42", stock: 6 },
       { size: "43", stock: 4 },
     ],
-    gender: "unisex",
+    gender: "women",
   },
   {
-    name: "Nike Flex Experience Run 12",
-    slug: "nike-flex-experience-run-12",
+    name: "Puma Anzarun Lite",
+    slug: "puma-anzarun-lite",
     price: 1199,
     categorySlug: "everyday-shoes",
     description:
-      "The Nike Flex Experience Run 12 is all about easy, everyday comfort. The flexible outsole and lightweight upper make it perfect for casual walks and light activity.",
-    brand: "Nike",
+      "The Puma Anzarun Lite is built for everyday versatility. A breathable mesh upper and lightweight IMEVA cushioning provide lasting comfort throughout the day.",
+    brand: "Puma",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000049/everyday-flex-01.jpg",
-        altText: "Front view of the Nike Flex Experience Run 12",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778398198/5088458c-6fb2-4cb8-95c6-dc16ae251811.png",
+        altText: "Front view of the Puma Anzarun Lite",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000050/everyday-flex-02.jpg",
-        altText: "Side view showing the flexible outsole",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778398245/ac07c018-1de5-410a-956a-d7598bfa7c70.png",
+        altText: "Side profile showing the lightweight cushioning",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000051/everyday-flex-03.jpg",
-        altText: "Angled view of the lightweight upper",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778398258/34106b2b-3ea1-4a26-8ba5-4e394620749c.png",
+        altText: "Back heel view of the Puma Anzarun Lite",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000052/everyday-flex-04.jpg",
-        altText: "Heel view with Flex Experience branding",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 6 },
-      { size: "39", stock: 9 },
-      { size: "40", stock: 11 },
-      { size: "41", stock: 13 },
-      { size: "42", stock: 8 },
-      { size: "43", stock: 5 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike Run Swift 3",
-    slug: "nike-run-swift-3",
-    price: 1499,
-    categorySlug: "everyday-shoes",
-    description:
-      "The Nike Run Swift 3 is designed for everyday movement. A supportive fit and responsive cushioning make it ideal for daily walks, gym sessions, and casual wear.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000053/everyday-swift-01.jpg",
-        altText: "Front view of the Nike Run Swift 3",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000054/everyday-swift-02.jpg",
-        altText: "Side view showing the Swift 3 midsole",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000055/everyday-swift-03.jpg",
-        altText: "Back view of the Run Swift 3 heel",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000056/everyday-swift-04.jpg",
-        altText: "Top-down view of the upper and laces",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778398310/79170d78-338c-4606-b3f6-da18cc1b34bd.png",
+        altText: "Top-down view of the breathable upper",
       },
     ],
     sizes: [
       { size: "38", stock: 9 },
       { size: "39", stock: 12 },
-      { size: "40", stock: 7 },
-      { size: "41", stock: 5 },
-      { size: "42", stock: 3 },
-      { size: "43", stock: 1 },
+      { size: "40", stock: 10 },
+      { size: "41", stock: 8 },
+      { size: "42", stock: 5 },
+      { size: "43", stock: 2 },
+    ],
+    gender: "men",
+  },
+  {
+    name: "Nike Air Winflo 11",
+    slug: "nike-air-winflo-11",
+    price: 1799,
+    categorySlug: "everyday-shoes",
+    description:
+      "The Nike Air Winflo 11 offers responsive cushioning and breathable comfort for everyday movement. Its balanced support and sleek design make it great for commuting, walking, and casual wear.",
+    brand: "Nike",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778398477/829e852e-12ac-4914-85a8-3b48d84056af.png",
+        altText: "Front view of the Nike Air Winflo 11",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778398535/f53b12ef-c353-46ad-b893-2129dea60c36.png",
+        altText: "Side view showing the Air cushioning unit",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778398615/9015a431-3b35-424b-8670-bfc36387b072.png",
+        altText: "Back heel view of the Nike Air Winflo 11",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778398762/58f682aa-95c3-4965-b1e9-5de347a5b16f.png",
+        altText: "Top-down view of the mesh upper and laces",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 6 },
+      { size: "39", stock: 9 },
+      { size: "40", stock: 13 },
+      { size: "41", stock: 11 },
+      { size: "42", stock: 8 },
+      { size: "43", stock: 4 },
+    ],
+    gender: "women",
+  },
+  {
+    name: "Nike Initiator",
+    slug: "nike-initiator",
+    price: 1399,
+    categorySlug: "everyday-shoes",
+    description:
+      "The Nike Initiator blends retro running aesthetics with dependable everyday comfort. Supportive overlays and lightweight cushioning make it a reliable option for daily wear.",
+    brand: "Nike",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778398942/59ae2d85-3bf5-4c7b-974c-5c98de793d2e.png",
+        altText: "Front view of the Nike Initiator",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778399012/6de6a15a-55e2-43da-b44c-c614e2c29d95.png",
+        altText: "Side view showing the supportive overlays",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778399105/700ca50d-d009-4e1e-a600-b0e2fefafe58.png",
+        altText: "Back view of the Nike Initiator heel",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778399337/1c18f628-4d2f-4740-b0bf-ea1cd677113c.png",
+        altText: "Top-down view of the upper and tongue",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 8 },
+      { size: "39", stock: 10 },
+      { size: "40", stock: 11 },
+      { size: "41", stock: 9 },
+      { size: "42", stock: 5 },
+      { size: "43", stock: 3 },
     ],
     gender: "unisex",
   },
   {
-    name: "Nike Tanjun",
-    slug: "nike-tanjun",
-    price: 1099,
+    name: "Reebok Energen Lite",
+    slug: "reebok-energen-lite",
+    price: 1299,
     categorySlug: "everyday-shoes",
     description:
-      "The Nike Tanjun keeps it simple and clean. With a streamlined design and lightweight cushioning, it's the perfect everyday shoe for those who value simplicity and comfort.",
-    brand: "Nike",
+      "The Reebok Energen Lite delivers lightweight cushioning and flexible comfort for everyday routines. Its breathable design makes it ideal for walking, errands, and casual use.",
+    brand: "Reebok",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000057/everyday-tanjun-01.jpg",
-        altText: "Front view of the Nike Tanjun",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778399520/imgi_72_766012-8790203_toa3hu.jpg",
+        altText: "Front view of the Reebok Energen Lite",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000058/everyday-tanjun-02.jpg",
-        altText: "Side view of the streamlined Tanjun upper",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778399630/imgi_69_766012-8790204_x1bfrq.jpg",
+        altText: "Side view showing the cushioned foam midsole",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000059/everyday-tanjun-03.jpg",
-        altText: "Angled view showing the minimalist design",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778399715/imgi_71_766012-8790207_s0rn52.jpg",
+        altText: "Back heel view of the Reebok Energen Lite",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000060/everyday-tanjun-04.jpg",
-        altText: "Heel view with subtle Nike branding",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778399810/imgi_70_766012-8790206_zsdwpf.jpg",
+        altText: "Top-down view of the breathable upper",
       },
     ],
     sizes: [
-      { size: "38", stock: 15 },
+      { size: "38", stock: 10 },
       { size: "39", stock: 12 },
       { size: "40", stock: 9 },
       { size: "41", stock: 7 },
@@ -620,218 +656,74 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
     gender: "unisex",
   },
   {
-    name: "Nike Wearallday",
-    slug: "nike-wearallday",
-    price: 1199,
+    name: "Nike MC Trainer 3",
+    slug: "nike-mc-trainer-3",
+    price: 1499,
     categorySlug: "everyday-shoes",
     description:
-      "True to its name, the Nike Wearallday is built for all-day comfort. The padded collar and soft foam cushioning make it your go-to shoe for everyday activities.",
+      "The Nike MC Trainer 3 combines gym-ready durability with everyday comfort. Stable support and soft cushioning make it suitable for training sessions and daily activities alike.",
     brand: "Nike",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000061/everyday-wearallday-01.jpg",
-        altText: "Front view of the Nike Wearallday",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778400233/c749d4f4-584a-4213-88be-91a7cefbc3b2.png",
+        altText: "Front view of the Nike MC Trainer 3",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000062/everyday-wearallday-02.jpg",
-        altText: "Side view showing the padded collar",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778400172/679a96f6-9912-4247-9658-2a960cde1466.png",
+        altText: "Side view showing the supportive midsole",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000063/everyday-wearallday-03.jpg",
-        altText: "Back view of the Wearallday heel",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778400131/e56f7672-aeee-402c-b632-5508b0bd9b1a.png",
+        altText: "Back heel view of the Nike MC Trainer 3",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000064/everyday-wearallday-04.jpg",
-        altText: "Top-down view of the comfortable upper",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 7 },
-      { size: "39", stock: 10 },
-      { size: "40", stock: 13 },
-      { size: "41", stock: 11 },
-      { size: "42", stock: 8 },
-      { size: "43", stock: 5 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike Defy All Day",
-    slug: "nike-defy-all-day",
-    price: 1399,
-    categorySlug: "everyday-shoes",
-    description:
-      "The Nike Defy All Day combines versatility and comfort. With a durable leather upper and cushioned midsole, it's ready for whatever your day throws at you.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000065/everyday-defy-01.jpg",
-        altText: "Front view of the Nike Defy All Day",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000066/everyday-defy-02.jpg",
-        altText: "Side view of the durable leather upper",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000067/everyday-defy-03.jpg",
-        altText: "Angled view showing the cushioned midsole",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000068/everyday-defy-04.jpg",
-        altText: "Heel view with Defy All Day branding",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778400082/c5f75cd2-c6f1-484c-a7ce-00470175f8b9.png",
+        altText: "Top-down view of the training upper",
       },
     ],
     sizes: [
       { size: "38", stock: 5 },
       { size: "39", stock: 8 },
-      { size: "40", stock: 10 },
-      { size: "41", stock: 12 },
+      { size: "40", stock: 12 },
+      { size: "41", stock: 10 },
       { size: "42", stock: 7 },
       { size: "43", stock: 4 },
     ],
     gender: "men",
   },
   {
-    name: "Nike City Rep TR",
-    slug: "nike-city-rep-tr",
-    price: 1299,
+    name: "Asics Jolt 4",
+    slug: "asics-jolt-4",
+    price: 1399,
     categorySlug: "everyday-shoes",
     description:
-      "The Nike City Rep TR is built for urban life. A durable design and comfortable cushioning make it perfect for city walks, commutes, and everyday adventures.",
-    brand: "Nike",
+      "The Asics Jolt 4 provides reliable cushioning and durability for daily comfort. Inspired by classic running styles, it offers a supportive feel for everyday movement.",
+    brand: "Asics",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000069/everyday-cityrep-01.jpg",
-        altText: "Front view of the Nike City Rep TR",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000113/everyday-jolt-01.jpg",
+        altText: "Front view of the Asics Jolt 4",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000070/everyday-cityrep-02.jpg",
-        altText: "Side view showing the City Rep TR upper",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000114/everyday-jolt-02.jpg",
+        altText: "Side view showing the cushioned sole",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000071/everyday-cityrep-03.jpg",
-        altText: "Back view of the durable heel counter",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000115/everyday-jolt-03.jpg",
+        altText: "Back heel view of the Asics Jolt 4",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000072/everyday-cityrep-04.jpg",
-        altText: "Top-down view of the lacing and tongue",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 8 },
-      { size: "39", stock: 11 },
-      { size: "40", stock: 9 },
-      { size: "41", stock: 6 },
-      { size: "42", stock: 3 },
-      { size: "43", stock: 1 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike Explore Strada",
-    slug: "nike-explore-strada",
-    price: 1099,
-    categorySlug: "everyday-shoes",
-    description:
-      "The Nike Explore Strada is your everyday companion. With a modern design and lightweight comfort, it's perfect for casual outings and daily wear.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000073/everyday-strada-01.jpg",
-        altText: "Front view of the Nike Explore Strada",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000074/everyday-strada-02.jpg",
-        altText: "Side view of the modern Strada design",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000075/everyday-strada-03.jpg",
-        altText: "Angled view showing the lightweight upper",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000076/everyday-strada-04.jpg",
-        altText: "Heel view with Explore Strada detail",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 10 },
-      { size: "39", stock: 13 },
-      { size: "40", stock: 8 },
-      { size: "41", stock: 5 },
-      { size: "42", stock: 3 },
-      { size: "43", stock: 1 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike Renew Ride 3",
-    slug: "nike-renew-ride-3",
-    price: 1599,
-    categorySlug: "everyday-shoes",
-    description:
-      "The Nike Renew Ride 3 delivers soft, responsive cushioning for everyday comfort. The breathable upper and durable outsole make it ideal for daily walks and casual activities.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000077/everyday-renew-01.jpg",
-        altText: "Front view of the Nike Renew Ride 3",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000078/everyday-renew-02.jpg",
-        altText: "Side view showing the Renew foam midsole",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000079/everyday-renew-03.jpg",
-        altText: "Back view of the Renew Ride 3 heel",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000080/everyday-renew-04.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000116/everyday-jolt-04.jpg",
         altText: "Top-down view of the breathable upper",
       },
     ],
     sizes: [
-      { size: "38", stock: 6 },
+      { size: "38", stock: 7 },
       { size: "39", stock: 9 },
-      { size: "40", stock: 11 },
-      { size: "41", stock: 14 },
-      { size: "42", stock: 8 },
-      { size: "43", stock: 5 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike Victory One",
-    slug: "nike-victory-one",
-    price: 999,
-    categorySlug: "everyday-shoes",
-    description:
-      "The Nike Victory One offers essential comfort at an unbeatable value. Lightweight cushioning and a breathable design make it the perfect everyday shoe for any budget.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000081/everyday-victory-01.jpg",
-        altText: "Front view of the Nike Victory One",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000082/everyday-victory-02.jpg",
-        altText: "Side view of the Victory One lightweight upper",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000083/everyday-victory-03.jpg",
-        altText: "Angled view showing the cushioned midsole",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000084/everyday-victory-04.jpg",
-        altText: "Heel view with Victory One branding",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 14 },
-      { size: "39", stock: 11 },
-      { size: "40", stock: 8 },
-      { size: "41", stock: 6 },
-      { size: "42", stock: 4 },
-      { size: "43", stock: 2 },
+      { size: "40", stock: 13 },
+      { size: "41", stock: 11 },
+      { size: "42", stock: 6 },
+      { size: "43", stock: 3 },
     ],
     gender: "unisex",
   },
@@ -847,19 +739,19 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
     brand: "Nike",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000085/bball-aj1mid-01.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778401024/e039525f-2825-41e2-aa0e-cd9a3484102c.png",
         altText: "Front view of the Air Jordan 1 Mid",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000086/bball-aj1mid-02.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778401184/9c4b105b-7f63-45cb-aa94-239e92d95df1.png",
         altText: "Side view showing the iconic Jordan 1 silhouette",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000087/bball-aj1mid-03.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778401231/0d0ebfe9-7147-4a7d-9cc3-687ab960f595.png",
         altText: "Back view with Air Jordan Wings logo",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000088/bball-aj1mid-04.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778401277/38b818a6-df4d-41dc-a3fe-5ad669f669c0.png",
         altText: "Top-down view of the lacing and tongue",
       },
     ],
@@ -872,42 +764,6 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
       { size: "43", stock: 5 },
     ],
     gender: "unisex",
-  },
-  {
-    name: "Nike LeBron 21",
-    slug: "nike-lebron-21",
-    price: 4999,
-    categorySlug: "basketball-shoes",
-    description:
-      "The LeBron 21 is built for the king. With Zoom Air cushioning and a lightweight, supportive upper, it delivers explosive energy return and court-ready stability for elite performance.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000089/bball-lebron21-01.jpg",
-        altText: "Front view of the Nike LeBron 21",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000090/bball-lebron21-02.jpg",
-        altText: "Side view showing the Zoom Air unit",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000091/bball-lebron21-03.jpg",
-        altText: "Angled view of the LeBron 21 upper design",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000092/bball-lebron21-04.jpg",
-        altText: "Heel view with LeBron crown logo",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 3 },
-      { size: "39", stock: 6 },
-      { size: "40", stock: 9 },
-      { size: "41", stock: 11 },
-      { size: "42", stock: 7 },
-      { size: "43", stock: 4 },
-    ],
-    gender: "men",
   },
   {
     name: "Nike KD 17",
@@ -919,31 +775,31 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
     brand: "Nike",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000093/bball-kd17-01.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778401533/a73293b0-8ba4-4ee8-b484-fb54e48a82d7.png",
         altText: "Front view of the Nike KD 17",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000094/bball-kd17-02.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778401567/6c022266-1a60-45bb-9e4d-40794f1f2e58.png",
         altText: "Side view showing the KD 17 traction pattern",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000095/bball-kd17-03.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778401603/7fe9a25b-5262-4443-bc47-1f5716a79598.png",
         altText: "Back view with Durant branding",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000096/bball-kd17-04.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778401632/531aadce-3d98-45e2-973e-cfa06c8da5cb.png",
         altText: "Top-down view of the lacing and tongue detail",
       },
     ],
     sizes: [
       { size: "38", stock: 5 },
-      { size: "39", stock: 8 },
-      { size: "40", stock: 11 },
-      { size: "41", stock: 9 },
-      { size: "42", stock: 6 },
+      { size: "39", stock: 0 },
+      { size: "40", stock: 4 },
+      { size: "41", stock: 2 },
+      { size: "42", stock: 0 },
       { size: "43", stock: 3 },
     ],
-    gender: "unisex",
+    gender: "men",
   },
   {
     name: "Nike Giannis Immortality 3",
@@ -955,92 +811,56 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
     brand: "Nike",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000097/bball-giannis-01.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778401870/46b3e5a3-27f7-45e4-bdfb-938dc587b2c5.png",
         altText: "Front view of the Giannis Immortality 3",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000098/bball-giannis-02.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778402020/708cd9fc-e3e4-4728-9b37-fe5bfa116aae.png",
         altText: "Side view showing the Immortality 3 midsole",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000099/bball-giannis-03.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778401914/00f7d3b7-21c4-49a4-9fa9-3ce735028200.png",
         altText: "Angled view of the lightweight upper",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000100/bball-giannis-04.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778401958/7bdbafbe-7666-4824-817c-7677b0017f40.png",
         altText: "Heel view with Giannis signature detail",
       },
     ],
     sizes: [
-      { size: "38", stock: 7 },
-      { size: "39", stock: 10 },
-      { size: "40", stock: 13 },
-      { size: "41", stock: 8 },
-      { size: "42", stock: 5 },
-      { size: "43", stock: 2 },
+      { size: "38", stock: 1 },
+      { size: "39", stock: 3 },
+      { size: "40", stock: 4 },
+      { size: "41", stock: 1 },
+      { size: "42", stock: 0 },
+      { size: "43", stock: 1 },
     ],
     gender: "unisex",
   },
   {
-    name: "Nike Air Jordan 4 Retro",
-    slug: "nike-air-jordan-4-retro",
-    price: 5499,
+    name: "Adidas Harden Stepback 3",
+    slug: "adidas-harden-stepback-3",
+    price: 2899,
     categorySlug: "basketball-shoes",
     description:
-      "The Air Jordan 4 Retro is a timeless classic. With its signature mesh panels, visible Air unit, and iconic design, it remains one of the most coveted sneakers in basketball history.",
-    brand: "Nike",
+      "The Adidas Harden Stepback 3 is inspired by James Harden's creative offensive game. Lightweight Bounce cushioning and a supportive upper help you stay quick and confident on the court.",
+    brand: "Adidas",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000101/bball-aj4-01.jpg",
-        altText: "Front view of the Air Jordan 4 Retro",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778402410/imgi_75_Harden_Volume_10_Shoes_Black_JR1598_bobrf8.jpg",
+        altText: "Front view of the Adidas Harden Stepback 3",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000102/bball-aj4-02.jpg",
-        altText: "Side view showing the mesh panels and wings",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778402445/imgi_83_Harden_Volume_10_Shoes_Black_JR1598_01_00_standard_uuvefq.jpg",
+        altText: "Side view showing the Bounce midsole",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000103/bball-aj4-03.jpg",
-        altText: "Back view with Jumpman logo on heel",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778402470/imgi_80_Harden_Volume_10_Shoes_Black_JR1598_42_detail_kstemj.jpg",
+        altText: "Back heel view with Harden branding",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000104/bball-aj4-04.jpg",
-        altText: "Top-down view of the lacing and tongue",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 2 },
-      { size: "39", stock: 5 },
-      { size: "40", stock: 8 },
-      { size: "41", stock: 10 },
-      { size: "42", stock: 7 },
-      { size: "43", stock: 4 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike LeBron Witness 8",
-    slug: "nike-lebron-witness-8",
-    price: 3299,
-    categorySlug: "basketball-shoes",
-    description:
-      "The LeBron Witness 8 delivers explosive power at a great value. Max Air cushioning and a durable upper provide the support and responsiveness needed for aggressive play.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000105/bball-witness8-01.jpg",
-        altText: "Front view of the LeBron Witness 8",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000106/bball-witness8-02.jpg",
-        altText: "Side view showing the Max Air unit",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000107/bball-witness8-03.jpg",
-        altText: "Angled view of the Witness 8 upper",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000108/bball-witness8-04.jpg",
-        altText: "Heel view with LeBron Witness branding",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778402484/imgi_91_Harden_Volume_10_Shoes_Black_JR1598_02_standard_wiwcf0.jpg",
+        altText: "Top-down view of the supportive upper",
       },
     ],
     sizes: [
@@ -1048,152 +868,188 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
       { size: "39", stock: 9 },
       { size: "40", stock: 11 },
       { size: "41", stock: 13 },
-      { size: "42", stock: 8 },
+      { size: "42", stock: 0 },
       { size: "43", stock: 5 },
     ],
     gender: "men",
   },
   {
-    name: "Nike KD Trey 5 X",
-    slug: "nike-kd-trey-5-x",
-    price: 2499,
+    name: "Curry Splash 24 Suede",
+    slug: "curry-splash-24-suede",
+    price: 3199,
     categorySlug: "basketball-shoes",
     description:
-      "The KD Trey 5 X brings Durant's signature style to the court at an accessible price. Lightweight cushioning and a breathable upper keep you comfortable during intense games.",
-    brand: "Nike",
+      "The Curry Splash 24 brings Stephen Curry's signature energy to every game. Responsive cushioning and grippy traction help you move quickly and shoot with confidence.",
+    brand: "Under Armour",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000109/bball-trey5-01.jpg",
-        altText: "Front view of the Nike KD Trey 5 X",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778404930/12e9401b-b089-40e2-97ee-db03599ffa57.png",
+        altText: "Front view of the Curry Splash 24 Suede",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000110/bball-trey5-02.jpg",
-        altText: "Side view showing the Trey 5 X midsole",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778404813/8159b5e3-0eb0-4f4b-96d8-b746dc862d68.png",
+        altText: "Side view showing the responsive cushioning",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000111/bball-trey5-03.jpg",
-        altText: "Back view with KD branding",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778404710/0c1da5fb-87fb-41d2-848e-61c03590aa6a.png",
+        altText: "Back heel view with Curry branding",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000112/bball-trey5-04.jpg",
-        altText: "Top-down view of the lacing system",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778404655/1af25635-9ee5-4342-8f63-a709f8f7f04f.png",
+        altText: "Top-down view of the breathable upper",
       },
     ],
     sizes: [
-      { size: "38", stock: 8 },
-      { size: "39", stock: 11 },
-      { size: "40", stock: 9 },
-      { size: "41", stock: 6 },
-      { size: "42", stock: 3 },
-      { size: "43", stock: 1 },
+      { size: "38", stock: 5 },
+      { size: "39", stock: 8 },
+      { size: "40", stock: 12 },
+      { size: "41", stock: 10 },
+      { size: "42", stock: 7 },
+      { size: "43", stock: 4 },
     ],
-    gender: "unisex",
+    gender: "men",
   },
   {
-    name: "Nike Precision 7",
-    slug: "nike-precision-7",
-    price: 2199,
+    name: "MB.03 Lo Team",
+    slug: "mb-03-lo-team",
+    price: 3799,
     categorySlug: "basketball-shoes",
     description:
-      "The Nike Precision 7 is built for players who value control and quickness. A low-profile design and responsive cushioning help you make sharp cuts and fast breaks with confidence.",
-    brand: "Nike",
+      "The MB.03 Lo Team is LaMelo Ball's bold signature basketball shoe built for speed and creativity. NITRO foam cushioning and a lightweight upper provide explosive comfort on the court.",
+    brand: "Puma",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000113/bball-precision7-01.jpg",
-        altText: "Front view of the Nike Precision 7",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778405163/20e07d3a-6356-45e7-8a4e-0e2f7858577d.png",
+        altText: "Front view of the MB.03 Lo Team",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000114/bball-precision7-02.jpg",
-        altText: "Side view showing the low-profile design",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778405207/31d29d46-19aa-46a4-913f-429adcdff809.png",
+        altText: "Side view showing the NITRO foam cushioning",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000115/bball-precision7-03.jpg",
-        altText: "Angled view of the Precision 7 upper",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778405391/48076ef0-9ca0-431a-8a01-cbe54708149d.png",
+        altText: "Back heel view with LaMelo branding",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000116/bball-precision7-04.jpg",
-        altText: "Heel view with Precision branding",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 10 },
-      { size: "39", stock: 13 },
-      { size: "40", stock: 8 },
-      { size: "41", stock: 5 },
-      { size: "42", stock: 3 },
-      { size: "43", stock: 1 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike Air Jordan Luka 2",
-    slug: "nike-air-jordan-luka-2",
-    price: 3999,
-    categorySlug: "basketball-shoes",
-    description:
-      "The Luka 2 is designed for Luka Doncic's unique style of play. IsoPlate technology and Formula 23 foam provide the stability and cushioning needed for his signature step-back and crafty moves.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000117/bball-luka2-01.jpg",
-        altText: "Front view of the Air Jordan Luka 2",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000118/bball-luka2-02.jpg",
-        altText: "Side view showing the IsoPlate technology",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000119/bball-luka2-03.jpg",
-        altText: "Back view with Luka Doncic branding",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000120/bball-luka2-04.jpg",
-        altText: "Top-down view of the lacing and tongue",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778405346/62bed252-7191-4cb5-a929-4607cad0c6f3.png",
+        altText: "Top-down view of the MB.03 upper",
       },
     ],
     sizes: [
       { size: "38", stock: 4 },
       { size: "39", stock: 7 },
-      { size: "40", stock: 10 },
-      { size: "41", stock: 12 },
-      { size: "42", stock: 9 },
-      { size: "43", stock: 6 },
+      { size: "40", stock: 9 },
+      { size: "41", stock: 11 },
+      { size: "42", stock: 8 },
+      { size: "43", stock: 5 },
     ],
     gender: "unisex",
   },
   {
-    name: "Nike Air Max Impact 4",
-    slug: "nike-air-max-impact-4",
-    price: 2799,
+    name: "Anta KT Splash 6",
+    slug: "anta-kt-splash-6",
+    price: 2599,
     categorySlug: "basketball-shoes",
     description:
-      "The Air Max Impact 4 brings visible Air cushioning to the hardwood. A durable design and supportive fit make it a reliable choice for players who need comfort and stability.",
-    brand: "Nike",
+      "The Anta KT Splash 6 combines lightweight comfort with reliable court traction. Inspired by Klay Thompson's smooth shooting style, it's built for quick movement and stability.",
+    brand: "Anta",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000121/bball-impact4-01.jpg",
-        altText: "Front view of the Nike Air Max Impact 4",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778406123/imgi_31_IMG_7226_gpzm0v.jpg",
+        altText: "Front view of the Anta KT Splash 6",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000122/bball-impact4-02.jpg",
-        altText: "Side view showing the visible Air Max unit",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778406164/imgi_103_IMG_7230_yrzic7.jpg",
+        altText: "Side view showing the cushioned midsole",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000123/bball-impact4-03.jpg",
-        altText: "Angled view of the Impact 4 upper",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778406150/imgi_73_IMG_7227_glgqd5.jpg",
+        altText: "Bottom view with KT branding",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000124/bball-impact4-04.jpg",
-        altText: "Heel view with Air Max Impact branding",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778406137/imgi_99_IMG_7229_kaifrp.jpg",
+        altText: "Top-down view of the breathable upper",
       },
     ],
     sizes: [
-      { size: "38", stock: 7 },
+      { size: "38", stock: 8 },
       { size: "39", stock: 10 },
       { size: "40", stock: 12 },
-      { size: "41", stock: 8 },
-      { size: "42", stock: 5 },
+      { size: "41", stock: 9 },
+      { size: "42", stock: 6 },
       { size: "43", stock: 3 },
+    ],
+    gender: "men",
+  },
+  {
+    name: "Li-Ning Wade Shadow 5",
+    slug: "li-ning-wade-shadow-5",
+    price: 3399,
+    categorySlug: "basketball-shoes",
+    description:
+      "The Wade Shadow 5 blends modern cushioning with sleek performance styling. Designed for dynamic players, it offers lightweight responsiveness and excellent court feel.",
+    brand: "Li-Ning",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778406377/3266c4ee-68e6-4d7f-8321-70a5a9870eef.png",
+        altText: "Front view of the Li-Ning Wade Shadow 5",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778406391/ea588fe1-e269-4444-8603-972414fdcaf5.png",
+        altText: "Side view showing the responsive cushioning",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778406406/f50734b3-3e10-45d4-8ef3-f302a4e36d74.png",
+        altText: "Back heel view with Wade branding",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778406420/0b9b71c0-c7e5-461d-9318-8594caa4cfc7.png",
+        altText: "Top-down view of the Wade Shadow 5 upper",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 5 },
+      { size: "39", stock: 0 },
+      { size: "40", stock: 1 },
+      { size: "41", stock: 3 },
+      { size: "42", stock: 0 },
+      { size: "43", stock: 4 },
+    ],
+    gender: "unisex",
+  },
+  {
+    name: "Reebok Question Mid",
+    slug: "reebok-question-mid",
+    price: 3599,
+    categorySlug: "basketball-shoes",
+    description:
+      "The Reebok Question Mid brings Allen Iverson's iconic style back to the hardwood. Premium materials and Hexalite cushioning deliver classic comfort and standout looks.",
+    brand: "Reebok",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778406626/imgi_65_784190-9114742_jnya3n.jpg",
+        altText: "Front view of the Reebok Question Mid",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778406716/imgi_72_784190-9114741_mrskjn.jpg",
+        altText: "Side view showing the Hexalite cushioning",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778406763/imgi_74_784190-9114743_dxwher.jpg",
+        altText: "Back heel view with Reebok branding",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778406839/imgi_67_784190-9114744_r0ztix.jpg",
+        altText: "Bottom view of the premium leather upper",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 3 },
+      { size: "39", stock: 6 },
+      { size: "40", stock: 9 },
+      { size: "41", stock: 11 },
+      { size: "42", stock: 8 },
+      { size: "43", stock: 5 },
     ],
     gender: "men",
   },
@@ -1209,236 +1065,92 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
     brand: "Nike",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000125/run-pegasus41-01.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778407260/bf93b16f-9d4c-4e73-85c9-5db7e2f1c79a.png",
         altText: "Front view of the Nike Pegasus 41",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000126/run-pegasus41-02.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778407296/f0ca97fc-2446-491d-8a34-3f968ce92206.png",
         altText: "Side view showing the ReactX foam midsole",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000127/run-pegasus41-03.jpg",
-        altText: "Angled view of the Pegasus 41 engineered mesh",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778407350/944e4433-0704-47bb-974a-7756a8da99b0.png",
+        altText: "Back view of the Pegasus 41 engineered mesh",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000128/run-pegasus41-04.jpg",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778407421/c0e93ad7-4726-40aa-8494-aa508f8f35f0.png",
         altText: "Heel view with Pegasus branding detail",
       },
     ],
     sizes: [
-      { size: "38", stock: 8 },
-      { size: "39", stock: 11 },
-      { size: "40", stock: 14 },
-      { size: "41", stock: 10 },
-      { size: "42", stock: 7 },
-      { size: "43", stock: 4 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike Vomero 17",
-    slug: "nike-vomero-17",
-    price: 3999,
-    categorySlug: "running-shoes",
-    description:
-      "The Nike Vomero 17 is built for maximum cushioning on long runs. ZoomX and React foam combine to deliver plush comfort and energy return mile after mile.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000129/run-vomero17-01.jpg",
-        altText: "Front view of the Nike Vomero 17",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000130/run-vomero17-02.jpg",
-        altText: "Side view showing the ZoomX and React foam stack",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000131/run-vomero17-03.jpg",
-        altText: "Back view of the Vomero 17 heel counter",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000132/run-vomero17-04.jpg",
-        altText: "Top-down view of the breathable upper",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 6 },
-      { size: "39", stock: 9 },
-      { size: "40", stock: 11 },
-      { size: "41", stock: 13 },
-      { size: "42", stock: 8 },
-      { size: "43", stock: 5 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike Invincible 3",
-    slug: "nike-invincible-3",
-    price: 4599,
-    categorySlug: "running-shoes",
-    description:
-      "The Nike Invincible 3 features maximum ZoomX foam for unbeatable cushioning on your longest runs. A wide base and rocker geometry provide stability and smooth transitions.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000133/run-invincible3-01.jpg",
-        altText: "Front view of the Nike Invincible 3",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000134/run-invincible3-02.jpg",
-        altText: "Side view showing the full ZoomX midsole",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000135/run-invincible3-03.jpg",
-        altText: "Angled view of the Invincible 3 rocker geometry",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000136/run-invincible3-04.jpg",
-        altText: "Heel view with Invincible branding",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 5 },
-      { size: "39", stock: 8 },
-      { size: "40", stock: 10 },
-      { size: "41", stock: 7 },
+      { size: "38", stock: 3 },
+      { size: "39", stock: 0 },
+      { size: "40", stock: 6 },
+      { size: "41", stock: 2 },
       { size: "42", stock: 4 },
-      { size: "43", stock: 2 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike Structure 25",
-    slug: "nike-structure-25",
-    price: 3299,
-    categorySlug: "running-shoes",
-    description:
-      "The Nike Structure 25 offers trusted stability for overpronators. A supportive midfoot system and cushioned foam help guide your stride for confident, comfortable miles.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000137/run-structure25-01.jpg",
-        altText: "Front view of the Nike Structure 25",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000138/run-structure25-02.jpg",
-        altText: "Side view showing the stability midfoot system",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000139/run-structure25-03.jpg",
-        altText: "Back view of the Structure 25 heel clip",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000140/run-structure25-04.jpg",
-        altText: "Top-down view of the supportive upper",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 9 },
-      { size: "39", stock: 12 },
-      { size: "40", stock: 8 },
-      { size: "41", stock: 5 },
-      { size: "42", stock: 3 },
       { size: "43", stock: 1 },
     ],
     gender: "unisex",
   },
   {
-    name: "Nike Winflo 11",
-    slug: "nike-winflo-11",
-    price: 2499,
+    name: "Asics Gel-Nimbus 26",
+    slug: "asics-gel-nimbus-26",
+    price: 4699,
     categorySlug: "running-shoes",
     description:
-      "The Nike Winflo 11 delivers reliable cushioning for daily runs. A soft foam midsole and breathable upper provide comfort and support at a great value.",
-    brand: "Nike",
+      "The Asics Gel-Nimbus 26 delivers plush comfort for long-distance running. FF BLAST PLUS ECO cushioning and PureGEL technology provide soft landings and smooth transitions.",
+    brand: "Asics",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000141/run-winflo11-01.jpg",
-        altText: "Front view of the Nike Winflo 11",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778408475/e5dcb400-1dd0-4dd4-8048-447962e1482d.png",
+        altText: "Front view of the Asics Gel-Nimbus 26",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000142/run-winflo11-02.jpg",
-        altText: "Side view showing the Winflo 11 foam midsole",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778408424/2a949f08-947a-4af7-ad69-8cd749393da4.png",
+        altText: "Side view showing the PureGEL cushioning",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000143/run-winflo11-03.jpg",
-        altText: "Angled view of the breathable mesh upper",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778408385/72ac560b-fb0f-47ff-b789-bb145ed0731d.png",
+        altText: "Back heel view of the Gel-Nimbus 26",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000144/run-winflo11-04.jpg",
-        altText: "Heel view with Winflo branding",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778408312/24b32f10-52c9-445f-bbf3-5df60637b4c0.png",
+        altText: "Top-down view of the engineered knit upper",
       },
     ],
     sizes: [
-      { size: "38", stock: 11 },
-      { size: "39", stock: 14 },
-      { size: "40", stock: 9 },
-      { size: "41", stock: 6 },
-      { size: "42", stock: 4 },
+      { size: "38", stock: 5 },
+      { size: "39", stock: 8 },
+      { size: "40", stock: 0 },
+      { size: "41", stock: 1 },
+      { size: "42", stock: 3 },
       { size: "43", stock: 2 },
     ],
     gender: "unisex",
   },
   {
-    name: "Nike InfinityRN 4",
-    slug: "nike-infinity-rn-4",
-    price: 3799,
+    name: "New Balance Fresh Foam X 1080v13",
+    slug: "new-balance-fresh-foam-x-1080v13",
+    price: 4499,
     categorySlug: "running-shoes",
     description:
-      "The Nike InfinityRN 4 is designed to help reduce injury with its rocker geometry and plush ReactX foam. A wide base and supportive fit keep you stable through every stride.",
-    brand: "Nike",
+      "The New Balance Fresh Foam X 1080v13 combines premium cushioning with a smooth ride. Fresh Foam X technology and a breathable upper make it ideal for daily mileage.",
+    brand: "New Balance",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000145/run-infinity4-01.jpg",
-        altText: "Front view of the Nike InfinityRN 4",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000173/run-1080v13-01.jpg",
+        altText: "Front view of the New Balance Fresh Foam X 1080v13",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000146/run-infinity4-02.jpg",
-        altText: "Side view showing the ReactX foam and rocker",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000174/run-1080v13-02.jpg",
+        altText: "Side view showing the Fresh Foam X cushioning",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000147/run-infinity4-03.jpg",
-        altText: "Back view of the InfinityRN 4 heel",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000175/run-1080v13-03.jpg",
+        altText: "Back heel view of the 1080v13",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000148/run-infinity4-04.jpg",
-        altText: "Top-down view of the Flyknit upper",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 7 },
-      { size: "39", stock: 10 },
-      { size: "40", stock: 12 },
-      { size: "41", stock: 9 },
-      { size: "42", stock: 6 },
-      { size: "43", stock: 3 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike React Pegasus Trail 5",
-    slug: "nike-react-pegasus-trail-5",
-    price: 3699,
-    categorySlug: "running-shoes",
-    description:
-      "The Nike React Pegasus Trail 5 takes the legendary Pegasus off-road. React foam and a rugged outsole provide cushioning and traction for trail adventures.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000149/run-pegtrail5-01.jpg",
-        altText: "Front view of the Nike React Pegasus Trail 5",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000150/run-pegtrail5-02.jpg",
-        altText: "Side view showing the trail-ready outsole",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000151/run-pegtrail5-03.jpg",
-        altText: "Angled view of the Pegasus Trail 5 upper",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000152/run-pegtrail5-04.jpg",
-        altText: "Heel view with trail-specific branding",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000176/run-1080v13-04.jpg",
+        altText: "Top-down view of the engineered mesh upper",
       },
     ],
     sizes: [
@@ -1452,65 +1164,427 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
     gender: "unisex",
   },
   {
-    name: "Nike Juniper Trail 3",
-    slug: "nike-juniper-trail-3",
-    price: 2199,
+    name: "Puma Deviate Nitro 3",
+    slug: "puma-deviate-nitro-3",
+    price: 3999,
     categorySlug: "running-shoes",
     description:
-      "The Nike Juniper Trail 3 is your gateway to off-road running. Durable materials and a rugged outsole provide traction and protection on light trails and mixed terrain.",
-    brand: "Nike",
+      "The Puma Deviate Nitro 3 is built for speed and efficiency. NITRO foam and a carbon-composite plate provide lightweight propulsion for tempo runs and race day.",
+    brand: "Puma",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000153/run-juniper3-01.jpg",
-        altText: "Front view of the Nike Juniper Trail 3",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778408773/39227111-978a-4ef4-9854-25836bf0a2aa.png",
+        altText: "Front view of the Puma Deviate Nitro 3",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000154/run-juniper3-02.jpg",
-        altText: "Side view showing the rugged trail outsole",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778408838/5f891fe5-d964-41d3-a7e6-771f18eb65b1.png",
+        altText: "Side view showing the NITRO foam midsole",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000155/run-juniper3-03.jpg",
-        altText: "Back view of the Juniper Trail 3 heel",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778408878/b898a91b-3ada-4c82-b711-8c433740dd38.png",
+        altText: "Back heel view of the Deviate Nitro 3",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000156/run-juniper3-04.jpg",
-        altText: "Top-down view of the protective upper",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778408922/6c3f129b-d11f-459f-af77-0a68d34d6895.png",
+        altText: "Top-down view of the lightweight racing upper",
       },
     ],
     sizes: [
-      { size: "38", stock: 10 },
-      { size: "39", stock: 13 },
-      { size: "40", stock: 8 },
-      { size: "41", stock: 5 },
-      { size: "42", stock: 3 },
-      { size: "43", stock: 1 },
+      { size: "38", stock: 6 },
+      { size: "39", stock: 9 },
+      { size: "40", stock: 11 },
+      { size: "41", stock: 10 },
+      { size: "42", stock: 7 },
+      { size: "43", stock: 4 },
     ],
     gender: "unisex",
   },
   {
-    name: "Nike Air Zoom Rival Fly 3",
-    slug: "nike-air-zoom-rival-fly-3",
-    price: 2799,
+    name: "Hoka Clifton 9",
+    slug: "hoka-clifton-9",
+    price: 4899,
     categorySlug: "running-shoes",
     description:
-      "The Nike Air Zoom Rival Fly 3 is built for speed. A lightweight design and Zoom Air unit in the forefoot deliver responsive cushioning for tempo runs and race day.",
-    brand: "Nike",
+      "The Hoka Clifton 9 is known for its lightweight cushioning and smooth ride. A plush CMEVA midsole and rocker geometry make it a favorite for daily training and recovery runs.",
+    brand: "Hoka",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000157/run-rivalfly3-01.jpg",
-        altText: "Front view of the Nike Air Zoom Rival Fly 3",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778409315/896fa06a-2cbf-49ed-8ab1-23d460741e68.png",
+        altText: "Front view of the Hoka Clifton 9",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000158/run-rivalfly3-02.jpg",
-        altText: "Side view showing the Zoom Air unit",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778409366/55d43d0d-185a-4f39-ae62-1ba546df92b6.png",
+        altText: "Side view showing the thick cushioned midsole",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000159/run-rivalfly3-03.jpg",
-        altText: "Angled view of the lightweight racer upper",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778409408/6e6d7b20-1caa-4df3-948f-5a4776b4f89e.png",
+        altText: "Back heel view of the Clifton 9",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000160/run-rivalfly3-04.jpg",
-        altText: "Heel view with Rival Fly branding",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778409447/465d8bfa-2991-4a8e-ab2d-eabbbed13a76.png",
+        altText: "Top-down view of the breathable upper",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 2 },
+      { size: "39", stock: 8 },
+      { size: "40", stock: 0 },
+      { size: "41", stock: 4 },
+      { size: "42", stock: 2 },
+      { size: "43", stock: 1 },
+    ],
+    gender: "men",
+  },
+  {
+    name: "Brooks Ghost 16",
+    slug: "brooks-ghost-16",
+    price: 4299,
+    categorySlug: "running-shoes",
+    description:
+      "The Brooks Ghost 16 offers smooth cushioning and reliable comfort for runners of all levels. DNA Loft cushioning provides soft landings and balanced responsiveness.",
+    brand: "Brooks",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778409654/cd413dde-f0ac-42cf-8ed8-de3c258d2dae.png",
+        altText: "Side view showing the DNA Loft cushioning",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 7 },
+      { size: "39", stock: 10 },
+      { size: "40", stock: 13 },
+      { size: "41", stock: 11 },
+      { size: "42", stock: 8 },
+      { size: "43", stock: 4 },
+    ],
+    gender: "women",
+  },
+  {
+    name: "Saucony Endorphin Speed 5",
+    slug: "saucony-endorphin-speed-5",
+    price: 4599,
+    categorySlug: "running-shoes",
+    description:
+      "The Endorphin Speed 5 blends speed and comfort with PWRRUN PB foam and a nylon plate. It's designed for fast training sessions and race-day performance.",
+    brand: "Saucony",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778409912/c33af7da-0b0a-48e5-8b51-0d47665d7007.png",
+        altText: "Front view of the Endorphin Speed 5",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778409932/613a8afe-93c2-42fe-b21a-fa6e3b2dc618.png",
+        altText: "Side view showing the PWRRUN PB midsole",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778409951/9b260e17-4084-48e3-983f-e643f397c5ad.png",
+        altText: "Back heel view of the Endorphin Speed 4",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778409970/ceb0953e-bdbd-47e8-9da2-8a5464b8b717.png",
+        altText: "Top-down view of the lightweight racing upper",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 4 },
+      { size: "39", stock: 1 },
+      { size: "40", stock: 1 },
+      { size: "41", stock: 3 },
+      { size: "42", stock: 6 },
+      { size: "43", stock: 5 },
+    ],
+    gender: "women",
+  },
+  {
+    name: "Cloudmonster 3 Hyper",
+    slug: "cloudmonster-3-hyper",
+    price: 5199,
+    categorySlug: "running-shoes",
+    description:
+      "The Cloudmonster 3 Hyper features oversized CloudTec cushioning for a uniquely soft and energetic ride. Its rocker shape promotes smooth forward motion during long runs.",
+    brand: "On",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778410182/0d762a6c-bcbb-4bd5-a3de-8af6c98d7107.png",
+        altText: "Front view of the Cloudmonster 3 Hyper",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778410224/7447611d-45d9-4d7d-9d3a-2a9ace2494f8.png",
+        altText: "Side view showing the oversized CloudTec pods",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778410264/42c610b8-121f-49fa-9e90-7ec709db1d33.png",
+        altText: "Back heel view of the Cloudmonster 3 Hyper",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778410243/c8b5e588-c3da-49d6-be10-3117c0f622d9.png",
+        altText: "Top-down view of the engineered mesh upper",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 3 },
+      { size: "39", stock: 6 },
+      { size: "40", stock: 9 },
+      { size: "41", stock: 11 },
+      { size: "42", stock: 7 },
+      { size: "43", stock: 4 },
+    ],
+    gender: "men",
+  },
+  {
+    name: "Mizuno Wave Rider 28",
+    slug: "mizuno-wave-rider-28",
+    price: 3899,
+    categorySlug: "running-shoes",
+    description:
+      "The Mizuno Wave Rider 28 combines balanced cushioning with responsive energy return. Mizuno Wave technology delivers stability and smooth transitions for daily running.",
+    brand: "Mizuno",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778410484/74c8f75d-8c26-4821-886d-cdd2fd133271.png",
+        altText: "Front view of the Mizuno Wave Rider 28",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778410502/e08dd8be-4fbe-4af1-b869-8dcef4a70597.png",
+        altText: "Side view showing the Mizuno Wave plate",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778410579/96c931c5-aba1-49a1-ad01-f218e2d27a26.png",
+        altText: "Back heel view of the Wave Rider 28",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778410520/3864f65a-53ce-4263-bc3a-12931d0a9b92.png",
+        altText: "Top-down view of the breathable running upper",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 5 },
+      { size: "39", stock: 8 },
+      { size: "40", stock: 12 },
+      { size: "41", stock: 10 },
+      { size: "42", stock: 6 },
+      { size: "43", stock: 3 },
+    ],
+    gender: "men",
+  },
+
+  // ─── Training Shoes (10) ───
+  {
+    name: "Adidas Dropset Trainer 4",
+    slug: "adidas-dropset-trainer-4",
+    price: 3299,
+    categorySlug: "training-shoes",
+    description:
+      "The Adidas Dropset Trainer 4 is built for strength training and high-intensity workouts. A dual-density midsole and stable heel provide support for lifting while maintaining flexibility for cardio.",
+    brand: "Adidas",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778411219/imgi_95_Dropset_4_Training_Shoes_Black_JR4673_HM1_m8tgl4.jpg",
+        altText: "Side view showing the dual-density midsole",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778411236/imgi_103_Dropset_4_Training_Shoes_Black_JR4673_db02_standard.tiff_borlmx.jpg",
+        altText: "Heel view with Adidas branding",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 7 },
+      { size: "39", stock: 10 },
+      { size: "40", stock: 12 },
+      { size: "41", stock: 9 },
+      { size: "42", stock: 6 },
+      { size: "43", stock: 4 },
+    ],
+    gender: "men",
+  },
+  {
+    name: "Reebok Nano X4",
+    slug: "reebok-nano-x4",
+    price: 3599,
+    categorySlug: "training-shoes",
+    description:
+      "The Reebok Nano X4 is designed for versatile fitness training. Responsive cushioning and a supportive platform make it ideal for lifting, HIIT, and functional workouts.",
+    brand: "Reebok",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778412131/e2549edc-c7ff-4f90-8e20-edda06cdd45a.png",
+        altText: "Front view of the Reebok Nano X4",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778412152/7f18a692-6372-44b5-9da3-239c74c1bef1.png",
+        altText: "Side view showing the Nano X4 midsole",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778412215/b85755f5-98d1-4c73-a28f-8e50b68bc7dd.png",
+        altText: "Back view of Reebok Nano X4",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778412173/5efb034a-be79-4ec7-8903-b1bc8d123720.png",
+        altText: "Heel view with Nano branding",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 1 },
+      { size: "39", stock: 3 },
+      { size: "40", stock: 1 },
+      { size: "41", stock: 0 },
+      { size: "42", stock: 4 },
+      { size: "43", stock: 3 },
+    ],
+    gender: "unisex",
+  },
+  {
+    name: "Under Armour Project Rock BSR 4",
+    slug: "under-armour-project-rock-bsr-4",
+    price: 2899,
+    categorySlug: "training-shoes",
+    description:
+      "The Under Armour Project Rock BSR 4 delivers durability and comfort for intense gym sessions. Charged Cushioning and a stable base help power through every workout.",
+    brand: "Under Armour",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778412636/6bb7d4b9-7f60-411f-b3e2-ed701d861a64.png",
+        altText: "Front view of the Under Armour Project Rock BSR 4",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778412605/6e94bdd9-4160-4604-ba86-86cb6a42bc6e.png",
+        altText: "Side view showing the Charged Cushioning midsole",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778412572/521168ad-c9d2-4b41-af87-48e87d41c11b.png",
+        altText: "Back view of the supportive heel",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778412508/a3d9d076-37c9-457a-a99b-eb1fcd69493a.png",
+        altText: "Top-down view of the durable upper",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 5 },
+      { size: "39", stock: 8 },
+      { size: "40", stock: 1 },
+      { size: "41", stock: 2 },
+      { size: "42", stock: 0 },
+      { size: "43", stock: 4 },
+    ],
+    gender: "women",
+  },
+  {
+    name: "Puma Fuse 3.0",
+    slug: "puma-fuse-3",
+    price: 2499,
+    categorySlug: "training-shoes",
+    description:
+      "The Puma Fuse 3.0 is made for functional fitness and strength training. A wide stable base and grippy outsole provide confidence during lifting and agility drills.",
+    brand: "Puma",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778412821/c36ba97b-901c-489d-8403-274bde9f6e1c.png",
+        altText: "Front view of the Puma Fuse 3.0",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778412844/97d37254-3932-40ae-a567-3bc82a7ad161.png",
+        altText: "Side view showing the stable outsole",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778412883/85ed56dc-bb18-4f1c-9707-ff1a52b2686f.png",
+        altText: "Angled view of the Fuse 3 upper",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778412864/c697d428-f83c-4d60-a60c-84d4eee4518b.png",
+        altText: "Heel view with Puma branding",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 8 },
+      { size: "39", stock: 11 },
+      { size: "40", stock: 9 },
+      { size: "41", stock: 6 },
+      { size: "42", stock: 4 },
+      { size: "43", stock: 2 },
+    ],
+    gender: "men",
+  },
+  {
+    name: "New Balance Minimus TR",
+    slug: "new-balance-minimus-tr",
+    price: 3199,
+    categorySlug: "training-shoes",
+    description:
+      "The New Balance Minimus TR offers a natural feel with excellent stability for gym sessions. FuelCell cushioning and a low-profile design help balance comfort and control.",
+    brand: "New Balance",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778413050/16eebb11-c803-491a-927c-1dd7015da8ed.png",
+        altText: "Front view of the New Balance Minimus TR",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778413069/cdd96423-0536-46ec-a12c-f2a3c19932ef.png",
+        altText: "Side view showing the FuelCell cushioning",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778413093/bf995658-c485-4a98-a0cf-f06e537d7757.png",
+        altText: "Back view of the Minimus TR heel",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778413143/429aa81a-cc5d-426b-b61c-637936eb2a3d.png",
+        altText: "Top-down view of the training upper",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 7 },
+      { size: "39", stock: 10 },
+      { size: "40", stock: 12 },
+      { size: "41", stock: 8 },
+      { size: "42", stock: 5 },
+      { size: "43", stock: 3 },
+    ],
+    gender: "men",
+  },
+  {
+    name: "Asics Gel-Craze TR 5",
+    slug: "asics-gel-craze-tr-5",
+    price: 2299,
+    categorySlug: "training-shoes",
+    description:
+      "The Asics Gel-Craze TR 5 is designed for versatile gym training. GEL cushioning and a supportive upper provide comfort and stability for cardio and strength workouts.",
+    brand: "Asics",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778413299/20996217-3f4e-45f7-8041-f3712952fcb6.png",
+        altText: "Side view showing the GEL cushioning",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778413319/3bd100e4-8795-486c-b6d4-499cb08fbd8b.png",
+        altText: "Back view of the supportive upper",
+      },
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778413339/56454ba8-9149-46b5-865a-b82cc0d9e3ca.png",
+        altText: "Heel view with Asics branding",
+      },
+    ],
+    sizes: [
+      { size: "38", stock: 9 },
+      { size: "39", stock: 4 },
+      { size: "40", stock: 0 },
+      { size: "41", stock: 1 },
+      { size: "42", stock: 2 },
+      { size: "43", stock: 3 },
+    ],
+    gender: "unisex",
+  },
+  {
+    name: "Adidas Rapidmove ADV Trainer",
+    slug: "adidas-rapidmove-adv-trainer",
+    price: 2699,
+    categorySlug: "training-shoes",
+    description:
+      "The Adidas Rapidmove ADV Trainer is built for dynamic movement. Lightweight cushioning and multidirectional support make it perfect for HIIT and circuit training.",
+    brand: "Adidas",
+    images: [
+      {
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778413769/3c1148ca-2206-48a0-9603-a81bb6e6ad23.png",
+        altText: "Front view of the Adidas Rapidmove ADV Trainer",
       },
     ],
     sizes: [
@@ -1521,322 +1595,32 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
       { size: "42", stock: 8 },
       { size: "43", stock: 5 },
     ],
-    gender: "unisex",
+    gender: "women",
   },
   {
-    name: "Nike Streakfly",
-    slug: "nike-streakfly",
-    price: 4299,
-    categorySlug: "running-shoes",
-    description:
-      "The Nike Streakfly is built for short-distance racing. ZoomX foam delivers propulsive energy return in an ultra-lightweight package designed for 5K and 10K efforts.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000161/run-streakfly-01.jpg",
-        altText: "Front view of the Nike Streakfly",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000162/run-streakfly-02.jpg",
-        altText: "Side view showing the ZoomX racing midsole",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000163/run-streakfly-03.jpg",
-        altText: "Back view of the Streakfly heel",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000164/run-streakfly-04.jpg",
-        altText: "Top-down view of the minimal racing upper",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 3 },
-      { size: "39", stock: 6 },
-      { size: "40", stock: 9 },
-      { size: "41", stock: 11 },
-      { size: "42", stock: 7 },
-      { size: "43", stock: 4 },
-    ],
-    gender: "unisex",
-  },
-
-  // ─── Training Shoes (10) ───
-  {
-    name: "Nike Metcon 9",
-    slug: "nike-metcon-9",
-    price: 3499,
+    name: "Under Armour Tribase Reign 6",
+    slug: "under-armour-tribase-reign-6",
+    price: 3399,
     categorySlug: "training-shoes",
     description:
-      "The Nike Metcon 9 is the gold standard for training. A wider Hyperlift plate and rubber rope wrap provide stability for lifting, while flexible forefoot cushioning supports high-intensity workouts.",
-    brand: "Nike",
+      "The Under Armour Tribase Reign 6 provides exceptional ground contact and stability for weightlifting and functional training. TriBase technology maximizes flexibility and grip.",
+    brand: "Under Armour",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000165/train-metcon9-01.jpg",
-        altText: "Front view of the Nike Metcon 9",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778414305/120fd8bf-f1c5-476b-9496-ca71b7897bfd.png",
+        altText: "Front view of the Under Armour Tribase Reign 6",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000166/train-metcon9-02.jpg",
-        altText: "Side view showing the Hyperlift plate",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778414254/bddf1452-b520-4d55-85d1-34308dd966ae.png",
+        altText: "Side view showing the TriBase outsole",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000167/train-metcon9-03.jpg",
-        altText: "Angled view of the Metcon 9 durable upper",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778414079/938b1e9e-f944-4ee2-bbbe-70649eb6c110.png",
+        altText: "Angled view of the durable training upper",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000168/train-metcon9-04.jpg",
-        altText: "Heel view with Metcon branding and rope wrap",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 7 },
-      { size: "39", stock: 10 },
-      { size: "40", stock: 12 },
-      { size: "41", stock: 9 },
-      { size: "42", stock: 6 },
-      { size: "43", stock: 3 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike Free Metcon 5",
-    slug: "nike-free-metcon-5",
-    price: 2999,
-    categorySlug: "training-shoes",
-    description:
-      "The Nike Free Metcon 5 combines flexibility and stability. Nike Free technology in the forefoot allows natural movement, while the wide heel provides a solid base for lifting.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000169/train-freemetcon5-01.jpg",
-        altText: "Front view of the Nike Free Metcon 5",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000170/train-freemetcon5-02.jpg",
-        altText: "Side view showing the flexible forefoot",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000171/train-freemetcon5-03.jpg",
-        altText: "Back view of the wide stable heel",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000172/train-freemetcon5-04.jpg",
-        altText: "Top-down view of the training upper",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 5 },
-      { size: "39", stock: 8 },
-      { size: "40", stock: 10 },
-      { size: "41", stock: 12 },
-      { size: "42", stock: 7 },
-      { size: "43", stock: 4 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike Air Zoom SuperRep 4",
-    slug: "nike-air-zoom-superrep-4",
-    price: 2799,
-    categorySlug: "training-shoes",
-    description:
-      "The Nike Air Zoom SuperRep 4 is built for high-intensity interval training. Zoom Air cushioning in the forefoot and a supportive containment system keep you explosive and stable.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000173/train-superrep4-01.jpg",
-        altText: "Front view of the Nike Air Zoom SuperRep 4",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000174/train-superrep4-02.jpg",
-        altText: "Side view showing the Zoom Air forefoot units",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000175/train-superrep4-03.jpg",
-        altText: "Angled view of the SuperRep 4 upper",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000176/train-superrep4-04.jpg",
-        altText: "Heel view with SuperRep branding",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 9 },
-      { size: "39", stock: 12 },
-      { size: "40", stock: 8 },
-      { size: "41", stock: 5 },
-      { size: "42", stock: 3 },
-      { size: "43", stock: 1 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike Legend Essential 3",
-    slug: "nike-legend-essential-3",
-    price: 1999,
-    categorySlug: "training-shoes",
-    description:
-      "The Nike Legend Essential 3 delivers versatile performance for gym workouts. A flat, stable base and durable upper provide support for lifting, cardio, and everything in between.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000177/train-legend3-01.jpg",
-        altText: "Front view of the Nike Legend Essential 3",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000178/train-legend3-02.jpg",
-        altText: "Side view showing the stable training base",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000179/train-legend3-03.jpg",
-        altText: "Back view of the Legend Essential 3 heel",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000180/train-legend3-04.jpg",
-        altText: "Top-down view of the durable upper",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 11 },
-      { size: "39", stock: 14 },
-      { size: "40", stock: 9 },
-      { size: "41", stock: 6 },
-      { size: "42", stock: 4 },
-      { size: "43", stock: 2 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike MC Trainer 2",
-    slug: "nike-mc-trainer-2",
-    price: 1799,
-    categorySlug: "training-shoes",
-    description:
-      "The Nike MC Trainer 2 is your all-in-one gym shoe. Flat, stable support for lifting meets flexible cushioning for cardio, making it perfect for varied workouts.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000181/train-mc2-01.jpg",
-        altText: "Front view of the Nike MC Trainer 2",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000182/train-mc2-02.jpg",
-        altText: "Side view showing the versatile midsole",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000183/train-mc2-03.jpg",
-        altText: "Angled view of the MC Trainer 2 upper",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000184/train-mc2-04.jpg",
-        altText: "Heel view with MC Trainer branding",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 6 },
-      { size: "39", stock: 9 },
-      { size: "40", stock: 11 },
-      { size: "41", stock: 13 },
-      { size: "42", stock: 8 },
-      { size: "43", stock: 5 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike Renew Retaliation TR 3",
-    slug: "nike-renew-retaliation-tr-3",
-    price: 2199,
-    categorySlug: "training-shoes",
-    description:
-      "The Nike Renew Retaliation TR 3 combines soft Renew foam with a durable upper for versatile training comfort. Ideal for gym sessions, classes, and casual wear.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000185/train-retaliation3-01.jpg",
-        altText: "Front view of the Nike Renew Retaliation TR 3",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000186/train-retaliation3-02.jpg",
-        altText: "Side view showing the Renew foam midsole",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000187/train-retaliation3-03.jpg",
-        altText: "Back view of the Retaliation TR 3 heel",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000188/train-retaliation3-04.jpg",
-        altText: "Top-down view of the training upper",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 8 },
-      { size: "39", stock: 11 },
-      { size: "40", stock: 9 },
-      { size: "41", stock: 6 },
-      { size: "42", stock: 3 },
-      { size: "43", stock: 1 },
-    ],
-    gender: "men",
-  },
-  {
-    name: "Nike Varsity Compete TR 3",
-    slug: "nike-varsity-compete-tr-3",
-    price: 1899,
-    categorySlug: "training-shoes",
-    description:
-      "The Nike Varsity Compete TR 3 is built for the grind. Durable materials and a stable base provide the support needed for heavy lifting and intense training sessions.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000189/train-varsity3-01.jpg",
-        altText: "Front view of the Nike Varsity Compete TR 3",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000190/train-varsity3-02.jpg",
-        altText: "Side view showing the durable training upper",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000191/train-varsity3-03.jpg",
-        altText: "Angled view of the Varsity Compete TR 3",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000192/train-varsity3-04.jpg",
-        altText: "Heel view with Varsity Compete branding",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 10 },
-      { size: "39", stock: 13 },
-      { size: "40", stock: 8 },
-      { size: "41", stock: 5 },
-      { size: "42", stock: 3 },
-      { size: "43", stock: 1 },
-    ],
-    gender: "men",
-  },
-  {
-    name: "Nike Savaleos",
-    slug: "nike-savaleos",
-    price: 2499,
-    categorySlug: "training-shoes",
-    description:
-      "The Nike Savaleos is built for Olympic weightlifting. A wide, flat base and rigid midsole provide the stability needed for heavy squats, cleans, and snatches.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000193/train-savaleos-01.jpg",
-        altText: "Front view of the Nike Savaleos",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000194/train-savaleos-02.jpg",
-        altText: "Side view showing the rigid weightlifting base",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000195/train-savaleos-03.jpg",
-        altText: "Back view of the Savaleos heel",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000196/train-savaleos-04.jpg",
-        altText: "Top-down view of the strap and upper",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778414158/c4944935-debd-407e-a8c7-b982625a2e20.png",
+        altText: "Heel view with Tribase branding",
       },
     ],
     sizes: [
@@ -1844,80 +1628,44 @@ const seedShoes: (InsertProduct & { categorySlug: string })[] = [
       { size: "39", stock: 7 },
       { size: "40", stock: 10 },
       { size: "41", stock: 12 },
-      { size: "42", stock: 8 },
-      { size: "43", stock: 5 },
+      { size: "42", stock: 9 },
+      { size: "43", stock: 6 },
     ],
-    gender: "unisex",
+    gender: "men",
   },
   {
-    name: "Nike Romaleos 4",
-    slug: "nike-romaleos-4",
-    price: 4999,
+    name: "Puma PWRFrame TR 3",
+    slug: "puma-pwrframe-tr-3",
+    price: 2599,
     categorySlug: "training-shoes",
     description:
-      "The Nike Romaleos 4 is the ultimate weightlifting shoe. A rigid heel, wide base, and adjustable straps provide unmatched stability and power transfer for competitive lifting.",
-    brand: "Nike",
+      "The Puma PWRFrame TR 3 combines lightweight responsiveness with targeted support for gym training. The engineered upper and stable frame help you stay locked in during explosive workouts.",
+    brand: "Puma",
     images: [
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000197/train-romaleos4-01.jpg",
-        altText: "Front view of the Nike Romaleos 4",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778414562/21496307-09c2-4804-8f8a-905c621b4cff.png",
+        altText: "Front view of the Puma PWRFrame TR 3",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000198/train-romaleos4-02.jpg",
-        altText: "Side view showing the rigid heel and straps",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778414584/34423046-0272-4de0-b850-41968ebc3a6b.png",
+        altText: "Side view showing the PWRFrame support system",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000199/train-romaleos4-03.jpg",
-        altText: "Angled view of the Romaleos 4 premium upper",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778414605/ba28585c-11ef-452e-a87c-5cf618849939.png",
+        altText: "Back view of the PWRFrame TR 3 heel",
       },
       {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000200/train-romaleos4-04.jpg",
-        altText: "Heel view with Romaleos branding",
+        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778414626/559ec9c6-468a-45e0-9ef7-25664ce76f36.png",
+        altText: "Top-down view of the engineered training upper",
       },
     ],
     sizes: [
-      { size: "38", stock: 3 },
-      { size: "39", stock: 6 },
-      { size: "40", stock: 9 },
-      { size: "41", stock: 11 },
-      { size: "42", stock: 7 },
+      { size: "38", stock: 8 },
+      { size: "39", stock: 11 },
+      { size: "40", stock: 13 },
+      { size: "41", stock: 9 },
+      { size: "42", stock: 6 },
       { size: "43", stock: 4 },
-    ],
-    gender: "unisex",
-  },
-  {
-    name: "Nike ZoomX Invincible Run Flyknit 3",
-    slug: "nike-zoomx-invincible-run-flyknit-3",
-    price: 4299,
-    categorySlug: "training-shoes",
-    description:
-      "The Nike ZoomX Invincible Run Flyknit 3 delivers maximum cushioning for recovery runs and long training days. ZoomX foam and a Flyknit upper provide plush comfort and breathability.",
-    brand: "Nike",
-    images: [
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000201/train-invincible3-01.jpg",
-        altText: "Front view of the Nike ZoomX Invincible Run Flyknit 3",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000202/train-invincible3-02.jpg",
-        altText: "Side view showing the full ZoomX midsole",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000203/train-invincible3-03.jpg",
-        altText: "Back view of the Invincible Run Flyknit 3 heel",
-      },
-      {
-        url: "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778000204/train-invincible3-04.jpg",
-        altText: "Top-down view of the Flyknit upper",
-      },
-    ],
-    sizes: [
-      { size: "38", stock: 6 },
-      { size: "39", stock: 9 },
-      { size: "40", stock: 11 },
-      { size: "41", stock: 13 },
-      { size: "42", stock: 8 },
-      { size: "43", stock: 5 },
     ],
     gender: "unisex",
   },
