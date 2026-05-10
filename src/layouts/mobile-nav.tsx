@@ -21,6 +21,7 @@ import {
   ArrowUpRight,
   ChevronRight,
   ShoppingBag,
+  X,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -100,6 +101,14 @@ export const MobileNav = ({ links }: { links: NavItem[] }) => {
         side="left"
         className="w-9/10 p-0 overflow-hidden"
       >
+        <Button
+          variant={"outline"}
+          className="absolute right-2 top-3"
+          size={"icon"}
+          onClick={() => setNavOpen(() => false)}
+        >
+          <X />
+        </Button>
         <div className="flex flex-col h-full">
           {/* Header */}
           <SheetHeader className="px-5 pt-5 pb-3 border-b shrink-0">
