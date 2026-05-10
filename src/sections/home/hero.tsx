@@ -12,22 +12,22 @@ import { siteConfig } from "@/site-config";
 const content = [
   {
     id: 1,
-    title: "BEST SNEAKER DEALS",
-    caption: "New Drop · Limited Edition",
-    description: `Discover unbeatable sneaker deals at ${siteConfig.name}. Built for comfort and turning heads from CBD to Westlands.`,
+    title: "BEST STREETWEAR DROPS",
+    caption: "Urban Style · Everyday Flex",
+    description: `Discover premium streetwear at ${siteConfig.name}. Designed for comfort and effortless drip from CBD to Westlands.`,
     image:
-      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777644343/hero-sneaker_litw48.png",
-    link: "/products?category=sneakers",
+      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778422268/streetware_ubvev0.png",
+    link: "/products?category=everday-shoes",
   },
   {
     id: 2,
-    title: "NEW T-SHIRT DROP",
-    caption: "Genz T-shirts",
+    title: "LEVEL UP YOUR GAME",
+    caption: "Basketball Shoes",
     description:
-      "Upgrade luku yako with our latest T-shirt collection. Trendy and comfortable for every sherehe.",
+      "Dominate every court with our latest basketball shoes. Built for speed, comfort, and next-level performance.",
     image:
-      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777645585/t-shirt_kdpest.png",
-    link: "/products?category=t-shirts",
+      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778421770/Basketball_snzqgp.png",
+    link: "/products?category=basketball-shoes",
   },
 ];
 
