@@ -41,7 +41,6 @@ export const EditCartItemDialog = ({
   const [quantity, setQuantity] = useState(cartItem.quantity);
 
   const sizeChanged = selectedSize.size !== cartItem.size.size;
-  const isAtStockLimit = quantity >= selectedSize.stock;
 
   const handleSave = () => {
     if (sizeChanged) {
@@ -56,7 +55,7 @@ export const EditCartItemDialog = ({
         quantity,
         availableSizes: cartItem.availableSizes,
         slug: cartItem.slug,
-        offer: cartItem.offer,
+        discountedPrice: cartItem.discountedPrice,
       });
     } else {
       updateQuantity(cartItem.id, quantity);

@@ -28,18 +28,6 @@ export const CartItemCard = ({ cartItem }: CartItemProps) => {
   const removeItem = useCartStore((state) => state.removeItem);
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const [openEditCartItem, setOpenEditCartItem] = useState(false);
-  const finalPrice = Math.ceil(
-    cartItem.offer
-      ? cartItem.offer.discountType === "percentage"
-        ? cartItem.price - (cartItem.price * cartItem.offer.discountValue) / 100
-        : cartItem.price - cartItem.offer.discountValue
-      : cartItem.price,
-  );
-
-  const discountLabel =
-    cartItem.offer?.discountType === "percentage"
-      ? `${cartItem.offer.discountValue}% OFF`
-      : `Ksh ${cartItem.offer?.discountValue} OFF`;
 
   return (
     <>
@@ -47,10 +35,13 @@ export const CartItemCard = ({ cartItem }: CartItemProps) => {
         key={cartItem.id}
         className="group flex gap-4 rounded-xl border bg-card p-3 relative"
       >
-        {cartItem.offer && (
+        {cartItem.discountedPrice && (
           <div className="absolute -top-3 -left-2 z-20">
             <span className="text-[9px] font-bold bg-primary text-primary-foreground px-2 py-1 rounded-md">
-              {discountLabel}
+              - Ksh{" "}
+              {Math.ceil(
+                (cartItem.price - cartItem.discountedPrice) * cartItem.quantity,
+              ).toLocaleString()}
             </span>
           </div>
         )}
@@ -133,15 +124,16 @@ export const CartItemCard = ({ cartItem }: CartItemProps) => {
               <p
                 className={cn(
                   "text-sm font-semibold",
-                  cartItem.offer &&
+                  cartItem.discountedPrice &&
                     "line-through text-muted-foreground text-xs",
                 )}
               >
                 Ksh {formatPrice(cartItem.price * cartItem.quantity)}
               </p>
-              {cartItem.offer && (
+              {cartItem.discountedPrice && (
                 <p className="text-sm font-semibold">
-                  Ksh {formatPrice(finalPrice * cartItem.quantity)}
+                  Ksh{" "}
+                  {formatPrice(cartItem.discountedPrice * cartItem.quantity)}
                 </p>
               )}
             </div>

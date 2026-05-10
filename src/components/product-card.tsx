@@ -56,7 +56,7 @@ export const ProductCard = ({
     size: product.sizes?.[0]?.size ?? "",
     availableSizes: product.sizes,
     slug: product.slug,
-    offer: offer ?? null,
+    discountedPrice: hasOffer ? finalPrice : null,
   };
 
   const href = `/products/${product.slug}`;

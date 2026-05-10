@@ -65,12 +65,12 @@ export const ProductContent = ({ product }: ProductContentProps) => {
   const wishlistProduct: WishlistItem = {
     id: product.id,
     name: product.name,
-    price: discountedPrice,
+    price: product.price,
     image: product.images[0].url,
     size: product.sizes[0]?.size ?? "",
     availableSizes: product.sizes,
     slug: product.slug,
-    offer: product.offer,
+    discountedPrice: hasOffer ? discountedPrice : null,
   };
 
   const addToCart = (type: "Buy" | "cart") => {
@@ -83,13 +83,13 @@ export const ProductContent = ({ product }: ProductContentProps) => {
     addItem({
       productId: product.id,
       name: product.name,
-      price: discountedPrice,
+      price: product.price,
       image: product.images[0]?.url || "",
       size: selectedSize,
       quantity,
       availableSizes: product.sizes,
       slug: product.slug,
-      offer: product.offer,
+      discountedPrice: hasOffer ? discountedPrice : null,
     });
     if (type === "Buy") {
       openCart(true);

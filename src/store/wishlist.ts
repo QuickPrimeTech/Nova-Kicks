@@ -2,7 +2,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { ProductSize, ProductWithOptionalOffer } from "@/types/product";
+import { ProductSize} from "@/types/product";
 
 export type WishlistItem = {
   id: string; // productId (unique identifier)
@@ -12,7 +12,7 @@ export type WishlistItem = {
   size?: string; // optional: if they selected a preferred size
   availableSizes: ProductSize[];
   slug: string;
-  offer: ProductWithOptionalOffer["offer"];
+  discountedPrice: number | null;
 };
 
 type WishlistStore = {
