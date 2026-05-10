@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1777735190910,
-      "tag": "0000_absent_luminals",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1777808850062,
-      "tag": "0001_far_boomer",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1777814325347,
-      "tag": "0002_lying_bullseye",
+      "when": 1778415192795,
+      "tag": "0000_flat_leader",
       "breakpoints": true
     }
   ]

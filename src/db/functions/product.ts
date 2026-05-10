@@ -434,8 +434,7 @@ export async function getLimitedProducts(): Promise<LimitedProduct[]> {
         lte(offers.startDate, sql`now()`),
         gte(offers.endDate, sql`now()`),
       ),
-    )
-    .limit(8);
+    );
 
   const grouped = new Map<string, LimitedProduct>();
 
@@ -445,6 +444,9 @@ export async function getLimitedProducts(): Promise<LimitedProduct[]> {
     const sizes = product.sizes ?? [];
 
     const totalStock = sizes.reduce((sum, s) => sum + (s.stock ?? 0), 0);
+
+    // ONLY keep limited stock products
+    if (totalStock >= 20) continue;
 
     const enriched: LimitedProduct = {
       ...product,
@@ -457,7 +459,6 @@ export async function getLimitedProducts(): Promise<LimitedProduct[]> {
     grouped.set(product.id, enriched);
   }
 
-  return Array.from(grouped.values()).filter(
-    (product) => product.totalStock < 10,
-  );
+  // Limit AFTER filtering
+  return Array.from(grouped.values()).slice(0, 8);
 }

@@ -221,7 +221,7 @@ export function LightboxDialog({
               <CarouselItem key={`${image.url}-${image.altText}`}>
                 <div
                   className={cn(
-                    "relative aspect-square w-full overflow-hidden rounded-md",
+                    "relative aspect-square w-full overflow-hidden rounded-md bg-[#F5F6F7]",
                     isTouch ? "touch-pan-x touch-pan-y" : "cursor-zoom-in",
                   )}
                   onMouseEnter={() => !isTouch && setZoomed(true)}
@@ -272,7 +272,7 @@ export function LightboxDialog({
               images.map((img, i) => (
                 <CarouselItem
                   key={`${img.url}-${img.altText}`}
-                  className="basis-1/5 aspect-4/3"
+                  className="basis-1/5 aspect-4/3 bg-[#F5F6F7]"
                 >
                   <button
                     onClick={() => api?.scrollTo(i)}
@@ -339,7 +339,7 @@ export const ProductThumbnail = ({
             {images.map((image) => (
               <CarouselItem key={`${image.url}-${image.altText}`}>
                 <div
-                  className="relative aspect-square cursor-zoom-in overflow-hidden rounded-xl"
+                  className="relative aspect-square cursor-zoom-in overflow-hidden rounded-xl bg-[#F5F6F7]"
                   onClick={() => setOpen(true)}
                 >
                   <Image
@@ -362,7 +362,7 @@ export const ProductThumbnail = ({
               images.map((img, i) => (
                 <CarouselItem
                   key={`${img.url}-${img.altText}`}
-                  className="basis-1/5 md:basis-1/6 pl-0 aspect-square"
+                  className="basis-1/5 md:basis-1/6 pl-0 aspect-square bg-[#F5F6F7]"
                 >
                   <button
                     onClick={() => api?.scrollTo(i)}

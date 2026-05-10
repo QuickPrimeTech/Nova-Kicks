@@ -96,7 +96,7 @@ export const ProductCard = ({
 
       {/* MAIN IMAGE */}
       <Link href={href} className="block">
-        <div className="relative aspect-square overflow-hidden">
+        <div className="relative aspect-square overflow-hidden bg-[#F5F6F7]">
           <Image
             src={productImage?.url}
             alt={productImage?.altText ?? product.name}
@@ -123,7 +123,7 @@ export const ProductCard = ({
               <CarouselItem
                 key={`${img.url}-${img.altText}`}
                 className={cn(
-                  "basis-1/6 aspect-square opacity-50 pl-0 border rounded-md overflow-hidden",
+                  "basis-1/6 aspect-square opacity-50 pl-0 border rounded-md overflow-hidden bg-[#F5F6F7]",
                   productImage?.url === img.url && "opacity-100",
                 )}
                 onClick={() => setProductImage(img)}

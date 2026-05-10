@@ -1,5 +1,5 @@
 {
-  "id": "53a091e6-28f3-4b45-9928-f90e1ce4b924",
+  "id": "e6a3f320-ab5d-4915-b987-7a4bb2ee703b",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -52,6 +52,13 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
+        "categories_name_unique": {
+          "name": "categories_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        },
         "categories_slug_unique": {
           "name": "categories_slug_unique",
           "nullsNotDistinct": false,
@@ -89,7 +96,8 @@
         },
         "discount_type": {
           "name": "discount_type",
-          "type": "text",
+          "type": "discount_type",
+          "typeSchema": "public",
           "primaryKey": false,
           "notNull": true
         },
@@ -578,6 +586,14 @@
     }
   },
   "enums": {
+    "public.discount_type": {
+      "name": "discount_type",
+      "schema": "public",
+      "values": [
+        "percentage",
+        "fixed_amount"
+      ]
+    },
     "public.gender": {
       "name": "gender",
       "schema": "public",

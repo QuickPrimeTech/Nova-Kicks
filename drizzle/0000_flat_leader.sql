@@ -1,3 +1,4 @@
+CREATE TYPE "public"."discount_type" AS ENUM('percentage', 'fixed_amount');--> statement-breakpoint
 CREATE TYPE "public"."gender" AS ENUM('men', 'women', 'unisex');--> statement-breakpoint
 CREATE TABLE "categories" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
@@ -6,6 +7,7 @@ CREATE TABLE "categories" (
 	"image_url" text,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
 	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
+	CONSTRAINT "categories_name_unique" UNIQUE("name"),
 	CONSTRAINT "categories_slug_unique" UNIQUE("slug")
 );
 --> statement-breakpoint
@@ -13,7 +15,7 @@ CREATE TABLE "offers" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"code" text,
 	"description" text NOT NULL,
-	"discount_type" text NOT NULL,
+	"discount_type" "discount_type" NOT NULL,
 	"discount_value" integer NOT NULL,
 	"min_order_amount" integer DEFAULT 0,
 	"product_id" uuid,
