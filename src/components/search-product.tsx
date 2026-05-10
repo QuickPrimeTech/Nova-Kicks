@@ -1,7 +1,7 @@
 // @/components/search-product.tsx
 "use client";
 import * as React from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
