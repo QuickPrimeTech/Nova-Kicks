@@ -5,22 +5,34 @@ import { siteConfig } from "@/site-config";
 
 const seedCategories = [
   {
-    name: "Sneakers",
-    slug: "sneakers",
+    name: "Lifestyle Shoes",
+    slug: "lifestyle-shoes",
     image:
-      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777991101/imgi_3_662364953_18099137689999564_3191625143083664886_n_h0phld.webp",
+      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778388383/cat-lifestyle--EWmR9B__vyh7e1.jpg",
   },
   {
-    name: "Jackets",
-    slug: "jackets",
+    name: "Everyday Shoes",
+    slug: "everyday-shoes",
     image:
-      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777991974/21ad232f-217b-4873-8576-f622c3751bd7.png",
+      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778388501/qCG28_ht5sjo.jpg",
   },
   {
-    name: "T-Shirts",
-    slug: "tshirts",
+    name: "Basketball Shoes",
+    slug: "basketball-shoes",
     image:
-      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1777992631/imgi_53_684091150_18556491055066504_8429370676855758771_n_w3fnlz.webp",
+      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778387977/cat-basketball-J-8OeFhd_zd3qso.jpg",
+  },
+  {
+    name: "Running Shoes",
+    slug: "running-shoes",
+    image:
+      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778388133/running-shoes_s99k4g.jpg",
+  },
+  {
+    name: "Training Shoes",
+    slug: "training-shoes",
+    image:
+      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778388289/training-shoes_rimpuq.jpg",
   },
 ];
 
