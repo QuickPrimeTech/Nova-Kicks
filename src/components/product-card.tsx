@@ -35,11 +35,13 @@ export const ProductCard = ({
 
   const price = product.price;
 
-  const finalPrice = offer
-    ? offer.discountType === "percentage"
-      ? price - (price * offer.discountValue) / 100
-      : price - offer.discountValue
-    : price;
+  const finalPrice = Math.ceil(
+    offer
+      ? offer.discountType === "percentage"
+        ? price - (price * offer.discountValue) / 100
+        : price - offer.discountValue
+      : price,
+  );
 
   const discountLabel =
     offer?.discountType === "percentage"
@@ -147,29 +149,21 @@ export const ProductCard = ({
 
           {/* PRICE LOGIC */}
           <div className="mt-2 flex items-center gap-2">
-            {hasOffer ? (
-              <>
-                <span className="line-through text-muted-foreground text-sm">
-                  Ksh {price.toLocaleString()}
-                </span>
-                <span className="font-bold">Ksh {price.toLocaleString()}</span>
-                {stock && (
-                  <Badge variant={"destructive"}>
-                    <Clock />
-                    {stock} Left in stock
-                  </Badge>
-                )}
-              </>
-            ) : (
-              <>
-                {stock && (
-                  <Badge variant={"destructive"}>
-                    <Clock />
-                    {stock} Left in stock
-                  </Badge>
-                )}
-                <span className="font-bold">Ksh {price.toLocaleString()}</span>
-              </>
+            {hasOffer && (
+              <span className="text-sm text-muted-foreground line-through">
+                Ksh {price.toLocaleString()}
+              </span>
+            )}
+
+            <span className="font-bold">
+              Ksh {(hasOffer ? finalPrice : price).toLocaleString()}
+            </span>
+
+            {stock && (
+              <Badge variant="destructive">
+                <Clock />
+                {stock} Left
+              </Badge>
             )}
           </div>
 

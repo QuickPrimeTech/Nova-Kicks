@@ -22,13 +22,13 @@ export const Marquee = () => {
     <section className="border-border bg-background flex w-full overflow-hidden border-y py-8">
       {/* First block sliding left */}
       {/* Added gap-12 and pr-12 to ensure perfect spacing when the loop resets */}
-      <div className="animate-marquee flex shrink-0 items-center gap-12 pr-12 whitespace-nowrap">
+      <div className="animate-marquee font-medium flex shrink-0 items-center gap-12 pr-12 whitespace-nowrap">
         {marqueeContent}
       </div>
 
       {/* Second identical block trailing right behind it */}
       <div
-        className="animate-marquee flex shrink-0 items-center gap-12 pr-12 whitespace-nowrap"
+        className="animate-marquee font-medium flex shrink-0 items-center gap-12 pr-12 whitespace-nowrap"
         aria-hidden="true"
       >
         {marqueeContent}

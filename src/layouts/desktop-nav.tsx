@@ -100,28 +100,32 @@ export const DesktopNav = ({ links, categories }: DesktopNavProps) => {
                 <NavigationMenuTrigger className="bg-transparent h-auto px-4 py-2 text-sm font-medium rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors">
                   {item.label}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="w-48 p-2 space-y-0.5">
-                    {item.items.map((sub) => (
-                      <li key={sub.href}>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            href={sub.href}
-                            className={cn(
-                              "flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-                              pathname === sub.href
-                                ? "bg-primary/10 text-primary"
-                                : "text-foreground hover:bg-secondary",
-                            )}
-                          >
-                            {sub.label}
-                            <ArrowUpRight className="size-3.5 text-muted-foreground" />
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="px-2 pb-2">
+                <NavigationMenuContent className="max-h-[50vh] grid grid-rows-[minmax(0,1fr)_auto]">
+                  <ScrollArea className="h-full bg-muted/10 rounded-sm">
+                    <ul className="w-48 p-2 space-y-0.5">
+                      {item.items.map((sub) => (
+                        <li key={sub.href}>
+                          <NavigationMenuLink asChild>
+                            <Link
+                              href={sub.href}
+                              className={cn(
+                                "flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                                pathname === sub.href
+                                  ? "bg-primary/10 text-primary"
+                                  : "text-foreground hover:bg-secondary",
+                              )}
+                            >
+                              {sub.label}
+                              <ArrowUpRight className="size-3.5 text-muted-foreground" />
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <ScrollBar />
+                  </ScrollArea>
+                  <div className="px-2 pb-2 border-t">
                     <Button
                       variant="link"
                       size="sm"
