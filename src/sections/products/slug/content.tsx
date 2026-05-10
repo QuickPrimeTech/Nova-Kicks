@@ -17,7 +17,7 @@ import { ProductWithOptionalOffer } from "@/types/product";
 import { useCartUIStore } from "@/store/cart-ui";
 import { AppBreadcrumb } from "@/layouts/app-breadcrumb";
 import { SizeGuideDialog } from "@/sections/categories/slug/size-guide-dialog";
-import { QuantitySelector } from "./quantity";
+import { QuantitySelector } from "./quantity-selector";
 
 interface ProductContentProps {
   product: ProductWithOptionalOffer;

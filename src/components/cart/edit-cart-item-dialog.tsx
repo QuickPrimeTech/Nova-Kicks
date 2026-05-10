@@ -1,6 +1,5 @@
 // @/components/cart/edit-cart-item-dialog.tsx
 "use client";
-
 import { useState } from "react";
 import { CartItem, useCartStore } from "@/store/cart";
 import { Button } from "@/components/ui/button";
@@ -12,11 +11,12 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
-import { Edit, Minus, Plus } from "lucide-react";
+import { Edit } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatPrice } from "@/helpers/formatters";
 import { toast } from "sonner";
 import Link from "next/link";
+import { QuantitySelector } from "@/sections/products/slug/quantity-selector";
 
 type ProductSize = CartItem["size"];
 
@@ -119,32 +119,12 @@ export const EditCartItemDialog = ({
         <div className="space-y-2">
           <p className="text-sm font-medium">Quantity</p>
           <div className="flex items-center gap-4">
-            <div className="flex items-center rounded-xl border overflow-hidden">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-9 w-9 rounded-none"
-                disabled={quantity <= 1}
-                onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                aria-label="Decrease quantity"
-              >
-                <Minus className="size-3.5" />
-              </Button>
-              <span className="w-10 flex items-center justify-center text-sm font-semibold tabular-nums border-x h-9">
-                {quantity}
-              </span>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-9 w-9 rounded-none"
-                disabled={isAtStockLimit}
-                onClick={() => setQuantity((q) => q + 1)}
-                aria-label="Increase quantity"
-                title={isAtStockLimit ? "Stock limit reached" : undefined}
-              >
-                <Plus className="size-3.5" />
-              </Button>
-            </div>
+            <QuantitySelector
+              variant="sm"
+              quantity={quantity}
+              setQuantity={setQuantity}
+              selectedSize={selectedSize}
+            />
             <span className="text-sm font-semibold">
               Ksh {formatPrice(cartItem.price * quantity)}
             </span>

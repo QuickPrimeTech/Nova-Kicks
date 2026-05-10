@@ -18,7 +18,7 @@ import {
 } from "../ui/alert-dialog";
 import { useState } from "react";
 import { EditCartItemDialog } from "./edit-cart-item-dialog";
-import { QuantitySelector } from "@/sections/products/slug/quantity";
+import { QuantitySelector } from "@/sections/products/slug/quantity-selector";
 
 type CartItemProps = {
   cartItem: CartItem;
