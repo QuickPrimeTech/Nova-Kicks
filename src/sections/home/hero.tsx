@@ -17,7 +17,7 @@ const content = [
     description: `Discover premium streetwear at ${siteConfig.name}. Designed for comfort and effortless drip from CBD to Westlands.`,
     image:
       "https://res.cloudinary.com/quick-prime-tech/image/upload/v1778422268/streetware_ubvev0.png",
-    link: "/products?category=everday-shoes",
+    link: "/products?category=everyday-shoes",
   },
   {
     id: 2,
