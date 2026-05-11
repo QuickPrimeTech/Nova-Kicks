@@ -10,6 +10,8 @@ import { notFound } from "next/navigation";
 import { SimilarProducts } from "@/sections/products/slug/similar-products";
 import { unstable_cache } from "next/cache";
 import { siteConfig } from "@/site-config";
+import { Suspense } from "react";
+import { ProductDetailsSkeleton } from "@/sections/products/slug/product-details-skeleton";
 
 // Cache at the Next.js level — shared across workers during build
 const getProductCached = unstable_cache(
@@ -91,7 +93,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductPage({ params }: PageProps) {
+async function ProductDetails({ params }: PageProps) {
   const { slug } = await params;
   const product = await getProductCached(slug);
   const similarProducts = await getSimilarProductsCached(slug);
@@ -102,5 +104,13 @@ export default async function ProductPage({ params }: PageProps) {
       <ProductContent product={product} />
       <SimilarProducts similarProducts={similarProducts} />
     </div>
+  );
+}
+
+export default async function ProductPage({ params }: PageProps) {
+  return (
+    <Suspense fallback={<ProductDetailsSkeleton />}>
+      <ProductDetails params={params} />
+    </Suspense>
   );
 }
