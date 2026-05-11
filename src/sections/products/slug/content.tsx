@@ -18,6 +18,8 @@ import { AppBreadcrumb } from "@/layouts/app-breadcrumb";
 import { SizeGuideDialog } from "@/sections/categories/slug/size-guide-dialog";
 import { QuantitySelector } from "./quantity-selector";
 import { SizeSelector } from "./size-selector";
+import { OfferBanner } from "./offer-banner";
+import { ProductMeta } from "./product-meta";
 
 interface ProductContentProps {
   product: ProductWithOptionalOffer;
@@ -211,22 +213,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
 
           {/* Offer Banner */}
           {hasOffer && (
-            <div className="rounded-xl bg-destructive/10 border border-destructive/20 p-4 space-y-2">
-              <div className="flex items-center gap-2 text-destructive font-semibold">
-                <Tag className="w-4 h-4" />
-                <span>Special Offer</span>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                {product.offer?.description ||
-                  `Get ${discountPercentage}% off this item. Discount applied at checkout.`}
-              </p>
-              {product.offer?.endDate && (
-                <p className="text-xs text-destructive font-medium">
-                  Offer ends{" "}
-                  {new Date(product.offer.endDate).toLocaleDateString()}
-                </p>
-              )}
-            </div>
+            <OfferBanner offer={product.offer} price={product.price} />
           )}
 
           {/* Description */}
@@ -321,41 +308,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
           </div>
 
           {/* Meta */}
-          <div className="rounded-2xl bg-muted p-5 space-y-3 text-sm">
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">SKU</span>
-              <span className="font-mono font-medium">
-                {product.slug.toUpperCase()}
-              </span>
-            </div>
-
-            {product.brand && (
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Brand</span>
-                <span className="font-medium">{product.brand}</span>
-              </div>
-            )}
-
-            {selectedSize && (
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Availability</span>
-                <span className="font-medium">
-                  {isOutOfStock
-                    ? "Unavailable"
-                    : `${selectedSize.stock} in stock`}
-                </span>
-              </div>
-            )}
-
-            {hasOffer && (
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Discount</span>
-                <span className="font-medium text-destructive">
-                  {discountPercentage}% off
-                </span>
-              </div>
-            )}
-          </div>
+          <ProductMeta product={product} selectedSize={selectedSize} />
         </div>
       </div>
     </div>
