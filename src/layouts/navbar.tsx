@@ -69,11 +69,6 @@ const useNav = ({ categories, brands }: UseNavProps): NavItem[] => {
       label: "Discounted",
       href: "/products?discounted=true",
     },
-    {
-      kind: "link",
-      label: "All products",
-      href: "/products",
-    },
   ];
 };
 

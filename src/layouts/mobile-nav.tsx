@@ -189,7 +189,22 @@ export const MobileNav = ({ links }: { links: NavItem[] }) => {
                       </motion.div>
                     ),
                   )}
-
+                  {/* All Products link */}
+                  <motion.div variants={itemVariants}>
+                    <SheetClose asChild>
+                      <Link
+                        href={"/products"}
+                        className={cn(
+                          "flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors",
+                          pathname === "/products"
+                            ? "bg-primary/10 text-primary"
+                            : "text-foreground hover:bg-secondary",
+                        )}
+                      >
+                        All Products
+                      </Link>
+                    </SheetClose>
+                  </motion.div>
                   <motion.div variants={itemVariants}>
                     <Separator className="my-3" />
                   </motion.div>
@@ -223,7 +238,6 @@ export const MobileNav = ({ links }: { links: NavItem[] }) => {
                     </motion.div>
                   </div>
                   <Separator className="my-3" />
-
                   <motion.div variants={itemVariants} className="px-1">
                     <div className="rounded-2xl overflow-hidden border">
                       <div className="px-4 py-3 bg-muted/60 border-b">
