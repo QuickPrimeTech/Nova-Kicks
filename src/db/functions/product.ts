@@ -159,15 +159,17 @@ export async function getProductsForNav() {
   }));
 }
 
-export async function getBrands() {
+export async function getBrands(limit?: number) {
   "use cache";
 
-  const rows = await db
+  const query = db
     .selectDistinct({
       brand: products.brand,
     })
     .from(products)
     .where(eq(products.isPublished, true));
+
+  const rows = limit !== undefined ? await query.limit(limit) : await query;
 
   return rows.map((row) => row.brand);
 }

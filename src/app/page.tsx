@@ -3,6 +3,7 @@ import { Marquee } from "@/sections/home/marquee";
 import { LatestProducts } from "@/sections/home/latest-products";
 // Import your Drizzle db instance
 import {
+  getBrands,
   getDiscountedProducts,
   getLatestProducts,
   getLimitedProducts,
@@ -13,6 +14,7 @@ import { CrazyDiscounts } from "@/sections/home/crazy-discounts";
 import { LimitedProducts } from "@/sections/home/limited-products";
 import { cacheLife } from "next/cache";
 import { FindUs } from "@/sections/home/find-us";
+import { Brands } from "@/sections/home/brands";
 
 const getCachedPageData = async () => {
   "use cache";
@@ -27,11 +29,12 @@ const getCachedPageData = async () => {
   const categories = await getCategories();
   const offers = await getDiscountedProducts();
   const limitedProducts = await getLimitedProducts();
+  const brands = await getBrands(5);
 
-  return { featuredProducts, categories, offers, limitedProducts };
+  return { featuredProducts, categories, offers, limitedProducts, brands };
 };
 export default async function Home() {
-  const { featuredProducts, categories, offers, limitedProducts } =
+  const { featuredProducts, categories, offers, limitedProducts, brands } =
     await getCachedPageData();
 
   return (
@@ -42,6 +45,7 @@ export default async function Home() {
       <CrazyDiscounts offers={offers} />
       <LatestProducts products={featuredProducts} />
       <LimitedProducts products={limitedProducts} />
+      <Brands brands={brands} />
       <FindUs />
     </>
   );
