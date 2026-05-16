@@ -262,7 +262,7 @@ export default async function BrandsPage() {
       </div>
 
       {/* Grid */}
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4">
         {brands.map((brand) => {
           const config = brandConfigs[brand] ?? fallbackConfig;
           const {

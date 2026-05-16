@@ -77,7 +77,6 @@ export const MobileNav = ({ links }: { links: NavItem[] }) => {
   const pathname = usePathname();
   const [view, setView] = useState<View>({ type: "main" });
   const [navOpen, setNavOpen] = useState<boolean>(false);
-  const open = useAccessibilityStore((state) => state.open);
   const setOpen = useAccessibilityStore((state) => state.setOpen);
 
   const handleNavOpenChange = (open: boolean) => {
