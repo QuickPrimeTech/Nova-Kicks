@@ -1,6 +1,7 @@
 // @/sections/products/product-grid.tsx
 import { FilterPagination } from "@/components/filters/pagination";
 import { SortSelect } from "@/components/filters/sort-select";
+import { EmptyState } from "@/components/product/empty-state";
 import { ProductCard } from "@/components/product/product-card";
 import { getPaginatedProducts } from "@/db/functions/product";
 import { AppBreadcrumb } from "@/layouts/app-breadcrumb";
@@ -48,19 +49,25 @@ export async function ProductGrid({ searchParams }: SearchParams) {
         </div>
         <SortSelect className="hidden lg:inline-flex" />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 @[800px]:grid-cols-3 @[1100px]:grid-cols-4 gap-6 mb-8">
-        {data.map((product) => (
-          <ProductCard
-            key={product.id}
-            showThumbnails={false}
-            product={product}
-            offer={product.offer ?? undefined}
-            showStock={filters.collection === "limited"}
-            showCreated={filters.collection === "new"}
-          />
-        ))}
-      </div>
-      <FilterPagination totalPages={totalPages} />
+      {data.length > 0 ? (
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 @[800px]:grid-cols-3 @[1100px]:grid-cols-4 gap-6 mb-8">
+            {data.map((product) => (
+              <ProductCard
+                key={product.id}
+                showThumbnails={false}
+                product={product}
+                offer={product.offer ?? undefined}
+                showStock={filters.collection === "limited"}
+                showCreated={filters.collection === "new"}
+              />
+            ))}
+          </div>
+          <FilterPagination totalPages={totalPages} />
+        </>
+      ) : (
+        <EmptyState showProductButton={false} />
+      )}
     </div>
   );
 }

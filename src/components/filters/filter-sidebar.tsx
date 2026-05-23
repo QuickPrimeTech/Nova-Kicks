@@ -22,7 +22,7 @@ import {
   SidebarProvider,
   SidebarRail,
   SidebarTrigger,
-} from "../ui/sidebar";
+} from "@/components/ui/sidebar";
 import { SortSelect } from "./sort-select";
 
 type FilterSidebarProps = {
