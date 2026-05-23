@@ -125,19 +125,21 @@ export const DesktopNav = ({ links, categories }: DesktopNavProps) => {
 
                     <ScrollBar />
                   </ScrollArea>
-                  <div className="px-2 pb-2 border-t">
-                    <Button
-                      variant="link"
-                      size="sm"
-                      asChild
-                      className="w-full justify-start px-3"
-                    >
-                      <Link href={`/${item.label.toLowerCase()}`}>
-                        View all {item.label}{" "}
-                        <ArrowUpRight className="ml-1 size-3.5" />
-                      </Link>
-                    </Button>
-                  </div>
+                  {item.page !== false && (
+                    <div className="px-2 pb-2 border-t">
+                      <Button
+                        variant="link"
+                        size="sm"
+                        asChild
+                        className="w-full justify-start px-3"
+                      >
+                        <Link href={`/${item.label.toLowerCase()}`}>
+                          View all {item.label}{" "}
+                          <ArrowUpRight className="ml-1 size-3.5" />
+                        </Link>
+                      </Button>
+                    </div>
+                  )}
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>

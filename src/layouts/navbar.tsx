@@ -34,6 +34,7 @@ type SubmenuLink = {
   kind: "submenu";
   label: string;
   items: { label: string; href: string }[];
+  page?: boolean;
 };
 
 export type NavItem = DirectLink | SubmenuLink;
@@ -47,7 +48,6 @@ const useNav = ({ categories, brands }: UseNavProps): NavItem[] => {
   return [
     { kind: "link", label: "Men", href: "/products?gender=men" },
     { kind: "link", label: "Women", href: "/products?gender=women" },
-    { kind: "link", label: "Kids", href: "/products?gender=unisex" },
     {
       kind: "submenu",
       label: "Brands",
@@ -65,9 +65,14 @@ const useNav = ({ categories, brands }: UseNavProps): NavItem[] => {
       })),
     },
     {
-      kind: "link",
-      label: "Discounted",
-      href: "/products?discounted=true",
+      kind: "submenu",
+      label: "Collection",
+      items: [
+        { label: "New Arrivals", href: "/products?collection=new" },
+        { label: "Discounted", href: "/products?collection=discounted" },
+        { label: "Low Stock", href: "/products?collection=limited" },
+      ],
+      page: false,
     },
   ];
 };

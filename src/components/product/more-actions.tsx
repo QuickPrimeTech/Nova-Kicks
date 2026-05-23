@@ -6,7 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ArrowUpRight, Eye, MoreVertical } from "lucide-react";
+import { ArrowUpRight, Eye, Heart, MoreVertical } from "lucide-react";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import { ShareProduct } from "./share-product";
@@ -14,9 +14,14 @@ import { ShareProduct } from "./share-product";
 type MoreActionsProps = {
   slug: string;
   setQuickViewOpen: Dispatch<SetStateAction<boolean>>;
+  addToWishlist: () => void;
 };
 
-export const MoreActions = ({ slug, setQuickViewOpen }: MoreActionsProps) => {
+export const MoreActions = ({
+  slug,
+  setQuickViewOpen,
+  addToWishlist,
+}: MoreActionsProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="md:hidden" asChild>
@@ -25,18 +30,27 @@ export const MoreActions = ({ slug, setQuickViewOpen }: MoreActionsProps) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem className="w-full" asChild>
           <button onClick={() => setQuickViewOpen(true)}>
             Quick view <Eye />
           </button>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem className="w-full" asChild>
           <Link href={`/products/${slug}`}>
             Details
             <ArrowUpRight />
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem
+          className="w-full"
+          onClick={() => addToWishlist()}
+          asChild
+        >
+          <button>
+            Wishlist <Heart />
+          </button>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="w-full justify-start" asChild>
           <ShareProduct iconPosition="right" name={slug} slug={slug} />
         </DropdownMenuItem>
       </DropdownMenuContent>

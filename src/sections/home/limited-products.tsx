@@ -54,6 +54,7 @@ export const LimitedProducts = ({
                 showThumbnails={false}
                 offer={p.offer ?? undefined}
                 showStock
+                variant="minimal"
               />
             </CarouselItem>
           ))}

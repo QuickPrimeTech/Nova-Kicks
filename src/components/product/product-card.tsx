@@ -69,6 +69,10 @@ export const ProductCard = ({
     discountedPrice: hasOffer ? finalPrice : null,
   };
 
+  const addToWishlist = () => {
+    toggleItem(wishlistProduct);
+  };
+
   const href = `/products/${product.slug}`;
 
   const wishlistLabel = isInWishlist
@@ -99,7 +103,7 @@ export const ProductCard = ({
             variant === "minimal" &&
               "opacity-0 group-hover:opacity-100 transition",
           )}
-          onClick={() => toggleItem(wishlistProduct)}
+          onClick={() => addToWishlist()}
           aria-label={wishlistLabel}
           title={wishlistLabel}
         >
@@ -216,6 +220,7 @@ export const ProductCard = ({
             <MoreActions
               slug={product.slug}
               setQuickViewOpen={setQuickViewOpen}
+              addToWishlist={addToWishlist}
             />
           </div>
         </div>
