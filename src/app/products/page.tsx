@@ -40,7 +40,7 @@ export default function ProductsPage({
 }) {
   return (
     <div className="relative flex bg-muted-30 max-lg:py-6 flex-col gap-6 lg:flex-row w-full">
-      <div className="flex max-lg:justify-between max-lg:px-4">
+      <div className="flex max-lg:justify-between max-lg:px-4 max-lg:items-center">
         <FilterProductsSidebar />
       </div>
       <div className="@container min-h-[200vh] flex-1 p-4 sm:p-6 lg:p-8">

@@ -271,15 +271,35 @@ export async function getPaginatedProducts(
   const totalPages = Math.ceil(totalCount / limit);
 
   // Sort order
+  const effectivePrice = sql<number>`
+  CASE 
+    WHEN ${offers.id} IS NOT NULL AND ${offers.discountType} = 'percentage' 
+      THEN (${products.price} * (100.0 - ${offers.discountValue}) / 100.0)
+    WHEN ${offers.id} IS NOT NULL AND ${offers.discountType} = 'fixed_amount' 
+      THEN ${products.price} - ${offers.discountValue}
+    ELSE ${products.price}
+  END
+`;
+
+  // Sort order
   let orderBy;
   switch (filters.sort) {
+    case "name_asc":
+      orderBy = asc(products.name);
+      break;
+    case "name_desc":
+      orderBy = desc(products.name);
+      break;
     case "price_asc":
-      orderBy = asc(products.price);
+      orderBy = sql`${effectivePrice} ASC`;
       break;
     case "price_desc":
-      orderBy = desc(products.price);
+      orderBy = sql`${effectivePrice} DESC`;
       break;
-    case "newest":
+    case "date_asc":
+      orderBy = asc(products.createdAt);
+      break;
+    case "date_desc":
       orderBy = desc(products.createdAt);
       break;
     default:

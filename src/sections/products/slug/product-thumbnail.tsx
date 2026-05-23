@@ -339,7 +339,7 @@ export const ProductThumbnail = ({
             {images.map((image) => (
               <CarouselItem key={`${image.url}-${image.altText}`}>
                 <div
-                  className="relative aspect-square cursor-zoom-in overflow-hidden rounded-xl bg-[#F5F6F7]"
+                  className="relative aspect-square cursor-zoom-in overflow-hidden rounded-xl border bg-[#F5F6F7]"
                   onClick={() => setOpen(true)}
                 >
                   <Image

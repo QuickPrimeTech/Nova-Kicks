@@ -1,5 +1,6 @@
 // @/sections/categories/slug/category-products-grid.tsx
 import { FilterPagination } from "@/components/filters/pagination";
+import { SortSelect } from "@/components/filters/sort-select";
 import { ProductCard } from "@/components/product/product-card";
 import { Button } from "@/components/ui/button";
 import { getPaginatedProducts } from "@/db/functions/product";
@@ -49,34 +50,41 @@ export async function CategoryProductsGrid({
   );
 
   return (
-    <div className="space-y-8">
-      <div className="flex flex-col gap-2">
-        <Button size={"sm"} variant={"link"} className="w-fit" asChild>
-          <Link href={"/categories"}>
-            <ArrowLeft />
-            All Categories
-          </Link>
-        </Button>
-        <h1 className="text-xl font-bold md:text-2xl">
-          {data[0] ? data[0]?.category?.name : ""}
-        </h1>
+    <div className="space-y-4">
+      <Button
+        size={"sm"}
+        variant={"link"}
+        className="w-fit justify-items-start"
+        asChild
+      >
+        <Link href={"/categories"}>
+          <ArrowLeft />
+          All Categories
+        </Link>
+      </Button>
+      <div className="flex justify-between">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-xl font-bold md:text-2xl">
+            {data[0] ? data[0]?.category?.name : ""}
+          </h1>
+          <div className="mb-4 text-sm text-muted-foreground">
+            Showing {data.length} of {totalCount} results
+          </div>
+        </div>
+        <SortSelect className="hidden lg:inline-flex" />
       </div>
-      <div>
-        <div className="mb-4 text-sm text-muted-foreground">
-          Showing {data.length} of {totalCount} results
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 @[900px]:grid-cols-3 @[1100px]:grid-cols-4 gap-6 mb-8">
-          {data.map((product) => (
-            <ProductCard
-              key={product.id}
-              showThumbnails={false}
-              product={product}
-              offer={product.offer ?? undefined}
-              showStock={filters.collection === "limited"}
-              showCreated={filters.collection === "new"}
-            />
-          ))}
-        </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 @[900px]:grid-cols-3 @[1100px]:grid-cols-4 gap-6 mb-8">
+        {data.map((product) => (
+          <ProductCard
+            key={product.id}
+            showThumbnails={false}
+            product={product}
+            offer={product.offer ?? undefined}
+            showStock={filters.collection === "limited"}
+            showCreated={filters.collection === "new"}
+          />
+        ))}
       </div>
       <FilterPagination totalPages={totalPages} />
     </div>

@@ -1,5 +1,6 @@
 // @/sections/products/product-grid.tsx
 import { FilterPagination } from "@/components/filters/pagination";
+import { SortSelect } from "@/components/filters/sort-select";
 import { ProductCard } from "@/components/product/product-card";
 import { getPaginatedProducts } from "@/db/functions/product";
 import { AppBreadcrumb } from "@/layouts/app-breadcrumb";
@@ -37,10 +38,15 @@ export async function ProductGrid({ searchParams }: SearchParams) {
     await getPaginatedProductsCached(filters);
 
   return (
-    <div className="space-y-4">
-      <AppBreadcrumb />
-      <div className="mb-4 text-sm text-muted-foreground">
-        Showing {data.length} of {totalCount} results
+    <div className="space-y-5">
+      <div className="flex gap-4 justify-between">
+        <div className="space-y-4">
+          <AppBreadcrumb />
+          <h2 className="mb-4 text-sm text-muted-foreground">
+            Showing {data.length} of {totalCount} results
+          </h2>
+        </div>
+        <SortSelect className="hidden lg:inline-flex" />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 @[800px]:grid-cols-3 @[1100px]:grid-cols-4 gap-6 mb-8">
         {data.map((product) => (

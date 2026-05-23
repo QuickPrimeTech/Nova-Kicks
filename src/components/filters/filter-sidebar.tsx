@@ -23,6 +23,7 @@ import {
   SidebarRail,
   SidebarTrigger,
 } from "../ui/sidebar";
+import { SortSelect } from "./sort-select";
 
 type FilterSidebarProps = {
   products: EnrichedProduct[];
@@ -41,7 +42,7 @@ export function FilterSidebar({
       <>
         <Drawer open={mobileOpen} onOpenChange={setMobileOpen}>
           <DrawerTrigger asChild>
-            <Button size={"lg"} variant={"outline"} className="relative w-fit">
+            <Button variant={"outline"} className="relative w-fit">
               <SlidersHorizontal />
               Filters
               <ActiveFilterCount />
@@ -85,10 +86,7 @@ export function FilterSidebar({
             </div>
           </DrawerContent>
         </Drawer>
-        <Button size={"lg"} variant={"outline"}>
-          <SlidersHorizontal />
-          Sort
-        </Button>
+        <SortSelect />
       </>
     );
   }
