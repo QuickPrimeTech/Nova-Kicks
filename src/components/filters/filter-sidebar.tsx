@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { SlidersHorizontal } from "lucide-react";
+import { SlidersHorizontal, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
@@ -47,16 +47,21 @@ export function FilterSidebar({
           </Button>
         </DrawerTrigger>
 
-        <DrawerContent className="grid gap-0 grid-rows-[auto_minmax(0,1fr)_auto] max-h-[80vh] rounded-t-3xl px-0">
-          <DrawerHeader className="flex-row px-6 pb-4 border-b">
-            <DrawerTitle className="flex items-center gap-2 text-xl">
-              <SlidersHorizontal className="h-5 w-5" />
-              Filters
-            </DrawerTitle>
-            <DrawerDescription className="sr-only">
-              Filter the displayed products to your liking
-            </DrawerDescription>
-            <ClearAllButton />
+        <DrawerContent className="grid gap-0 grid-rows-[auto_auto_minmax(0,1fr)_auto] max-h-[80vh] rounded-t-3xl px-0">
+          <DrawerHeader className="flex-row px-6 pb-4 gap-5 justify-between border-b">
+            <div className="flex gap-4 items-center">
+              <DrawerTitle className="flex items-center gap-1.5 text-xl">
+                <SlidersHorizontal className="h-5 w-5" />
+                Filters
+              </DrawerTitle>
+              <DrawerDescription className="sr-only">
+                Filter the displayed products to your liking
+              </DrawerDescription>
+              <ClearAllButton />
+            </div>
+            <Button variant={"outline"} onClick={() => setMobileOpen(false)}>
+              <X />
+            </Button>
           </DrawerHeader>
 
           <ScrollArea className="h-full">
@@ -133,7 +138,7 @@ function ActiveFilterCount() {
   if (count === 0) return null;
 
   return (
-    <span className="absolute -top-2 -right-1 h-5 w-5 bg-destructive text-white rounded-full text-xs flex items-center justify-center font-bold">
+    <span className="absolute -top-2 -right-1 size-5 bg-destructive text-white rounded-full text-xs flex items-center justify-center font-bold">
       {count}
     </span>
   );
