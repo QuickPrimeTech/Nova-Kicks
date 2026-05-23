@@ -69,7 +69,7 @@ export const DesktopNav = ({ links, categories }: DesktopNavProps) => {
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ScrollArea className="w-xl">
-                      <div className="w-3xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 auto-rows-[80px] md:auto-rows-[240px] lg:auto-rows-[120px]">
+                      <div className="w-3xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-fr gap-3 md:gap-4">
                         {categories.map((cat, index) => (
                           <NavigationMenuLink asChild key={cat.id}>
                             <CategoryCard cat={cat} index={index} />
