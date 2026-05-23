@@ -44,7 +44,7 @@ export const QuickView = ({ product, open, onOpenChange }: QuickViewProps) => {
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent className="max-h-[90vh] grid grid-rows-[auto_minmax(0,1fr)]">
+      <DrawerContent className="max-h-[80vh] grid grid-rows-[auto_minmax(0,1fr)]">
         <DrawerHeader className="sr-only">
           <DrawerTitle className="sr-only">{product.name}</DrawerTitle>
         </DrawerHeader>

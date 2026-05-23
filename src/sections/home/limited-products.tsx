@@ -17,7 +17,7 @@ export const LimitedProducts = ({
 }: {
   products: LimitedProduct[];
 }) => {
-  const href = `/products?limited=true`;
+  const href = `/products?collection=limited`;
   return (
     <section
       id="limited-products"

@@ -13,7 +13,7 @@ import { ProductCard } from "@/components/product/product-card";
 import { ProductWithOffer } from "@/types/product";
 
 export const CrazyDiscounts = ({ offers }: { offers: ProductWithOffer[] }) => {
-  const href = `/products?discounted=true`;
+  const href = `/products?collection=discounted`;
   return (
     <section
       id="crazy-discounts"

@@ -1,7 +1,5 @@
 // @/components/product/product-card.tsx
-
 "use client";
-
 import Link from "next/link";
 import { useState } from "react";
 import { Clock, Eye, Heart, Plus } from "lucide-react";
@@ -15,6 +13,7 @@ import { Badge } from "../ui/badge";
 import { QuickView } from "./quick-view";
 import { ProductWithOptionalOffer } from "@/types/product";
 import { MoreActions } from "./more-actions";
+import { useRelativeTime } from "@/lib/formatters";
 
 type ProductCardProps = {
   product: SelectProduct;
@@ -22,6 +21,7 @@ type ProductCardProps = {
   variant?: "default" | "minimal";
   showThumbnails?: boolean;
   showStock?: boolean;
+  showCreated?: boolean;
 };
 
 export const ProductCard = ({
@@ -30,6 +30,7 @@ export const ProductCard = ({
   variant = "default",
   showThumbnails = false,
   showStock = false,
+  showCreated = false,
 }: ProductCardProps) => {
   const images = Array.isArray(product.images) ? product.images : [];
   const [productImage, setProductImage] = useState(images[0]);
@@ -39,7 +40,6 @@ export const ProductCard = ({
   const isInWishlist = useWishlistStore((s) => s.isInWishlist(product.id));
 
   const hasOffer = !!offer;
-
   const price = product.price;
 
   const totalStock =
@@ -80,6 +80,8 @@ export const ProductCard = ({
     offer: offer || null,
   } as ProductWithOptionalOffer;
 
+  const createdAgo = useRelativeTime(product.createdAt);
+
   return (
     <>
       <div
@@ -115,7 +117,7 @@ export const ProductCard = ({
 
         {/* MAIN IMAGE */}
         <div className="relative overflow-hidden">
-          {/* QUICK VIEW — outside Link, triggers dialog */}
+          {/* DESKTOP: Hover-reveal Quick View */}
           <Button
             variant="outline"
             size="sm"
@@ -170,10 +172,23 @@ export const ProductCard = ({
             </CarouselContent>
           </Carousel>
         )}
+
         {/* INFO */}
         <div className="p-4">
+          <div className="flex items-center justify-between">
+            <Link href={href}>
+              <p className="text-xs text-muted-foreground">{product.brand}</p>
+            </Link>
+            {showCreated && (
+              <Badge
+                variant="secondary"
+                className="text-xs font-normal px-1.5 py-0 h-5 gap-1"
+              >
+                {createdAgo}
+              </Badge>
+            )}
+          </div>
           <Link href={href}>
-            <p className="text-xs text-muted-foreground">{product.brand}</p>
             <h3 className="font-medium line-clamp-1">{product.name}</h3>
           </Link>
 
@@ -203,8 +218,6 @@ export const ProductCard = ({
               setQuickViewOpen={setQuickViewOpen}
             />
           </div>
-
-          {/* CTA */}
         </div>
 
         <QuickView

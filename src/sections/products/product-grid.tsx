@@ -50,6 +50,7 @@ export async function ProductGrid({ searchParams }: SearchParams) {
             product={product}
             offer={product.offer ?? undefined}
             showStock={filters.collection === "limited"}
+            showCreated={filters.collection === "new"}
           />
         ))}
       </div>

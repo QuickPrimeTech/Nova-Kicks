@@ -72,6 +72,8 @@ export async function CategoryProductsGrid({
               showThumbnails={false}
               product={product}
               offer={product.offer ?? undefined}
+              showStock={filters.collection === "limited"}
+              showCreated={filters.collection === "new"}
             />
           ))}
         </div>

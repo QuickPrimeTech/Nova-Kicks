@@ -17,7 +17,7 @@ export const LatestProducts = ({
 }: {
   products: ProductWithOptionalOffer[];
 }) => {
-  const href = `/products?new=true`;
+  const href = `/products?collection=new`;
   return (
     <section
       id="latest-products"
@@ -53,6 +53,7 @@ export const LatestProducts = ({
                 variant="minimal"
                 product={p}
                 offer={p.offer ?? undefined}
+                showCreated
               />
             </CarouselItem>
           ))}
