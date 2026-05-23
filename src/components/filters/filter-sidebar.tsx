@@ -38,52 +38,58 @@ export function FilterSidebar({
 
   if (!isDesktop) {
     return (
-      <Drawer open={mobileOpen} onOpenChange={setMobileOpen}>
-        <DrawerTrigger asChild>
-          <Button size={"lg"} variant={"outline"} className="relative w-fit">
-            <SlidersHorizontal />
-            Filters
-            <ActiveFilterCount />
-          </Button>
-        </DrawerTrigger>
-
-        <DrawerContent className="grid gap-0 grid-rows-[auto_auto_minmax(0,1fr)_auto] max-h-[80vh] rounded-t-3xl px-0">
-          <DrawerHeader className="flex-row px-6 pb-4 gap-5 justify-between border-b">
-            <div className="flex gap-4 items-center">
-              <DrawerTitle className="flex items-center gap-1.5 text-xl">
-                <SlidersHorizontal className="h-5 w-5" />
-                Filters
-              </DrawerTitle>
-              <DrawerDescription className="sr-only">
-                Filter the displayed products to your liking
-              </DrawerDescription>
-              <ClearAllButton />
-            </div>
-            <Button variant={"outline"} onClick={() => setMobileOpen(false)}>
-              <X />
+      <>
+        <Drawer open={mobileOpen} onOpenChange={setMobileOpen}>
+          <DrawerTrigger asChild>
+            <Button size={"lg"} variant={"outline"} className="relative w-fit">
+              <SlidersHorizontal />
+              Filters
+              <ActiveFilterCount />
             </Button>
-          </DrawerHeader>
+          </DrawerTrigger>
 
-          <ScrollArea className="h-full">
-            <div className="px-6 py-6">
-              <FilterContent
-                products={products}
-                hideCategoryFilter={hideCategoryFilter}
-              />
+          <DrawerContent className="grid gap-0 grid-rows-[auto_auto_minmax(0,1fr)_auto] max-h-[80vh] rounded-t-3xl px-0">
+            <DrawerHeader className="flex-row px-6 pb-4 gap-5 justify-between border-b">
+              <div className="flex gap-4 items-center">
+                <DrawerTitle className="flex items-center gap-1.5 text-xl">
+                  <SlidersHorizontal className="h-5 w-5" />
+                  Filters
+                </DrawerTitle>
+                <DrawerDescription className="sr-only">
+                  Filter the displayed products to your liking
+                </DrawerDescription>
+                <ClearAllButton />
+              </div>
+              <Button variant={"outline"} onClick={() => setMobileOpen(false)}>
+                <X />
+              </Button>
+            </DrawerHeader>
+
+            <ScrollArea className="h-full">
+              <div className="px-6 py-6">
+                <FilterContent
+                  products={products}
+                  hideCategoryFilter={hideCategoryFilter}
+                />
+              </div>
+              <ScrollBar />
+            </ScrollArea>
+
+            <div className="p-4 border-t">
+              <Button
+                onClick={() => setMobileOpen(false)}
+                className="w-full h-12 text-lg rounded-xl"
+              >
+                Show Results
+              </Button>
             </div>
-            <ScrollBar />
-          </ScrollArea>
-
-          <div className="p-4 border-t">
-            <Button
-              onClick={() => setMobileOpen(false)}
-              className="w-full h-12 text-lg rounded-xl"
-            >
-              Show Results
-            </Button>
-          </div>
-        </DrawerContent>
-      </Drawer>
+          </DrawerContent>
+        </Drawer>
+        <Button size={"lg"} variant={"outline"} className="relative w-fit">
+          <SlidersHorizontal />
+          Sort
+        </Button>
+      </>
     );
   }
 
