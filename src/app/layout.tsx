@@ -1,4 +1,5 @@
 // @/src/app/layout.tsx
+
 import type { Metadata } from "next";
 import { Jost, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
@@ -24,9 +25,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL || "https://novakicks.co.ke"
+).replace(/\/$/, "");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: siteConfig.title,
   description: siteConfig.description,
+  alternates: {
+    canonical: "./",
+  },
+  verification: {
+    google: "Ads6Q-6hTdhuSR-UY_bxWN-HWiJX2o7aM0Wgq-wbS-Y",
+  },
 };
 
 export default function RootLayout({
