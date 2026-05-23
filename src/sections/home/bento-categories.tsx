@@ -39,7 +39,7 @@ export const BentoCategories = ({ categories }: BentoCategoriesProps) => {
         Tablet (md): 3 columns
         Desktop (lg): 4 columns with fixed 280px row height
       */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 auto-rows-[200px] md:auto-rows-[240px] lg:auto-rows-[280px]">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-fr gap-3 md:gap-4">
           {featuredCategories.map((cat, i) => (
             <CategoryCard key={cat.id} cat={cat} index={i} />
           ))}

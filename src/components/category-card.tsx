@@ -18,7 +18,7 @@ export const getGridSpans = (index: number) => {
     case 3: // Bottom-left
       return "col-span-1 row-span-1";
     case 4: // Bottom-right (spans 2 on mobile, 1 on lg)
-      return "col-span-2 lg:col-span-1 row-span-1";
+      return "col-span-1 md:col-span-2 lg:col-span-1 row-span-1";
     default:
       return "";
   }
@@ -37,8 +37,9 @@ export const CategoryCard = ({
     <Link
       href={`/categories/${cat.slug}`}
       className={cn(
-        "block group relative overflow-hidden rounded-xl",
+        "block group relative overflow-hidden rounded-xl aspect-square",
         getGridSpans(index),
+        index === 4 && "md:aspect-auto lg:aspect-square",
       )}
     >
       <motion.div
@@ -58,7 +59,7 @@ export const CategoryCard = ({
               ? "(max-width: 768px) 100vw, (max-width: 1024px) 66vw, 50vw"
               : "(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw",
           )}
-          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+          className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
         />
 
         {/* Gradient overlay */}
