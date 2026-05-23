@@ -3,7 +3,7 @@ import { FilterPagination } from "@/components/filters/pagination";
 import { ProductCard } from "@/components/product/product-card";
 import { Button } from "@/components/ui/button";
 import { getPaginatedProducts } from "@/db/functions/product";
-import { filterSchema, ValidFilters } from "@/lib/filter-schema";
+import { filterSchema, ValidFilters } from "@/schemas/filters";
 import { SlugParam } from "@/types/category";
 import { SearchParams } from "@/types/common";
 import { ArrowLeft } from "lucide-react";

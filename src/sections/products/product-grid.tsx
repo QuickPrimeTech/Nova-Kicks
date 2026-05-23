@@ -3,7 +3,7 @@ import { FilterPagination } from "@/components/filters/pagination";
 import { ProductCard } from "@/components/product/product-card";
 import { getPaginatedProducts } from "@/db/functions/product";
 import { AppBreadcrumb } from "@/layouts/app-breadcrumb";
-import { filterSchema, ValidFilters } from "@/lib/filter-schema";
+import { filterSchema, ValidFilters } from "@/schemas/filters";
 import { SearchParams } from "@/types/common";
 import { cacheLife } from "next/cache";
 

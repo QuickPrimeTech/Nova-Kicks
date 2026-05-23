@@ -22,7 +22,7 @@ import {
   ProductWithOptionalOffer,
 } from "@/types/product";
 import { categories } from "../schemas";
-import { ValidFilters } from "@/lib/filter-schema";
+import { ValidFilters } from "@/schemas/filters";
 
 // Add this import at the top of your file
 // import { categories } from "@/db/schemas/categories";
