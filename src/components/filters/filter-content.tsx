@@ -54,7 +54,9 @@ export function FilterContent({
                 className="hover:no-underline group-data-[collapsible=icon]:-ml-2 group-data-[collapsible=icon]:py-2 text-sm font-medium py-4"
               >
                 <span className="flex items-center gap-2.5">
-                  <span className="text-muted-foreground">{filter.icon}</span>
+                  <span className="text-muted-foreground">
+                    {<filter.icon className="size-4" />}
+                  </span>
                   <span className="group-data-[collapsible=icon]:hidden">
                     {filter.label}
                   </span>

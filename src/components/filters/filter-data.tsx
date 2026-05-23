@@ -5,7 +5,7 @@ import {
   Tag,
   DollarSign,
   ShoppingBag,
-  Percent,
+  Sparkles,
 } from "lucide-react";
 import { FilterConfig, FilterOption } from "@/types/filters";
 import { EnrichedProduct } from "@/types/product";
@@ -20,6 +20,11 @@ export function getFiltersConfig(
   const brandMap = new Map<string, number>();
   const categoryMap = new Map<string, { label: string; count: number }>();
   const genderMap = new Map<string, number>();
+
+  // Collection variables
+  let newCount = 0;
+  let discountedCount = 0;
+  let limitedCount = 0;
 
   // Extract unique values and counts
   products.forEach((p) => {
@@ -57,6 +62,12 @@ export function getFiltersConfig(
     }),
   );
 
+  const collectionOptions: FilterOption[] = [
+    { value: "new", label: "New Arrivals", count: newCount },
+    { value: "discounted", label: "Discounted", count: discountedCount },
+    { value: "limited", label: "Low Stock", count: limitedCount },
+  ];
+
   const genderOptions: FilterOption[] = Array.from(genderMap.entries()).map(
     ([value, count]) => ({
       value,
@@ -69,42 +80,42 @@ export function getFiltersConfig(
     {
       id: "gender",
       label: "Gender",
-      icon: <Users className="h-4 w-4" />,
+      icon: Users,
       options: genderOptions,
       type: "single",
     },
     {
       id: "category",
       label: "Category",
-      icon: <Layers className="h-4 w-4" />,
+      icon: Layers,
       options: categoryOptions,
       type: "multiple",
     },
     {
+      id: "collection",
+      label: "Collection",
+      icon: Sparkles,
+      options: collectionOptions,
+      type: "single",
+    },
+    {
       id: "brand",
       label: "Brands",
-      icon: <Tag className="h-4 w-4" />,
+      icon: Tag,
       options: brandOptions,
       type: "multiple",
     },
     {
       id: "price",
       label: "Price Range",
-      icon: <DollarSign className="h-4 w-4" />,
+      icon: DollarSign,
       options: [],
       type: "range",
     },
     {
       id: "inStock", // Changed ID to match URL params cleanly
       label: "In Stock Only",
-      icon: <ShoppingBag className="h-4 w-4" />,
-      options: [],
-      type: "boolean",
-    },
-    {
-      id: "discounted", // New dynamic filter
-      label: "Discounted",
-      icon: <Percent className="h-4 w-4" />,
+      icon: ShoppingBag,
       options: [],
       type: "boolean",
     },

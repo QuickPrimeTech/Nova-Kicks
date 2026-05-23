@@ -7,7 +7,7 @@ export type FilterOption = {
 export type FilterConfig = {
   id: string;
   label: string;
-  icon: React.ReactNode;
+  icon: any;
   options: FilterOption[];
   type: "single" | "multiple" | "range" | "boolean";
 };
