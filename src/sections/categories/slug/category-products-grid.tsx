@@ -1,6 +1,6 @@
 // @/sections/categories/slug/category-products-grid.tsx
 import { FilterPagination } from "@/components/filters/pagination";
-import { ProductCard } from "@/components/product-card";
+import { ProductCard } from "@/components/product/product-card";
 import { Button } from "@/components/ui/button";
 import { getPaginatedProducts } from "@/db/functions/product";
 import { filterSchema, ValidFilters } from "@/lib/filter-schema";

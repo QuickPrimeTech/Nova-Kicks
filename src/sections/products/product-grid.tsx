@@ -1,6 +1,6 @@
 // @/sections/products/product-grid.tsx
 import { FilterPagination } from "@/components/filters/pagination";
-import { ProductCard } from "@/components/product-card";
+import { ProductCard } from "@/components/product/product-card";
 import { getPaginatedProducts } from "@/db/functions/product";
 import { AppBreadcrumb } from "@/layouts/app-breadcrumb";
 import { filterSchema, ValidFilters } from "@/lib/filter-schema";
@@ -42,7 +42,8 @@ export async function ProductGrid({ searchParams }: SearchParams) {
       <div className="mb-4 text-sm text-muted-foreground">
         Showing {data.length} of {totalCount} results
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 @[900px]:grid-cols-3 @[1100px]:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 @[800px]:grid-cols-3 @[1100px]:grid-cols-4 gap-6 mb-8">
+        {/* grid grid-cols-1 sm:grid-cols-2 @[900px]:grid-cols-3 @[1100px]:grid-cols-4 gap-6 mb-8 */}
         {data.map((product) => (
           <ProductCard
             key={product.id}

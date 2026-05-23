@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { Suspense, use } from "react";
 import { ProductGrid } from "@/sections/products/product-grid";
 import { FilterProductsSidebar } from "@/sections/products/filter-products-sidebar";
-import { ProductGridSkeleton } from "@/components/product-grid-skeleton";
+import { ProductGridSkeleton } from "@/components/product/product-grid-skeleton";
 import { SearchParams } from "@/types/common";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -39,11 +39,11 @@ export default function ProductsPage({
   searchParams: Promise<any>;
 }) {
   return (
-    <div className="relative flex bg-muted-30 max-sm:py-6 flex-col gap-6 lg:flex-row w-full">
-      <div className="flex max-sm:justify-between max-sm:px-4">
+    <div className="relative flex bg-muted-30 max-lg:py-6 flex-col gap-6 lg:flex-row w-full">
+      <div className="flex max-lg:justify-between max-lg:px-4">
         <FilterProductsSidebar />
       </div>
-      <div className="@container container min-h-[200vh] flex-1 p-4 sm:p-6 lg:p-8">
+      <div className="@container min-h-[200vh] flex-1 p-4 sm:p-6 lg:p-8">
         <Suspense fallback={<ProductGridSkeleton />}>
           <ProductGridWrapper searchParams={searchParams} />
         </Suspense>

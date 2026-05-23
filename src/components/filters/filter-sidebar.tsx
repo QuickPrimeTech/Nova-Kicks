@@ -85,7 +85,7 @@ export function FilterSidebar({
             </div>
           </DrawerContent>
         </Drawer>
-        <Button size={"lg"} variant={"outline"} className="relative w-fit">
+        <Button size={"lg"} variant={"outline"}>
           <SlidersHorizontal />
           Sort
         </Button>

@@ -1,5 +1,5 @@
 // @/app/categories/[slug]/page.tsx
-import { ProductGridSkeleton } from "@/components/product-grid-skeleton";
+import { ProductGridSkeleton } from "@/components/product/product-grid-skeleton";
 import { Spinner } from "@/components/ui/spinner";
 import { getCategories, getCategoryFromSlug } from "@/db/functions/category";
 import { CategoryProductsGrid } from "@/sections/categories/slug/category-products-grid";

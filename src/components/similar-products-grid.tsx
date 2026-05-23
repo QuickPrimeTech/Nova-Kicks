@@ -6,7 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { ProductCardSkeleton } from "./product-card-skeleton";
+import { ProductCardSkeleton } from "@/components/product/product-card-skeleton";
 
 export const SimilarProductsSkeleton = async () => {
   return (

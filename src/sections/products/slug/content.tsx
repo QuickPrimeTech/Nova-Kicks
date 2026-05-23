@@ -21,11 +21,15 @@ import { SizeSelector } from "./size-selector";
 import { OfferBanner } from "./offer-banner";
 import { ProductMeta } from "./product-meta";
 
-interface ProductContentProps {
+type ProductContentProps = {
   product: ProductWithOptionalOffer;
-}
+  showBreadcrumb?: boolean;
+};
 
-export const ProductContent = ({ product }: ProductContentProps) => {
+export const ProductContent = ({
+  product,
+  showBreadcrumb,
+}: ProductContentProps) => {
   const [selectedSize, setSelectedSize] = useState<ProductSize | null>(null);
   const [quantity, setQuantity] = useState(1);
   const addItem = useCartStore((state) => state.addItem);
@@ -101,7 +105,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
 
   return (
     <div className="container mx-auto space-y-4 section-small py-6 md:py-12">
-      <AppBreadcrumb />
+      {showBreadcrumb && <AppBreadcrumb />}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
         {/* Left: Image */}
         <div className="w-full lg:sticky lg:top-24">
