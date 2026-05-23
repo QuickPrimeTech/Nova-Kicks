@@ -13,12 +13,14 @@ import { ShareProduct } from "./share-product";
 
 type MoreActionsProps = {
   slug: string;
+  name: string;
   setQuickViewOpen: Dispatch<SetStateAction<boolean>>;
   addToWishlist: () => void;
 };
 
 export const MoreActions = ({
   slug,
+  name,
   setQuickViewOpen,
   addToWishlist,
 }: MoreActionsProps) => {
@@ -51,7 +53,7 @@ export const MoreActions = ({
           </button>
         </DropdownMenuItem>
         <DropdownMenuItem className="w-full justify-start" asChild>
-          <ShareProduct iconPosition="right" name={slug} slug={slug} />
+          <ShareProduct iconPosition="right" name={name} slug={slug} />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

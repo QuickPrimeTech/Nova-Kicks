@@ -219,6 +219,7 @@ export const ProductCard = ({
 
             <MoreActions
               slug={product.slug}
+              name={product.name}
               setQuickViewOpen={setQuickViewOpen}
               addToWishlist={addToWishlist}
             />
