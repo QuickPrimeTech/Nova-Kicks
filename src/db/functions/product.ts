@@ -10,6 +10,7 @@ import {
   gte,
   ilike,
   inArray,
+  isNotNull,
   lte,
   ne,
   or,
@@ -225,8 +226,27 @@ export async function getPaginatedProducts(
     );
   }
 
-  if (filters.discounted) {
-    conditions.push(sql`${offers.id} IS NOT NULL`);
+  if (filters.collection) {
+    switch (filters.collection) {
+      case "new": {
+        const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+        conditions.push(gte(products.createdAt, thirtyDaysAgo));
+        break;
+      }
+      case "discounted": {
+        conditions.push(isNotNull(offers.id));
+        break;
+      }
+      case "limited": {
+        conditions.push(
+          sql`(
+          SELECT COALESCE(SUM((s->>'stock')::int), 0) 
+          FROM jsonb_array_elements(${products.sizes}) AS s
+        ) BETWEEN 1 AND 20`,
+        );
+        break;
+      }
+    }
   }
 
   const whereClause = and(...conditions);
@@ -436,31 +456,24 @@ export async function getLimitedProducts(): Promise<LimitedProduct[]> {
         lte(offers.startDate, sql`now()`),
         gte(offers.endDate, sql`now()`),
       ),
-    );
+    )
+    .where(
+      // Sum stock inside the JSONB sizes array directly in SQL
+      sql`(
+        SELECT COALESCE(SUM((s->>'stock')::int), 0)
+        FROM jsonb_array_elements(${products.sizes}) AS s
+      ) BETWEEN 1 AND 20`,
+    )
+    .limit(8);
 
-  const grouped = new Map<string, LimitedProduct>();
-
-  for (const row of rows) {
-    const { product, offer } = row;
-
+  return rows.map(({ product, offer }) => {
     const sizes = product.sizes ?? [];
-
-    const totalStock = sizes.reduce((sum, s) => sum + (s.stock ?? 0), 0);
-
-    // ONLY keep limited stock products
-    if (totalStock >= 20) continue;
-
-    const enriched: LimitedProduct = {
+    return {
       ...product,
       offer: offer ?? null,
       discountedPrice: getDiscountedPrice(product.price, offer),
-      totalStock,
+      totalStock: sizes.reduce((sum, s) => sum + (s.stock ?? 0), 0),
       sizesWithStock: sizes,
     };
-
-    grouped.set(product.id, enriched);
-  }
-
-  // Limit AFTER filtering
-  return Array.from(grouped.values()).slice(0, 8);
+  });
 }

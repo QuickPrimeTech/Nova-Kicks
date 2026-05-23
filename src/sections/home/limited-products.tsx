@@ -53,7 +53,7 @@ export const LimitedProducts = ({
                 product={p}
                 showThumbnails={false}
                 offer={p.offer ?? undefined}
-                stock={p.totalStock}
+                showStock
               />
             </CarouselItem>
           ))}

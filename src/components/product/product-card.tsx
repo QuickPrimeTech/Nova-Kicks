@@ -21,15 +21,15 @@ type ProductCardProps = {
   offer?: SelectOffer;
   variant?: "default" | "minimal";
   showThumbnails?: boolean;
-  stock?: number;
+  showStock?: boolean;
 };
 
 export const ProductCard = ({
   product,
   offer,
   variant = "default",
-  stock,
   showThumbnails = false,
+  showStock = false,
 }: ProductCardProps) => {
   const images = Array.isArray(product.images) ? product.images : [];
   const [productImage, setProductImage] = useState(images[0]);
@@ -41,6 +41,9 @@ export const ProductCard = ({
   const hasOffer = !!offer;
 
   const price = product.price;
+
+  const totalStock =
+    product.sizes?.reduce((sum, s) => sum + (s.stock ?? 0), 0) ?? 0;
 
   const finalPrice = Math.ceil(
     offer
@@ -187,10 +190,10 @@ export const ProductCard = ({
                 Ksh {(hasOffer ? finalPrice : price).toLocaleString()}
               </span>
 
-              {stock && (
+              {showStock && (
                 <Badge variant="destructive">
                   <Clock />
-                  {stock} Left
+                  {totalStock} Left
                 </Badge>
               )}
             </Link>

@@ -11,10 +11,6 @@ export const filterSchema = z.object({
     (v) => (v === "true" ? true : undefined),
     z.boolean().optional(),
   ),
-  discounted: z.preprocess(
-    (v) => (v === "true" ? true : undefined),
-    z.boolean().optional(),
-  ),
   sort: z.enum(["price_asc", "price_desc", "newest"]).optional(),
   page: z.coerce.number().int().min(1).default(1),
   limit: z.coerce.number().int().min(1).default(15),
