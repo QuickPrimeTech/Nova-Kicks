@@ -6,9 +6,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ArrowUpRight, Eye, MoreVertical, Share } from "lucide-react";
+import { ArrowUpRight, Eye, MoreVertical } from "lucide-react";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
+import { ShareProduct } from "./share-product";
 
 type MoreActionsProps = {
   slug: string;
@@ -35,8 +36,8 @@ export const MoreActions = ({ slug, setQuickViewOpen }: MoreActionsProps) => {
             <ArrowUpRight />
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem>
-          Share <Share />
+        <DropdownMenuItem asChild>
+          <ShareProduct iconPosition="right" name={slug} slug={slug} />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -11,7 +11,6 @@ import { useCartStore } from "@/store/cart";
 import { useWishlistStore, WishlistItem } from "@/store/wishlist";
 import { formatPrice } from "@/helpers/formatters";
 import { cn } from "@/lib/utils";
-import { ShareButton } from "@/components/ui/share-button";
 import { ProductSize, ProductWithOptionalOffer } from "@/types/product";
 import { useCartUIStore } from "@/store/cart-ui";
 import { AppBreadcrumb } from "@/layouts/app-breadcrumb";
@@ -20,6 +19,7 @@ import { QuantitySelector } from "./quantity-selector";
 import { SizeSelector } from "./size-selector";
 import { OfferBanner } from "./offer-banner";
 import { ProductMeta } from "./product-meta";
+import { ShareProduct } from "@/components/product/share-product";
 
 type ProductContentProps = {
   product: ProductWithOptionalOffer;
@@ -155,26 +155,7 @@ export const ProductContent = ({
                   {product.brand}
                 </span>
               )}
-              <ShareButton
-                variant="ghost"
-                shareData={{
-                  title: product.name,
-                  text: `Check out this ${hasOffer ? `discounted ` : ""}product: ${product.description}`,
-                  url: `${process.env.NEXT_PUBLIC_SITE_URL}/products/${product.slug}`,
-                }}
-                onShareSuccess={() => {
-                  toast.success("Product shared successfully!");
-                }}
-                type="button"
-                onShareError={(error) => {
-                  if (error.name !== "AbortError") {
-                    toast.error("Failed to share product");
-                  }
-                }}
-                onCopyFallback={() => {
-                  toast.success("Product link copied to clipboard!");
-                }}
-              />
+              <ShareProduct name={product.name} slug={product.slug} />
             </div>
             <h1 className="text-heading-2 font-bold tracking-tight leading-[1.1] text-foreground">
               {product.name}
