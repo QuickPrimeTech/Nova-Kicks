@@ -3,13 +3,13 @@ import { useState } from "react";
 import { SlidersHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+  Drawer,
+  DrawerTrigger,
+  DrawerHeader,
+  DrawerContent,
+  DrawerTitle,
+  DrawerDescription,
+} from "@/components/ui/drawer";
 import { FilterContent } from "./filter-content";
 import { useFilterParams } from "@/hooks/use-filter-params";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
@@ -38,28 +38,27 @@ export function FilterSidebar({
 
   if (!isDesktop) {
     return (
-      <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-        <SheetTrigger asChild>
-          <Button className="relative rounded-full w-fit">
-            <SlidersHorizontal className="size-6" />
+      <Drawer open={mobileOpen} onOpenChange={setMobileOpen}>
+        <DrawerTrigger asChild>
+          <Button size={"lg"} variant={"outline"} className="relative w-fit">
+            <SlidersHorizontal />
             Filters
             <ActiveFilterCount />
           </Button>
-        </SheetTrigger>
-        <SheetContent
-          side={"bottom"}
-          className="grid gap-0 grid-rows-[auto_minmax(0,1fr)_auto] max-h-[80vh] rounded-t-3xl px-0"
-        >
-          <SheetHeader className="flex-row px-6 pb-4 border-b">
-            <SheetTitle className="flex items-center gap-2 text-xl">
+        </DrawerTrigger>
+
+        <DrawerContent className="grid gap-0 grid-rows-[auto_minmax(0,1fr)_auto] max-h-[80vh] rounded-t-3xl px-0">
+          <DrawerHeader className="flex-row px-6 pb-4 border-b">
+            <DrawerTitle className="flex items-center gap-2 text-xl">
               <SlidersHorizontal className="h-5 w-5" />
               Filters
-            </SheetTitle>
-            <SheetDescription className="sr-only">
+            </DrawerTitle>
+            <DrawerDescription className="sr-only">
               Filter the displayed products to your liking
-            </SheetDescription>
+            </DrawerDescription>
             <ClearAllButton />
-          </SheetHeader>
+          </DrawerHeader>
+
           <ScrollArea className="h-full">
             <div className="px-6 py-6">
               <FilterContent
@@ -69,6 +68,7 @@ export function FilterSidebar({
             </div>
             <ScrollBar />
           </ScrollArea>
+
           <div className="p-4 border-t">
             <Button
               onClick={() => setMobileOpen(false)}
@@ -77,8 +77,8 @@ export function FilterSidebar({
               Show Results
             </Button>
           </div>
-        </SheetContent>
-      </Sheet>
+        </DrawerContent>
+      </Drawer>
     );
   }
 
@@ -133,7 +133,7 @@ function ActiveFilterCount() {
   if (count === 0) return null;
 
   return (
-    <span className="absolute -top-2 -right-1 h-5 w-5 bg-destructive text-destructive-foreground rounded-full text-xs flex items-center justify-center font-bold">
+    <span className="absolute -top-2 -right-1 h-5 w-5 bg-destructive text-white rounded-full text-xs flex items-center justify-center font-bold">
       {count}
     </span>
   );

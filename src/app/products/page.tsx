@@ -39,8 +39,8 @@ export default function ProductsPage({
   searchParams: Promise<any>;
 }) {
   return (
-    <div className="relative flex bg-muted-30 max-sm:py-6 flex-col lg:flex-row w-full">
-      <div className="flex max-sm:justify-end">
+    <div className="relative flex bg-muted-30 max-sm:py-6 flex-col gap-6 lg:flex-row w-full">
+      <div className="flex max-sm:justify-between max-sm:px-4">
         <FilterProductsSidebar />
       </div>
       <div className="@container container min-h-[200vh] flex-1 p-4 sm:p-6 lg:p-8">
