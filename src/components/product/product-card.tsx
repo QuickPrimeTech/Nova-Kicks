@@ -1,14 +1,17 @@
+// @/components/product/product-card.tsx
+
 "use client";
+
 import Link from "next/link";
 import { useState } from "react";
-import { Clock, Heart, Plus } from "lucide-react";
-import { Image } from "./ui/image";
-import { Button } from "./ui/button";
-import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
+import { Clock, Eye, Heart, Plus } from "lucide-react";
+import { Image } from "../ui/image";
+import { Button } from "../ui/button";
+import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { SelectProduct, SelectOffer } from "@/db/schemas";
 import { cn } from "@/lib/utils";
 import { useWishlistStore, WishlistItem } from "@/store/wishlist";
-import { Badge } from "./ui/badge";
+import { Badge } from "../ui/badge";
 
 type ProductCardProps = {
   product: SelectProduct;
@@ -108,10 +111,18 @@ export const ProductCard = ({
             className="object-cover group-hover:scale-110 transition"
           />
           <Button
-            size="icon"
+            size="icon-sm"
             className="absolute z-10 bottom-2 right-2 cursor-pointer"
           >
             <Plus />
+          </Button>
+          <Button
+            variant={"outline"}
+            size={"sm"}
+            className="absolute z-10 -bottom-8 group-hover:bottom-2 transition-all duration-300 left-1/2 -translate-x-1/2 cursor-pointer"
+          >
+            Quick View
+            <Eye />
           </Button>
         </div>
       </Link>

@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
-import { ProductCardSkeleton } from "@/components/product-card-skeleton"; // Adjust import path if needed
+import { ProductCardSkeleton } from "@/components/product/product-card-skeleton"; // Adjust import path if needed
 
 export const ProductDetailsSkeleton = () => {
   return (
@@ -118,7 +118,7 @@ export const ProductDetailsSkeleton = () => {
                 key={i}
                 className="basis-7/10 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 shrink-0 grow-0"
               >
-                <ProductCardSkeleton showThumbnails={false} showStock={false} />
+                <ProductCardSkeleton showStock={false} />
               </div>
             ))}
           </div>

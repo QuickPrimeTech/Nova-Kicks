@@ -1,3 +1,5 @@
+// @/components/product/product-card-skeleton.tsx
+
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 
@@ -7,7 +9,7 @@ type ProductCardSkeletonProps = {
 };
 
 export const ProductCardSkeleton = ({
-  showThumbnails = true,
+  showThumbnails = false,
   showStock = false,
 }: ProductCardSkeletonProps) => {
   return (

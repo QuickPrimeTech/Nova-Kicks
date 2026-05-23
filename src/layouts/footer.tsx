@@ -18,6 +18,10 @@ const cols = [
         url: "/categories",
       },
       {
+        label: "Brands",
+        url: "/brands",
+      },
+      {
         label: "Best Sellers",
         url: "#",
       },

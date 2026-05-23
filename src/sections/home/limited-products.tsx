@@ -1,5 +1,5 @@
 // @/sections/home/limited-products.tsx
-import { ProductCard } from "@/components/product-card";
+import { ProductCard } from "@/components/product/product-card";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,

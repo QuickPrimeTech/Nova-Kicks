@@ -1,5 +1,5 @@
 // @/products/slug/similar-products.tsx
-import { ProductCard } from "@/components/product-card";
+import { ProductCard } from "@/components/product/product-card";
 import {
   Carousel,
   CarouselContent,

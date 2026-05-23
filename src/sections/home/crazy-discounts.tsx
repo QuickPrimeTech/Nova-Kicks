@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { ProductCard } from "@/components/product-card";
+import { ProductCard } from "@/components/product/product-card";
 import { ProductWithOffer } from "@/types/product";
 
 export const CrazyDiscounts = ({ offers }: { offers: ProductWithOffer[] }) => {
