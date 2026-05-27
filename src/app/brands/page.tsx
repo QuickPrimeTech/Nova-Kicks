@@ -1,22 +1,9 @@
 // @/app/brands/page.tsx
-
-import { cacheLife } from "next/cache";
-import { getBrands } from "@/db/functions/product";
 import { BrandCard } from "@/components/brand-card";
-
-const fetchBrandsCached = async () => {
-  "use cache";
-  cacheLife({
-    revalidate: 6 * 60 * 60,
-    stale: 6 * 60 * 60,
-    expire: 6 * 60 * 60,
-  });
-
-  return await getBrands();
-};
+import { fetchBrandPageData } from "@/lib/data";
 
 export default async function BrandsPage() {
-  const brands = await fetchBrandsCached();
+  const brands = await fetchBrandPageData();
 
   return (
     <div className="min-h-screen px-4 py-10 sm:px-6 lg:px-8">

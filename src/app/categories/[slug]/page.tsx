@@ -1,26 +1,15 @@
 // @/app/categories/[slug]/page.tsx
 import { ProductGridSkeleton } from "@/components/product/product-grid-skeleton";
 import { Spinner } from "@/components/ui/spinner";
-import { getCategories, getCategoryFromSlug } from "@/db/functions/category";
+import { getCategories } from "@/db/functions/category";
+import { getCategoryPageData } from "@/lib/data";
 import { CategoryProductsGrid } from "@/sections/categories/slug/category-products-grid";
 import { FilterCateogriesidebar } from "@/sections/categories/slug/filter-categories-sidebar";
 import { SlugParam } from "@/types/category";
 import { SearchParams } from "@/types/common";
 import { Metadata } from "next";
-import { cacheLife } from "next/cache";
 import { Suspense, use } from "react";
 
-const getCategoryFromSlugCached = async (slug: string) => {
-  "use cache";
-
-  cacheLife({
-    revalidate: 6 * 60 * 60,
-    stale: 6 * 60 * 60,
-    expire: 6 * 60 * 60,
-  });
-
-  return await getCategoryFromSlug(slug);
-};
 export async function generateStaticParams() {
   const categories = await getCategories();
 
@@ -35,7 +24,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const category = await getCategoryFromSlugCached(slug);
+  const category = await getCategoryPageData(slug);
 
   if (!category) {
     return {

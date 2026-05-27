@@ -4,28 +4,12 @@ import { SortSelect } from "@/components/filters/sort-select";
 import { EmptyState } from "@/components/product/empty-state";
 import { ProductCard } from "@/components/product/product-card";
 import { Button } from "@/components/ui/button";
-import { getPaginatedProducts } from "@/db/functions/product";
+import { getPaginatedProductsData } from "@/lib/data";
 import { filterSchema, ValidFilters } from "@/schemas/filters";
 import { SlugParam } from "@/types/category";
 import { SearchParams } from "@/types/common";
 import { ArrowLeft } from "lucide-react";
-import { cacheLife } from "next/cache";
 import Link from "next/link";
-
-export const getPaginatedProductsCached = async (
-  filters: ValidFilters,
-  categorySlug: string,
-) => {
-  "use cache";
-
-  cacheLife({
-    revalidate: 6 * 60 * 60,
-    stale: 6 * 60 * 60,
-    expire: 6 * 60 * 60,
-  });
-
-  return getPaginatedProducts(filters, categorySlug);
-};
 
 export async function CategoryProductsGrid({
   params,
@@ -45,7 +29,7 @@ export async function CategoryProductsGrid({
     ? parsed.data
     : { page: 1, limit: 15 };
 
-  const { data, totalPages, totalCount } = await getPaginatedProductsCached(
+  const { data, totalPages, totalCount } = await getPaginatedProductsData(
     filters,
     slug,
   );

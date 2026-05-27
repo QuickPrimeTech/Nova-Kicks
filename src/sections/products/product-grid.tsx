@@ -3,23 +3,10 @@ import { FilterPagination } from "@/components/filters/pagination";
 import { SortSelect } from "@/components/filters/sort-select";
 import { EmptyState } from "@/components/product/empty-state";
 import { ProductCard } from "@/components/product/product-card";
-import { getPaginatedProducts } from "@/db/functions/product";
 import { AppBreadcrumb } from "@/layouts/app-breadcrumb";
+import { getPaginatedProductsData } from "@/lib/data";
 import { filterSchema, ValidFilters } from "@/schemas/filters";
 import { SearchParams } from "@/types/common";
-import { cacheLife } from "next/cache";
-
-export const getPaginatedProductsCached = async (filters: ValidFilters) => {
-  "use cache";
-
-  cacheLife({
-    revalidate: 6 * 60 * 60,
-    stale: 6 * 60 * 60,
-    expire: 6 * 60 * 60,
-  });
-
-  return getPaginatedProducts(filters);
-};
 
 export async function ProductGrid({ searchParams }: SearchParams) {
   const rawParams = await searchParams;
@@ -36,7 +23,7 @@ export async function ProductGrid({ searchParams }: SearchParams) {
     : { page: 1, limit: 15 };
 
   const { data, totalPages, totalCount } =
-    await getPaginatedProductsCached(filters);
+    await getPaginatedProductsData(filters);
 
   return (
     <div className="space-y-5">
