@@ -42,7 +42,7 @@ export default async function Home() {
       <Hero />
       <Marquee />
       <BentoCategories categories={categories} />
-      <CrazyDiscounts offers={offers} />
+      {offers.length > 0 && <CrazyDiscounts offers={offers} />}
       <LatestProducts products={featuredProducts} />
       <LimitedProducts products={limitedProducts} />
       <Brands brands={brands} />

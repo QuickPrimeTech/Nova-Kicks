@@ -4,12 +4,14 @@ import { SelectCategory, SelectOffer, SelectProduct } from "@/db/schemas";
 
 export type ProductSize = SelectProduct["sizes"][0];
 
-export type ProductWithOffer = SelectProduct & {
+export type ProductWithOffer = Omit<SelectProduct, "categoryId"> & {
+  category: SelectCategory | null;
   offer: SelectOffer;
   discountedPrice: number;
 };
 
-export type ProductWithOptionalOffer = SelectProduct & {
+export type ProductWithOptionalOffer = Omit<SelectProduct, "categoryId"> & {
+  category: SelectCategory | null;
   offer: SelectOffer | null;
   discountedPrice: number | null;
 };
@@ -19,7 +21,7 @@ export type LimitedProduct = ProductWithOptionalOffer & {
   sizesWithStock: ProductSize[];
 };
 
-export type EnrichedProduct = SelectProduct & {
+export type EnrichedProduct = Omit<SelectProduct, "categoryId"> & {
   category: SelectCategory | null;
   offer: SelectOffer | null;
   discountedPrice: number;

@@ -2,6 +2,13 @@
 
 import { ProductSize, ProductWithOptionalOffer } from "@/types/product";
 
+type MetaItem = {
+  label: string;
+  value: string;
+  className?: string;
+  condition: boolean;
+};
+
 type ProductMetaProps = {
   product: ProductWithOptionalOffer;
   selectedSize: ProductSize | null;
@@ -9,50 +16,65 @@ type ProductMetaProps = {
 
 export const ProductMeta = ({ product, selectedSize }: ProductMetaProps) => {
   const hasOffer = !!product.offer;
-  let discountPercentage = 0;
 
-  if (product.offer) {
+  const getDiscountPercentage = (): number => {
+    if (!product.offer) return 0;
     const { discountType, discountValue } = product.offer;
 
-    if (discountType === "percentage") {
-      discountPercentage = discountValue;
-    }
-
+    if (discountType === "percentage") return discountValue;
     if (discountType === "fixed_amount") {
-      discountPercentage = Math.round((discountValue / product.price) * 100);
+      return Math.round((discountValue / product.price) * 100);
     }
-  }
+    return 0;
+  };
+
+  const metaItems: MetaItem[] = [
+    {
+      label: "SKU",
+      value: product.slug.toUpperCase(),
+      condition: true,
+      className: "font-mono",
+    },
+    {
+      label: "Brand",
+      value: product.brand ?? "",
+      condition: !!product.brand,
+    },
+    {
+      label: "Gender",
+      value: product.gender,
+      condition: !!product.gender,
+    },
+    {
+      label: "Category",
+      value: product.category ? product.category.name : "",
+      condition: !!product.category,
+    },
+    {
+      label: "Availability",
+      value: selectedSize ? `${selectedSize.stock} in stock` : "",
+      condition: !!selectedSize,
+    },
+    {
+      label: "Discount",
+      value: hasOffer ? `${getDiscountPercentage()}% off` : "",
+      condition: hasOffer,
+      className: "text-destructive",
+    },
+  ];
 
   return (
     <div className="rounded-2xl bg-muted p-5 space-y-3 text-sm">
-      <div className="flex justify-between">
-        <span className="text-muted-foreground">SKU</span>
-        <span className="font-mono font-medium">
-          {product.slug.toUpperCase()}
-        </span>
-      </div>
-
-      {product.brand && (
-        <div className="flex justify-between">
-          <span className="text-muted-foreground">Brand</span>
-          <span className="font-medium">{product.brand}</span>
-        </div>
-      )}
-
-      {selectedSize && (
-        <div className="flex justify-between">
-          <span className="text-muted-foreground">Availability</span>
-          <span className="font-medium">{selectedSize.stock} in stock</span>
-        </div>
-      )}
-
-      {hasOffer && (
-        <div className="flex justify-between">
-          <span className="text-muted-foreground">Discount</span>
-          <span className="font-medium text-destructive">
-            {discountPercentage}% off
-          </span>
-        </div>
+      {metaItems.map(
+        ({ label, value, condition, className }) =>
+          condition && (
+            <div key={label} className="flex justify-between">
+              <span className="text-muted-foreground">{label}</span>
+              <span className={`font-medium ${className || ""}`.trim()}>
+                {value}
+              </span>
+            </div>
+          ),
       )}
     </div>
   );

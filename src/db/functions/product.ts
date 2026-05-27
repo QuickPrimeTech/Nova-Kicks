@@ -16,7 +16,7 @@ import {
   or,
   sql,
 } from "drizzle-orm";
-import { offers, SelectOffer } from "@/db/schemas/offers";
+import { offers } from "@/db/schemas/offers";
 import {
   EnrichedProduct,
   LimitedProduct,
@@ -24,6 +24,7 @@ import {
 } from "@/types/product";
 import { categories } from "../schemas";
 import { ValidFilters } from "@/schemas/filters";
+import { getDiscountedPrice, stripCategoryId } from "./helpers";
 
 // Add this import at the top of your file
 // import { categories } from "@/db/schemas/categories";
@@ -32,7 +33,6 @@ export async function getSimilarProducts(
   productSlug: string,
 ): Promise<ProductWithOptionalOffer[]> {
   "use cache";
-  // 1. Get reference product first
   const [baseProduct] = await db
     .select()
     .from(products)
@@ -41,11 +41,11 @@ export async function getSimilarProducts(
 
   if (!baseProduct) return [];
 
-  // 2. Fetch all candidates in a single optimized query
   const results = await db
     .select({
       product: products,
       offer: offers,
+      category: categories,
     })
     .from(products)
     .leftJoin(
@@ -53,15 +53,15 @@ export async function getSimilarProducts(
       and(
         eq(products.id, offers.productId),
         eq(offers.isActive, true),
-        // Use standard Date objects for build-time stability
         lte(offers.startDate, new Date()),
         gte(offers.endDate, new Date()),
       ),
     )
+    .leftJoin(categories, eq(products.categoryId, categories.id))
     .where(
       and(
         eq(products.isPublished, true),
-        ne(products.id, baseProduct.id), // Exclude the current product
+        ne(products.id, baseProduct.id),
         or(
           baseProduct.categoryId
             ? eq(products.categoryId, baseProduct.categoryId)
@@ -74,7 +74,6 @@ export async function getSimilarProducts(
       ),
     )
     .orderBy(
-      // Weighted sorting: Category matches are highest priority, then Brand
       sql`CASE 
         WHEN ${products.categoryId} = ${baseProduct.categoryId as any} THEN 1
         WHEN ${products.brand} = ${baseProduct.brand as any} THEN 2
@@ -83,9 +82,9 @@ export async function getSimilarProducts(
     )
     .limit(8);
 
-  // 3. Map results to your return type
   return results.map((row) => ({
-    ...row.product,
+    ...stripCategoryId(row.product),
+    category: row.category ?? null,
     offer: row.offer,
     discountedPrice: getDiscountedPrice(row.product.price, row.offer),
   }));
@@ -112,7 +111,6 @@ export async function getProducts(
         gte(offers.endDate, sql`now()`),
       ),
     )
-    // Join categories (Assuming products table has a categoryId column)
     .leftJoin(categories, eq(products.categoryId, categories.id));
 
   const rows = categorySlug
@@ -126,7 +124,7 @@ export async function getProducts(
     const totalStock = sizes.reduce((sum, s) => sum + (s.stock ?? 0), 0);
 
     return {
-      ...product,
+      ...stripCategoryId(product),
       category: category ?? null,
       offer: offer ?? null,
       discountedPrice: getDiscountedPrice(product.price, offer),
@@ -334,7 +332,7 @@ export async function getPaginatedProducts(
     const totalStock = sizes.reduce((sum, s) => sum + (s.stock ?? 0), 0);
 
     return {
-      ...product,
+      ...stripCategoryId(product),
       category: category ?? null,
       offer: offer ?? null,
       discountedPrice: getDiscountedPrice(product.price, offer),
@@ -346,22 +344,12 @@ export async function getPaginatedProducts(
   return { data, totalPages, totalCount };
 }
 
-export function getDiscountedPrice(price: number, offer?: SelectOffer | null) {
-  if (!offer) return price;
-
-  const discounted =
-    offer.discountType === "percentage"
-      ? price - (price * offer.discountValue) / 100
-      : price - offer.discountValue;
-
-  return Math.max(discounted, 0);
-}
-
 export async function getLatestProducts(): Promise<ProductWithOptionalOffer[]> {
   const rows = await db
     .select({
       product: products,
       offer: offers,
+      category: categories,
     })
     .from(products)
     .leftJoin(
@@ -373,13 +361,15 @@ export async function getLatestProducts(): Promise<ProductWithOptionalOffer[]> {
         gte(offers.endDate, sql`now()`),
       ),
     )
+    .leftJoin(categories, and(eq(products.categoryId, categories.id)))
     .where(gte(products.createdAt, sql`now() - interval '30 days'`))
     .orderBy(desc(products.createdAt))
     .limit(8);
 
-  return rows.map(({ product, offer }) => {
+  return rows.map(({ product, offer, category }) => {
     return {
-      ...product,
+      ...stripCategoryId(product),
+      category,
       offer,
       discountedPrice: getDiscountedPrice(product.price, offer),
     };
@@ -391,9 +381,11 @@ export async function getDiscountedProducts() {
     .select({
       product: products,
       offer: offers,
+      category: categories,
     })
     .from(products)
     .innerJoin(offers, eq(products.id, offers.productId))
+    .leftJoin(categories, eq(products.categoryId, categories.id))
     .where(
       and(
         eq(offers.isActive, true),
@@ -403,7 +395,7 @@ export async function getDiscountedProducts() {
     )
     .limit(8);
 
-  return rows.map(({ product, offer }) => {
+  return rows.map(({ product, category, offer }) => {
     let discountedPrice = product.price;
 
     if (offer.discountType === "percentage") {
@@ -416,7 +408,8 @@ export async function getDiscountedProducts() {
     }
 
     return {
-      ...product,
+      ...stripCategoryId(product),
+      category,
       offer,
       discountedPrice: Math.max(discountedPrice, 0), // safety
     };
@@ -436,6 +429,7 @@ export async function getProductBySlug(
     .select({
       product: products,
       offer: offers,
+      category: categories,
     })
     .from(products)
     .leftJoin(
@@ -447,15 +441,17 @@ export async function getProductBySlug(
         gte(offers.endDate, sql`now()`),
       ),
     )
+    .leftJoin(categories, and(eq(products.categoryId, categories.id)))
     .where(eq(products.slug, slug))
     .limit(1);
 
   if (!rows.length) return null;
 
-  const { product, offer } = rows[0];
+  const { product, offer, category } = rows[0];
 
   return {
-    ...product,
+    ...stripCategoryId(product),
+    category,
     offer,
     discountedPrice: getDiscountedPrice(product.price, offer),
   };
@@ -466,6 +462,7 @@ export async function getLimitedProducts(): Promise<LimitedProduct[]> {
     .select({
       product: products,
       offer: offers,
+      category: categories,
     })
     .from(products)
     .leftJoin(
@@ -477,6 +474,7 @@ export async function getLimitedProducts(): Promise<LimitedProduct[]> {
         gte(offers.endDate, sql`now()`),
       ),
     )
+    .leftJoin(categories, and(eq(products.categoryId, categories.id)))
     .where(
       // Sum stock inside the JSONB sizes array directly in SQL
       sql`(
@@ -486,10 +484,11 @@ export async function getLimitedProducts(): Promise<LimitedProduct[]> {
     )
     .limit(8);
 
-  return rows.map(({ product, offer }) => {
+  return rows.map(({ product, offer, category }) => {
     const sizes = product.sizes ?? [];
     return {
-      ...product,
+      ...stripCategoryId(product),
+      category,
       offer: offer ?? null,
       discountedPrice: getDiscountedPrice(product.price, offer),
       totalStock: sizes.reduce((sum, s) => sum + (s.stock ?? 0), 0),

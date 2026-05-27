@@ -16,7 +16,7 @@ import { MoreActions } from "./more-actions";
 import { useRelativeTime } from "@/lib/formatters";
 
 type ProductCardProps = {
-  product: SelectProduct;
+  product: Omit<SelectProduct, "categoryId">;
   offer?: SelectOffer;
   variant?: "default" | "minimal";
   showThumbnails?: boolean;

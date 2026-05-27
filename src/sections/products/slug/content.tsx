@@ -20,6 +20,7 @@ import { SizeSelector } from "./size-selector";
 import { OfferBanner } from "./offer-banner";
 import { ProductMeta } from "./product-meta";
 import { ShareProduct } from "@/components/product/share-product";
+import { TrustBadges } from "./trust-badges";
 
 type ProductContentProps = {
   product: ProductWithOptionalOffer;
@@ -273,26 +274,7 @@ export const ProductContent = ({
             </Button>
           </div>
 
-          {/* Trust badges */}
-          <div className="grid grid-cols-3 gap-3 pt-2">
-            {[
-              { icon: "🚚", label: "Fast Delivery" },
-              { icon: "↩️", label: "Easy Returns" },
-              { icon: "🔒", label: "Secure Payment" },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="flex flex-col items-center gap-1.5 rounded-xl bg-muted py-3 px-2 text-center"
-              >
-                <span className="text-xl">{item.icon}</span>
-                <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
-                  {item.label}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Meta */}
+          <TrustBadges />
           <ProductMeta product={product} selectedSize={selectedSize} />
         </div>
       </div>
