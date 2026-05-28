@@ -16,6 +16,7 @@ import { TrustBadges } from "./trust-badges";
 import { CTA } from "./CTA";
 import { ProductImage } from "./product-image";
 import { calculateDiscountPrice } from "@/helpers/product";
+import { cn } from "@/lib/utils";
 
 type ProductContentProps = {
   product: ProductWithOptionalOffer;
@@ -73,11 +74,16 @@ export const ProductContent = ({
 
             <div className="flex flex-col pt-1 gap-4">
               <div className="flex flex-wrap items-center gap-3">
-                {hasOffer ? (
+                <span
+                  className={cn(
+                    "text-2xl md:text-3xl font-bold",
+                    hasOffer && "text-primary",
+                  )}
+                >
+                  Ksh {formatPrice(discountedPrice)}
+                </span>
+                {hasOffer && (
                   <>
-                    <span className="text-2xl md:text-3xl font-bold text-primary">
-                      Ksh {formatPrice(discountedPrice)}
-                    </span>
                     <span className="text-lg text-muted-foreground line-through">
                       Ksh {formatPrice(product.price)}
                     </span>
@@ -85,10 +91,6 @@ export const ProductContent = ({
                       Save Ksh {formatPrice(savings)}
                     </Badge>
                   </>
-                ) : (
-                  <span className="text-2xl md:text-3xl font-bold text-foreground">
-                    Ksh {formatPrice(product.price)}
-                  </span>
                 )}
               </div>
 

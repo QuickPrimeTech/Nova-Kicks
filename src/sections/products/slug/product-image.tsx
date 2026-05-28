@@ -1,9 +1,7 @@
 // @/sections/product/slug/product-image.tsx
-
 "use client";
-
 import { Badge } from "@/components/ui/badge";
-import { Heart, Tag, Timer } from "lucide-react";
+import { Heart, Tag } from "lucide-react";
 import { ProductThumbnail } from "./product-thumbnail";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -20,18 +18,19 @@ export const ProductImage = ({ product }: ProductImageProps) => {
   const isInWishlist = useWishlistStore((state) =>
     state.isInWishlist(product.id),
   );
-  let discountPercentage = 0;
+  const offer = product.offer;
 
-  const hasOffer = !!product.offer;
-  let discountedPrice = null;
+  const pricing = offer
+    ? calculateDiscountPrice({
+        originalPrice: product.price,
+        discountType: offer.discountType,
+        discountValue: offer.discountValue,
+      })
+    : null;
 
-  if (product.offer) {
-    discountedPrice = calculateDiscountPrice({
-      originalPrice: product.price,
-      discountType: product.offer?.discountType,
-      discountValue: product.offer?.discountValue,
-    }).discountedPrice;
-  }
+  const hasOffer = Boolean(offer);
+  const discountedPrice = pricing?.discountedPrice ?? null;
+  const discountPercentage = pricing?.discountPercentage ?? 0;
 
   const wishlistProduct: WishlistItem = {
     id: product.id,
@@ -53,12 +52,6 @@ export const ProductImage = ({ product }: ProductImageProps) => {
               <Tag className="size-3.5 mr-1" />
               {discountPercentage}% OFF
             </Badge>
-            {product.offer?.endDate && (
-              <Badge variant="secondary" className="px-3 py-1 text-xs">
-                <Timer className="w-3 h-3 mr-1" />
-                Limited time
-              </Badge>
-            )}
           </div>
         )}
         <div className="relative">
