@@ -2,17 +2,9 @@
 "use client";
 import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
-import { ProductThumbnail } from "./product-thumbnail";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Heart, ShoppingBag, Tag, Timer } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { toast } from "sonner";
-import { useCartStore } from "@/store/cart";
-import { useWishlistStore, WishlistItem } from "@/store/wishlist";
 import { formatPrice } from "@/helpers/formatters";
-import { cn } from "@/lib/utils";
 import { ProductSize, ProductWithOptionalOffer } from "@/types/product";
-import { useCartUIStore } from "@/store/cart-ui";
 import { AppBreadcrumb } from "@/layouts/app-breadcrumb";
 import { SizeGuideDialog } from "@/sections/categories/slug/size-guide-dialog";
 import { QuantitySelector } from "./quantity-selector";
@@ -21,6 +13,9 @@ import { OfferBanner } from "./offer-banner";
 import { ProductMeta } from "./product-meta";
 import { ShareProduct } from "@/components/product/share-product";
 import { TrustBadges } from "./trust-badges";
+import { CTA } from "./CTA";
+import { ProductImage } from "./product-image";
+import { calculateDiscountPrice } from "@/helpers/product";
 
 type ProductContentProps = {
   product: ProductWithOptionalOffer;
@@ -33,118 +28,32 @@ export const ProductContent = ({
 }: ProductContentProps) => {
   const [selectedSize, setSelectedSize] = useState<ProductSize | null>(null);
   const [quantity, setQuantity] = useState(1);
-  const addItem = useCartStore((state) => state.addItem);
-  const toggleWishlist = useWishlistStore((state) => state.toggleItem);
-  const isInWishlist = useWishlistStore((state) =>
-    state.isInWishlist(product.id),
-  );
-
-  const openCart = useCartUIStore((state) => state.setOpen);
 
   const hasOffer = !!product.offer;
 
   const originalPrice = product.price;
 
   let discountedPrice = originalPrice;
-  let discountPercentage = 0;
 
   if (product.offer) {
     const { discountType, discountValue } = product.offer;
-
-    if (discountType === "percentage") {
-      discountPercentage = discountValue;
-      discountedPrice = originalPrice - (originalPrice * discountValue) / 100;
-    }
-
-    if (discountType === "fixed_amount") {
-      discountedPrice = originalPrice - discountValue;
-      discountPercentage = Math.round((discountValue / originalPrice) * 100);
-    }
-
-    discountedPrice = Math.max(0, discountedPrice);
+    discountedPrice = calculateDiscountPrice({
+      originalPrice,
+      discountType,
+      discountValue,
+    }).discountedPrice;
   }
 
   const savings = originalPrice - discountedPrice;
 
   const isOutOfStock = selectedSize ? selectedSize.stock < 1 : false;
-  const isLowStock = selectedSize ? selectedSize.stock < 5 : false;
-
-  const wishlistProduct: WishlistItem = {
-    id: product.id,
-    name: product.name,
-    price: product.price,
-    image: product.images[0].url,
-    size: product.sizes[0]?.size ?? "",
-    availableSizes: product.sizes,
-    slug: product.slug,
-    discountedPrice: hasOffer ? discountedPrice : null,
-  };
-
-  const addToCart = (type: "Buy" | "cart") => {
-    if (!selectedSize) {
-      toast.error("Please select a size", {
-        description: `Select a size for ${product.name}`,
-      });
-      return;
-    }
-    addItem({
-      productId: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.images[0]?.url || "",
-      size: selectedSize,
-      quantity,
-      availableSizes: product.sizes,
-      slug: product.slug,
-      discountedPrice: hasOffer ? discountedPrice : null,
-    });
-    if (type === "Buy") {
-      openCart(true);
-    }
-    toast.success("Added to cart");
-  };
+  const isLowStock = selectedSize ? selectedSize.stock < 10 : false;
 
   return (
     <div className="container mx-auto space-y-4 section-small py-6 md:py-12">
       {showBreadcrumb && <AppBreadcrumb />}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-        {/* Left: Image */}
-        <div className="w-full lg:sticky lg:top-24">
-          <div className="relative">
-            {hasOffer && (
-              <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
-                <Badge>
-                  <Tag className="size-3.5 mr-1" />
-                  {discountPercentage}% OFF
-                </Badge>
-                {product.offer?.endDate && (
-                  <Badge variant="secondary" className="px-3 py-1 text-xs">
-                    <Timer className="w-3 h-3 mr-1" />
-                    Limited time
-                  </Badge>
-                )}
-              </div>
-            )}
-            <div className="relative">
-              <ProductThumbnail images={product.images} />
-              <Button
-                size="icon-lg"
-                variant="outline"
-                className="group absolute top-2 right-4"
-                onClick={() => toggleWishlist(wishlistProduct)}
-                aria-label={`${isInWishlist ? "Remove from" : "Add to"} wishlist`}
-                title={`${isInWishlist ? "Remove from" : "Add to"} wishlist`}
-              >
-                <Heart
-                  className={cn(
-                    "size-5",
-                    isInWishlist && "fill-destructive text-destructive",
-                  )}
-                />
-              </Button>
-            </div>
-          </div>
-        </div>
+        <ProductImage product={product} />
 
         {/* Right: Content */}
         <div className="flex flex-col gap-6 md:gap-8">
@@ -251,29 +160,11 @@ export const ProductContent = ({
             />
           </div>
 
-          {/* CTA */}
-          <div className="flex flex-col gap-3 mt-5">
-            <Button
-              size="xl"
-              disabled={isOutOfStock}
-              onClick={() => {
-                addToCart("Buy");
-              }}
-            >
-              {isOutOfStock ? "Out of Stock" : "Buy Now"}
-              <ArrowRight className="size-5 ml-1.5" />
-            </Button>
-            <Button
-              size="xl"
-              variant={"secondary"}
-              disabled={isOutOfStock}
-              onClick={() => addToCart("cart")}
-            >
-              {isOutOfStock ? "Out of Stock" : "Add to Cart"}
-              <ShoppingBag className="size-5 ml-1.5" />
-            </Button>
-          </div>
-
+          <CTA
+            selectedSize={selectedSize}
+            product={product}
+            quantity={quantity}
+          />
           <TrustBadges />
           <ProductMeta product={product} selectedSize={selectedSize} />
         </div>
