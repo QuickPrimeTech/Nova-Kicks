@@ -1,5 +1,4 @@
-import { LucideProps } from "lucide-react";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+import type { LucideIcon } from "lucide-react";
 
 export type FilterOption = {
   value: string;
@@ -7,12 +6,31 @@ export type FilterOption = {
   count?: number;
 };
 
-export type FilterConfig = {
+type BaseFilterConfig = {
   id: string;
   label: string;
-  icon: ForwardRefExoticComponent<
-    Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
-  >;
-  options: FilterOption[];
-  type: "single" | "multiple" | "range" | "boolean";
+  icon: LucideIcon;
 };
+
+// These two actually need options
+type SelectFilterConfig = BaseFilterConfig & {
+  type: "single" | "multiple";
+  options: FilterOption[];
+};
+
+// These two do NOT
+type RangeFilterConfig = BaseFilterConfig & {
+  type: "range";
+  min: number;
+  max: number;
+  step: number;
+};
+
+type BooleanFilterConfig = BaseFilterConfig & {
+  type: "boolean";
+};
+
+export type FilterConfig =
+  | SelectFilterConfig
+  | RangeFilterConfig
+  | BooleanFilterConfig;

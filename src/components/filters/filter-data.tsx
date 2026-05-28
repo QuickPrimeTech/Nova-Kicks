@@ -21,6 +21,10 @@ export function getFiltersConfig(
   const categoryMap = new Map<string, { label: string; count: number }>();
   const genderMap = new Map<string, number>();
 
+  //Price Range Variables
+  let minPrice = products[0]?.price ?? 0;
+  let maxPrice = 0;
+
   // Collection variables
   let newCount = 0;
   let discountedCount = 0;
@@ -30,6 +34,10 @@ export function getFiltersConfig(
   products.forEach((p) => {
     // Count Brands
     brandMap.set(p.brand, (brandMap.get(p.brand) || 0) + 1);
+
+    //Set the prices variables
+    minPrice = Math.min(p.price, minPrice);
+    maxPrice = Math.max(p.price, maxPrice);
 
     // Count Categories
     if (p.category) {
@@ -109,14 +117,15 @@ export function getFiltersConfig(
       id: "price",
       label: "Price Range",
       icon: DollarSign,
-      options: [],
       type: "range",
+      min: minPrice,
+      max: maxPrice,
+      step: maxPrice / 20,
     },
     {
       id: "inStock", // Changed ID to match URL params cleanly
       label: "In Stock Only",
       icon: ShoppingBag,
-      options: [],
       type: "boolean",
     },
   ];

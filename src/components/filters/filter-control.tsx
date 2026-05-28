@@ -8,111 +8,114 @@ import { FilterConfig } from "@/types/filters";
 import { useFilterParams } from "@/hooks/use-filter-params";
 
 export function FilterControl({ config }: { config: FilterConfig }) {
-  const { id, type, options } = config;
+  const { id, type } = config;
   const { getParam, updateFilter, updateFilters } = useFilterParams();
 
-  // --- Type: Single (e.g., Gender) ---
-  if (type === "single") {
-    const current = getParam(id);
-    return (
-      <div className="space-y-1">
-        {options.map((opt) => {
-          const isSelected = current === opt.value;
-          return (
-            <div
-              key={opt.value}
-              className={cn(
-                "flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all cursor-pointer hover:bg-muted/50",
-                isSelected && "bg-muted",
-              )}
-              onClick={() => updateFilter(id, isSelected ? null : opt.value)}
-            >
-              <Checkbox
-                id={`${id}-${opt.value}`}
-                checked={isSelected}
-                onCheckedChange={() =>
-                  updateFilter(id, isSelected ? null : opt.value)
-                }
-              />
-              <Label
-                htmlFor={`${id}-${opt.value}`}
-                className="flex-1 text-sm font-medium leading-none cursor-pointer"
+  if (type === "single" || type === "multiple") {
+    const { options } = config;
+    // --- Type: Single (e.g., Gender) ---
+    if (type === "single") {
+      const current = getParam(id);
+      return (
+        <div className="space-y-1">
+          {options.map((opt) => {
+            const isSelected = current === opt.value;
+            return (
+              <div
+                key={opt.value}
+                className={cn(
+                  "flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all cursor-pointer hover:bg-muted/50",
+                  isSelected && "bg-muted",
+                )}
+                onClick={() => updateFilter(id, isSelected ? null : opt.value)}
               >
-                {opt.label}
-              </Label>
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-
-  // --- Type: Multiple (e.g., Categories, Brands) ---
-  if (type === "multiple") {
-    const current = getParam(id)?.split(",") || [];
-    return (
-      <div className="space-y-1">
-        {options.map((opt) => {
-          const isSelected = current.includes(opt.value);
-
-          const handleToggle = () => {
-            const next = isSelected
-              ? current.filter((v) => v !== opt.value)
-              : [...current, opt.value];
-            updateFilter(id, next.length ? next.join(",") : null);
-          };
-
-          return (
-            <div
-              key={opt.value}
-              className={cn(
-                "flex items-center justify-between px-3 py-2.5 rounded-lg transition-all cursor-pointer hover:bg-muted/50",
-                isSelected && "bg-primary/5",
-              )}
-              onClick={handleToggle}
-            >
-              <div className="flex items-center space-x-3">
                 <Checkbox
                   id={`${id}-${opt.value}`}
                   checked={isSelected}
-                  onCheckedChange={handleToggle}
+                  onCheckedChange={() =>
+                    updateFilter(id, isSelected ? null : opt.value)
+                  }
                 />
                 <Label
                   htmlFor={`${id}-${opt.value}`}
-                  className="text-sm font-medium leading-none cursor-pointer"
+                  className="flex-1 text-sm font-medium leading-none cursor-pointer"
                 >
                   {opt.label}
                 </Label>
               </div>
-              {opt.count && (
-                <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
-                  {opt.count}
-                </span>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    );
+            );
+          })}
+        </div>
+      );
+    }
+
+    // --- Type: Multiple (e.g., Categories, Brands) ---
+    if (type === "multiple") {
+      const current = getParam(id)?.split(",") || [];
+      return (
+        <div className="space-y-1">
+          {options.map((opt) => {
+            const isSelected = current.includes(opt.value);
+
+            const handleToggle = () => {
+              const next = isSelected
+                ? current.filter((v) => v !== opt.value)
+                : [...current, opt.value];
+              updateFilter(id, next.length ? next.join(",") : null);
+            };
+
+            return (
+              <div
+                key={opt.value}
+                className={cn(
+                  "flex items-center justify-between px-3 py-2.5 rounded-lg transition-all cursor-pointer hover:bg-muted/50",
+                  isSelected && "bg-primary/5",
+                )}
+                onClick={handleToggle}
+              >
+                <div className="flex items-center space-x-3">
+                  <Checkbox
+                    id={`${id}-${opt.value}`}
+                    checked={isSelected}
+                    onCheckedChange={handleToggle}
+                  />
+                  <Label
+                    htmlFor={`${id}-${opt.value}`}
+                    className="text-sm font-medium leading-none cursor-pointer"
+                  >
+                    {opt.label}
+                  </Label>
+                </div>
+                {opt.count && (
+                  <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                    {opt.count}
+                  </span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
   }
 
   // --- Type: Range (Price) ---
   if (type === "range") {
-    const min = Number(getParam("minPrice") || 0);
-    const max = Number(getParam("maxPrice") || 50000);
+    const { min, max, step } = config;
     const [range, setRange] = useState([min, max]);
 
     return (
       <div className="px-1 py-2 space-y-6">
         <Slider
           value={range}
-          max={50000}
-          step={1000}
+          min={min}
+          max={max}
+          step={step}
           onValueChange={setRange}
           onValueCommit={(value) => {
             updateFilters({
-              minPrice: value[0] > 0 ? String(value[0]) : null,
-              maxPrice: value[1] < 50000 ? String(value[1]) : null,
+              minPrice: value[0] > min ? String(value[0]) : null,
+              maxPrice: value[1] < max ? String(value[1]) : null,
             });
           }}
           className="w-full"
