@@ -9,6 +9,7 @@ import { useCartUIStore } from "@/store/cart-ui";
 import { ProductSize, ProductWithOptionalOffer } from "@/types/product";
 import { ArrowRight, ArrowUpRight, ShoppingBag } from "lucide-react";
 import Link from "next/link";
+import { BsWhatsapp } from "react-icons/bs";
 import { toast } from "sonner";
 
 type CTAProps = {
@@ -83,12 +84,13 @@ export const CTA = ({ selectedSize, product, quantity }: CTAProps) => {
         <ShoppingBag className="size-5 ml-1.5" />
       </Button>
 
-      <div className="flex items-center justify-center gap-1 sm:gap-2 text-sm pt-1">
+      <div className="flex items-center justify-center gap-1 sm:gap-2 text-sm pt-2">
         <span className="text-muted-foreground">
           Prefer to order on WhatsApp?
         </span>
         <Button variant="link" className="text-emerald-500" size="sm" asChild>
           <Link href="">
+            <BsWhatsapp />
             Order on WhatsApp
             <ArrowUpRight className="size-4" />
           </Link>

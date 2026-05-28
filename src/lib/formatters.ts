@@ -17,7 +17,7 @@ export function useRelativeTime(date: Date | string): string {
 
     let result = "";
     if (diffSec < 60) result = "Just now";
-    else if (diffMin < 60) result = `${diffMin}m ago`;
+    else if (diffMin < 60) result = `${diffMin}min ago`;
     else if (diffHour < 24) result = `${diffHour}h ago`;
     else if (diffDay < 7) result = `${diffDay}d ago`;
     else if (diffWeek < 4) result = `${diffWeek}w ago`;

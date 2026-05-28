@@ -3,17 +3,18 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Clock, Eye, Heart, Plus } from "lucide-react";
-import { Image } from "../ui/image";
-import { Button } from "../ui/button";
+import { Image } from "@/components/ui/image";
+import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { SelectProduct, SelectOffer } from "@/db/schemas";
 import { cn } from "@/lib/utils";
-import { useWishlistStore, WishlistItem } from "@/store/wishlist";
-import { Badge } from "../ui/badge";
+import { useWishlistStore } from "@/store/wishlist";
+import { Badge } from "@/components/ui/badge";
 import { QuickView } from "./quick-view";
 import { ProductWithOptionalOffer } from "@/types/product";
 import { MoreActions } from "./more-actions";
 import { useRelativeTime } from "@/lib/formatters";
+import { createWishlistItem } from "../../helpers/product";
 
 type ProductCardProps = {
   product: Omit<SelectProduct, "categoryId">;
@@ -58,19 +59,8 @@ export const ProductCard = ({
       ? `${offer.discountValue}% OFF`
       : `Ksh ${offer?.discountValue} OFF`;
 
-  const wishlistProduct: WishlistItem = {
-    id: product.id,
-    name: product.name,
-    price: product.price,
-    image: images[0]?.url ?? "",
-    size: product.sizes?.[0]?.size ?? "",
-    availableSizes: product.sizes,
-    slug: product.slug,
-    discountedPrice: hasOffer ? finalPrice : null,
-  };
-
   const addToWishlist = () => {
-    toggleItem(wishlistProduct);
+    toggleItem(createWishlistItem({ ...product, offer: offer ?? null }));
   };
 
   const href = `/products/${product.slug}`;

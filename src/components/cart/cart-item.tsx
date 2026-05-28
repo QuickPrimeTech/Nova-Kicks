@@ -38,7 +38,7 @@ export const CartItemCard = ({ cartItem }: CartItemProps) => {
         {cartItem.discountedPrice && (
           <div className="absolute -top-3 -left-2 z-20">
             <span className="text-[9px] font-bold bg-primary text-primary-foreground px-2 py-1 rounded-md">
-              - Ksh{" "}
+              Save Ksh{" "}
               {Math.ceil(
                 (cartItem.price - cartItem.discountedPrice) * cartItem.quantity,
               ).toLocaleString()}

@@ -5,9 +5,9 @@ import { Heart, Tag } from "lucide-react";
 import { ProductThumbnail } from "./product-thumbnail";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useWishlistStore, WishlistItem } from "@/store/wishlist";
+import { useWishlistStore } from "@/store/wishlist";
 import { ProductWithOptionalOffer } from "@/types/product";
-import { calculateDiscountPrice } from "@/helpers/product";
+import { calculateDiscountPrice, createWishlistItem } from "@/helpers/product";
 
 type ProductImageProps = {
   product: ProductWithOptionalOffer;
@@ -29,19 +29,7 @@ export const ProductImage = ({ product }: ProductImageProps) => {
     : null;
 
   const hasOffer = Boolean(offer);
-  const discountedPrice = pricing?.discountedPrice ?? null;
   const discountPercentage = pricing?.discountPercentage ?? 0;
-
-  const wishlistProduct: WishlistItem = {
-    id: product.id,
-    name: product.name,
-    price: product.price,
-    image: product.images[0].url,
-    size: product.sizes[0]?.size ?? "",
-    availableSizes: product.sizes,
-    slug: product.slug,
-    discountedPrice,
-  };
 
   return (
     <div className="w-full lg:sticky lg:top-20">
@@ -60,7 +48,7 @@ export const ProductImage = ({ product }: ProductImageProps) => {
             size="icon-lg"
             variant="outline"
             className="group absolute top-2 right-4"
-            onClick={() => toggleWishlist(wishlistProduct)}
+            onClick={() => toggleWishlist(createWishlistItem(product))}
             aria-label={`${isInWishlist ? "Remove from" : "Add to"} wishlist`}
             title={`${isInWishlist ? "Remove from" : "Add to"} wishlist`}
           >

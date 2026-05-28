@@ -120,7 +120,7 @@ export const ProductMeta = ({ product, selectedSize }: ProductMetaProps) => {
   ];
 
   return (
-    <div className="rounded-2xl border bg-card p-1">
+    <div className="rounded-xl border bg-card p-1">
       {metaItems.map(
         (
           { label, icon: Icon, value, condition, className, highlight },

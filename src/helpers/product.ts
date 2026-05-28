@@ -3,6 +3,7 @@
 import { ProductSize, ProductWithOptionalOffer } from "@/types/product";
 import { formatPrice } from "./formatters";
 import { SelectOffer, SelectProduct } from "@/db/schema";
+import { WishlistItem } from "@/store/wishlist";
 
 export function buildWhatsAppMessage(
   product: ProductWithOptionalOffer,
@@ -60,4 +61,30 @@ export function calculateDiscountPrice({
   }
 
   return { discountedPrice: Math.max(0, discountedPrice), discountPercentage };
+}
+
+export function createWishlistItem(
+  product: Omit<ProductWithOptionalOffer, "category" | "discountedPrice">,
+): WishlistItem {
+  let discountedPrice = null;
+
+  if (product.offer) {
+    const pricing = calculateDiscountPrice({
+      originalPrice: product.price,
+      discountType: product.offer.discountType,
+      discountValue: product.offer.discountValue,
+    });
+
+    discountedPrice = pricing.discountedPrice;
+  }
+
+  return {
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    image: product.images[0]?.url ?? "",
+    availableSizes: product.sizes,
+    slug: product.slug,
+    discountedPrice,
+  };
 }
