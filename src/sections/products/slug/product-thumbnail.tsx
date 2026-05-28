@@ -377,6 +377,7 @@ export const ProductThumbnail = ({
                       src={img.url}
                       alt={img.altText}
                       fill
+                      sizes="(max-width: 1024px) 7vw, (max-width: 640) 8vw, 20vw"
                       className="object-cover"
                     />
                   </button>

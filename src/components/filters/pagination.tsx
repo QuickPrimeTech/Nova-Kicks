@@ -63,6 +63,8 @@ export function FilterPagination({ totalPages }: FilterPaginationProps) {
               className="cursor-pointer"
               isActive={currentPage === page}
               onClick={() => handlePageChange(page)}
+              title={`Go to page ${page}`}
+              aria-label={`Go to page ${page}`}
             >
               {page}
             </PaginationLink>
@@ -137,6 +139,7 @@ export function FilterPagination({ totalPages }: FilterPaginationProps) {
                   ? "pointer-events-none opacity-50"
                   : "cursor-pointer"
               }
+              title={`Go to page ${currentPage - 1}`}
               onClick={() => handlePageChange(currentPage - 1)}
             />
           </PaginationItem>
@@ -150,6 +153,7 @@ export function FilterPagination({ totalPages }: FilterPaginationProps) {
                   ? "pointer-events-none opacity-50"
                   : "cursor-pointer"
               }
+              title={`Go to page ${currentPage + 1}`}
               onClick={() => handlePageChange(currentPage + 1)}
             />
           </PaginationItem>

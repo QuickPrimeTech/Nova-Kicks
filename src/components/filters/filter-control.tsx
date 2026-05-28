@@ -102,7 +102,13 @@ export function FilterControl({ config }: { config: FilterConfig }) {
   // --- Type: Range (Price) ---
   if (type === "range") {
     const { min, max, step } = config;
-    const [range, setRange] = useState([min, max]);
+    const minPriceParam = getParam("minPrice");
+    const maxPriceParam = getParam("maxPrice");
+
+    const minPrice = minPriceParam ? Number(minPriceParam) : min;
+    const maxPrice = maxPriceParam ? Number(maxPriceParam) : max;
+
+    const [range, setRange] = useState<[number, number]>([minPrice, maxPrice]);
 
     return (
       <div className="px-1 py-2 space-y-6">
@@ -111,7 +117,9 @@ export function FilterControl({ config }: { config: FilterConfig }) {
           min={min}
           max={max}
           step={step}
-          onValueChange={setRange}
+          onValueChange={(value) => {
+            setRange([value[0], value[1]]);
+          }}
           onValueCommit={(value) => {
             updateFilters({
               minPrice: value[0] > min ? String(value[0]) : null,

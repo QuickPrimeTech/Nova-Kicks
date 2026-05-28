@@ -120,7 +120,7 @@ export function getFiltersConfig(
       type: "range",
       min: minPrice,
       max: maxPrice,
-      step: maxPrice / 20,
+      step: Math.max(1, Math.round(maxPrice - minPrice) / 20),
     },
     {
       id: "inStock", // Changed ID to match URL params cleanly

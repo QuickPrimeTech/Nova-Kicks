@@ -212,10 +212,10 @@ export async function getPaginatedProducts(
   }
 
   if (filters.minPrice !== undefined && filters.minPrice > 0) {
-    conditions.push(gte(products.price, filters.minPrice));
+    conditions.push(gte(products.price, Math.floor(filters.minPrice)));
   }
   if (filters.maxPrice !== undefined && filters.maxPrice > 0) {
-    conditions.push(lte(products.price, filters.maxPrice));
+    conditions.push(lte(products.price, Math.ceil(filters.maxPrice)));
   }
 
   if (filters.inStock) {
