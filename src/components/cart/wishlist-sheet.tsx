@@ -60,8 +60,8 @@ export function WishlistSheet() {
                 Your Wishlist is empty
               </h3>
               <p className="text-sm text-muted-foreground max-w-60">
-                Looks like you haven't added anything yet. Go find something you
-                love! 🛍️
+                Looks like you haven&apos;t added anything yet. Go find
+                something you love! 🛍️
               </p>
             </div>
             <SheetClose asChild>

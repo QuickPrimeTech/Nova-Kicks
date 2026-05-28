@@ -3,9 +3,10 @@
 import { useCartUIStore } from "@/store/cart-ui";
 import { CartItemCard } from "@/components/cart/cart-item";
 import { useCartStore } from "@/store/cart";
-import { ArrowRight, RefreshCcw, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { TrustBadges } from "@/sections/products/slug/trust-badges";
 
 export default function CartItems() {
   const cart = useCartStore((state) => state.items);
@@ -32,26 +33,7 @@ export default function CartItems() {
         <ArrowRight />
       </Button>
 
-      {/* Trust badges */}
-      <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-        {[
-          { icon: ShieldCheck, label: "100% Authentic" },
-          { icon: Truck, label: "Fast Delivery" },
-          { icon: RefreshCcw, label: "7-Day Returns" },
-        ].map((badge) => (
-          <div
-            key={badge.label}
-            className="flex items-center gap-1.5 text-xs font-600 text-muted-foreground"
-          >
-            <badge.icon
-              name={badge.icon as any}
-              size={14}
-              className="text-primary"
-            />
-            {badge.label}
-          </div>
-        ))}
-      </div>
+      <TrustBadges />
     </div>
   );
 }

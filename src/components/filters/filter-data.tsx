@@ -26,9 +26,9 @@ export function getFiltersConfig(
   let maxPrice = 0;
 
   // Collection variables
-  let newCount = 0;
-  let discountedCount = 0;
-  let limitedCount = 0;
+  const newCount = 0;
+  const discountedCount = 0;
+  const limitedCount = 0;
 
   // Extract unique values and counts
   products.forEach((p) => {

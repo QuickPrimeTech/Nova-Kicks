@@ -14,7 +14,7 @@ import { QuickView } from "./quick-view";
 import { ProductWithOptionalOffer } from "@/types/product";
 import { MoreActions } from "./more-actions";
 import { useRelativeTime } from "@/lib/formatters";
-import { createWishlistItem } from "../../helpers/product";
+import { createWishlistItem } from "@/helpers/product";
 
 type ProductCardProps = {
   product: Omit<SelectProduct, "categoryId">;

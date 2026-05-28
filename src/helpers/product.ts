@@ -37,7 +37,7 @@ export function calculateDiscountPrice({
 export function createWishlistItem(
   product: Omit<ProductWithOptionalOffer, "category" | "discountedPrice">,
 ): WishlistItem {
-  let discountedPrice = product.offer
+  const discountedPrice = product.offer
     ? calculateDiscountPrice({
         originalPrice: product.price,
         discountType: product.offer.discountType,

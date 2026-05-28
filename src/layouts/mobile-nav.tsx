@@ -85,8 +85,6 @@ export const MobileNav = ({ links }: { links: NavItem[] }) => {
   };
   const totalItems = useCartStore((state) => state.getTotalItems());
 
-  const currentAnim = view.type === "main" ? slideBack : slideIn;
-
   return (
     <Sheet open={navOpen} onOpenChange={handleNavOpenChange}>
       <SheetTrigger asChild>

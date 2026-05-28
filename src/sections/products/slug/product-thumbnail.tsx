@@ -175,7 +175,7 @@ export function LightboxDialog({
     }
   };
 
-  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+  const handleTouchEnd = () => {
     if (gestureRef.current.isPinching) {
       gestureRef.current.isPinching = false;
       setPinching(false);

@@ -5,7 +5,7 @@ import { SelectOffer } from "@/db/schema";
 export function stripCategoryId<T extends { categoryId?: string | null }>(
   product: T,
 ): Omit<T, "categoryId"> {
-  const { categoryId, ...rest } = product;
+  const { categoryId: _, ...rest } = product;
   return rest;
 }
 

@@ -1,6 +1,5 @@
 // @/components//share-product.tsx
 import { ShareButton } from "@/components/ui/share-button";
-import { products } from "@/db/schema";
 import { ComponentProps } from "react";
 import { toast } from "sonner";
 
@@ -31,6 +30,7 @@ export const ShareProduct = ({
           toast.error("Failed to share product");
         }
       }}
+      copyMessage={`${name} link copied`}
       onCopyFallback={() => {
         toast.success("Product link copied to clipboard!");
       }}

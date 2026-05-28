@@ -12,7 +12,6 @@ import {
 import { Fragment } from "react";
 
 export function AppBreadcrumb({
-  className,
   ...props
 }: React.ComponentProps<typeof Breadcrumb>) {
   const pathname = usePathname();

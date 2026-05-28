@@ -13,7 +13,7 @@ import {
   Truck,
   User,
 } from "lucide-react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {
@@ -29,6 +29,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { checkoutSchema, CheckoutSchemaFormData } from "@/schemas/checkout";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/store/cart";
+import { PaymentMethod } from "@/types/checkout";
 
 const deliveryZones = [
   {
@@ -74,7 +75,14 @@ export default function CheckoutForm() {
     },
   });
 
-  const { deliveryZone, paymentMethod, mpesaPhone } = form.watch();
+  const deliveryZone = useWatch({
+    control: form.control,
+    name: "deliveryZone",
+  });
+  const paymentMethod = useWatch({
+    control: form.control,
+    name: "paymentMethod",
+  });
   const selectedZone = deliveryZones.find((z) => z.value === deliveryZone);
 
   const onSubmit = (data: z.infer<typeof checkoutSchema>) => {
@@ -255,7 +263,9 @@ export default function CheckoutForm() {
               <button
                 key={pm.id}
                 type="button"
-                onClick={() => form.setValue("paymentMethod", pm.id as any)}
+                onClick={() =>
+                  form.setValue("paymentMethod", pm.id as PaymentMethod)
+                }
                 className={`flex flex-wrap justify-between items-center gap-5 p-4 rounded-xl border-2 text-left transition-all ${paymentMethod === pm.id ? (pm.id === "mpesa" ? "border-[#00A651] bg-[#00A651]/5" : "border-primary bg-primary/5") : "border-border"}`}
               >
                 <div className="flex items-center gap-4">

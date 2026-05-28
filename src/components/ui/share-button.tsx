@@ -3,6 +3,7 @@ import { forwardRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Share } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 export type ShareData = {
   title?: string;
@@ -101,6 +102,7 @@ const ShareButton = forwardRef<HTMLButtonElement, ShareButtonProps>(
           const message =
             typeof copyMessage === "function" ? copyMessage(url) : copyMessage;
           // You can replace this with a toast notification
+          toast.success(message);
         }
       } catch (err) {
         const error = err as Error;

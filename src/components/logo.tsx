@@ -3,10 +3,9 @@ import React from "react";
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
   size?: number | string;
-  color?: string; // This will override the main rect fill if provided
 }
 
-export const Logo = ({ size = 36, color, className, ...props }: IconProps) => {
+export const Logo = ({ size = 36, className, ...props }: IconProps) => {
   return (
     <svg
       width={size}

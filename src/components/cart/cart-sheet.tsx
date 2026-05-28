@@ -12,7 +12,7 @@ import {
   SheetTrigger,
   SheetFooter,
   SheetClose,
-} from "../ui/sheet";
+} from "@/components/ui/sheet";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import { CartItemCard } from "./cart-item";
 import { formatPrice } from "@/helpers/formatters";
@@ -67,8 +67,8 @@ export function CartSheet() {
                 Your cart is empty
               </h3>
               <p className="text-sm text-muted-foreground max-w-60">
-                Looks like you haven't added anything yet. Go find something you
-                love! 🛍️
+                Looks like you haven&apos;t added anything yet. Go find
+                something you love! 🛍️
               </p>
             </div>
             <SheetClose asChild>
