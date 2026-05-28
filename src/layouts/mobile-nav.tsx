@@ -210,31 +210,35 @@ export const MobileNav = ({ links }: { links: NavItem[] }) => {
                   </motion.div>
                   <div className="space-y-3">
                     <motion.div variants={itemVariants}>
-                      <Button
-                        size={"lg"}
-                        className="w-full justify-start"
-                        variant="ghost"
-                        onClick={() => setOpen(true)}
-                      >
-                        <Accessibility className="size-4 mr-2" />
-                        Accessibility
-                      </Button>
+                      <SheetClose asChild>
+                        <Button
+                          size={"lg"}
+                          className="w-full justify-start"
+                          variant="ghost"
+                          onClick={() => setOpen(true)}
+                        >
+                          <Accessibility className="size-4 mr-2" />
+                          Accessibility
+                        </Button>
+                      </SheetClose>
                     </motion.div>
                     <motion.div variants={itemVariants}>
-                      <Button
-                        className="relative w-full justify-start"
-                        variant="ghost"
-                        size={"lg"}
-                        asChild
-                      >
-                        <Link href={"/checkout"}>
-                          <ShoppingBag className="size-4 mr-2" />
-                          My Cart
-                          <span className="absolute flex justify-center bg-primary right-4 text-primary-foreground size-5 rounded-lg">
-                            {totalItems}
-                          </span>
-                        </Link>
-                      </Button>
+                      <SheetClose asChild>
+                        <Button
+                          className="relative w-full justify-start"
+                          variant="ghost"
+                          size={"lg"}
+                          asChild
+                        >
+                          <Link href={"/checkout"}>
+                            <ShoppingBag className="size-4 mr-2" />
+                            My Cart
+                            <span className="absolute flex justify-center bg-primary right-4 text-primary-foreground size-5 rounded-lg">
+                              {totalItems}
+                            </span>
+                          </Link>
+                        </Button>
+                      </SheetClose>
                     </motion.div>
                   </div>
                   <Separator className="my-3" />
