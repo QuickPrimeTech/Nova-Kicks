@@ -4,9 +4,8 @@ import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
+  CarouselControllers,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { LimitedProduct } from "@/types/product";
 import { ArrowUpRight } from "lucide-react";
@@ -23,31 +22,34 @@ export const LimitedProducts = ({
       id="limited-products"
       className="py-20 bg-background overflow-hidden"
     >
-      <div className="container section mx-auto mb-12">
-        <div className="flex justify-between items-center gap-12">
-          <div>
-            <p className="text-xs font-mono tracking-widest uppercase text-muted-foreground mb-3">
-              Soon out of stock
-            </p>
-            <h2 className="font-display text-heading-2 md:text-heading-1 uppercase">
-              Limited Products.
-            </h2>
+      <div className="section mb-12">
+        <div className="container mx-auto">
+          <div className="flex justify-between items-center gap-12">
+            <div>
+              <p className="text-xs font-mono tracking-widest uppercase text-muted-foreground mb-3">
+                Soon out of stock
+              </p>
+              <h2 className="font-display text-heading-2 md:text-heading-1 uppercase">
+                Limited Products.
+              </h2>
+            </div>
+            <Button className="hidden md:inline-flex" variant={"link"} asChild>
+              <Link href={href}>
+                View All <ArrowUpRight />
+              </Link>
+            </Button>
           </div>
-          <Button className="hidden md:inline-flex" variant={"link"} asChild>
-            <Link href={href}>
-              View All <ArrowUpRight />
-            </Link>
-          </Button>
         </div>
       </div>
 
       {/* GRID instead of outer carousel */}
       <Carousel>
+        <CarouselControllers />
         <CarouselContent showDefaultItem={true}>
           {products.map((p) => (
             <CarouselItem
               key={p.id}
-              className="basis-7/10 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+              className="basis-7/10 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 2xl:basis-1/6 3xl:basis-1/8"
             >
               <ProductCard
                 product={p}
@@ -59,8 +61,6 @@ export const LimitedProducts = ({
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
       </Carousel>
       {/* Mobile CTA */}
       <div className="mt-8 flex justify-center md:hidden">

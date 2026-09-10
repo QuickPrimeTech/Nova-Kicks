@@ -155,7 +155,10 @@ function CarouselContent({
         {...props}
       >
         {showDefaultItem && (
-          <CarouselItem className="basis-4 sm:basis-6 md:basis-8 lg:basis-12 xl:basis-16 2xl:basis-24" />
+          <CarouselItem
+            aria-hidden="true"
+            className="basis-4 sm:basis-[max(1.5rem,calc((100vw-40rem)/2))] md:basis-[max(2rem,calc((100vw-48rem)/2))] lg:basis-[max(3rem,calc((100vw-64rem)/2))] xl:basis-[max(4rem,calc((100vw-80rem)/2))] 2xl:basis-[max(6rem,calc((100vw-96rem)/2))]"
+          />
         )}
         {children}
       </div>
@@ -181,6 +184,20 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+function CarouselControllers({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
+  return (
+    <div className="section">
+      <div className={cn("relative bg-red-500 container mx-auto")} {...props}>
+        <CarouselPrevious />
+        <CarouselNext />
+      </div>
+    </div>
+  );
+}
+
 function CarouselPrevious({
   className,
   variant = "outline",
@@ -197,7 +214,7 @@ function CarouselPrevious({
       className={cn(
         "absolute touch-manipulation rounded-full",
         orientation === "horizontal"
-          ? "-top-12 right-16"
+          ? "-top-12 right-12"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         className,
       )}
@@ -227,7 +244,7 @@ function CarouselNext({
       className={cn(
         "absolute touch-manipulation rounded-full",
         orientation === "horizontal"
-          ? "-top-12 right-4"
+          ? "-top-12 right-0"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className,
       )}
@@ -246,6 +263,7 @@ export {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselControllers,
   CarouselPrevious,
   CarouselNext,
   useCarousel,

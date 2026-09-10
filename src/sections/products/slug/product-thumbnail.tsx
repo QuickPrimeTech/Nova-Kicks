@@ -333,59 +333,57 @@ export const ProductThumbnail = ({
 
   return (
     <>
-      <div className="mx-auto max-w-2xl">
-        <Carousel setApi={setApi}>
-          <CarouselContent showDefaultItem={false}>
-            {images.map((image) => (
-              <CarouselItem key={`${image.url}-${image.altText}`}>
-                <div
-                  className="relative aspect-square cursor-zoom-in overflow-hidden rounded-xl border bg-[#F5F6F7]"
-                  onClick={() => setOpen(true)}
+      <Carousel setApi={setApi}>
+        <CarouselContent showDefaultItem={false}>
+          {images.map((image) => (
+            <CarouselItem key={`${image.url}-${image.altText}`}>
+              <div
+                className="relative aspect-square cursor-zoom-in overflow-hidden rounded-xl border bg-[#F5F6F7]"
+                onClick={() => setOpen(true)}
+              >
+                <Image
+                  src={image.url}
+                  alt={image.altText}
+                  fill
+                  sizes="(max-width: 1028px) 95vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+
+      {/* THUMBNAILS */}
+      <Carousel className="mt-2">
+        <CarouselContent className="justify-center gap-3">
+          {images.length > 1 &&
+            images.map((img, i) => (
+              <CarouselItem
+                key={`${img.url}-${img.altText}`}
+                className="basis-1/5 md:basis-1/6 pl-0 aspect-square"
+              >
+                <button
+                  onClick={() => api?.scrollTo(i)}
+                  className={cn(
+                    "relative h-full w-full rounded-md overflow-hidden border transition bg-[#F5F6F7]",
+                    current === i
+                      ? "border-primary ring-2 ring-primary"
+                      : "border-border opacity-60 hover:opacity-100",
+                  )}
                 >
                   <Image
-                    src={image.url}
-                    alt={image.altText}
+                    src={img.url}
+                    alt={img.altText}
                     fill
-                    sizes="(max-width: 1028px) 95vw, 50vw"
+                    sizes="(max-width: 1024px) 7vw, (max-width: 640) 8vw, 20vw"
                     className="object-cover"
                   />
-                </div>
+                </button>
               </CarouselItem>
             ))}
-          </CarouselContent>
-        </Carousel>
-
-        {/* THUMBNAILS */}
-        <Carousel className="mt-2">
-          <CarouselContent className="justify-center gap-3">
-            {images.length > 1 &&
-              images.map((img, i) => (
-                <CarouselItem
-                  key={`${img.url}-${img.altText}`}
-                  className="basis-1/5 md:basis-1/6 pl-0 aspect-square"
-                >
-                  <button
-                    onClick={() => api?.scrollTo(i)}
-                    className={cn(
-                      "relative h-full w-full rounded-md overflow-hidden border transition bg-[#F5F6F7]",
-                      current === i
-                        ? "border-primary ring-2 ring-primary"
-                        : "border-border opacity-60 hover:opacity-100",
-                    )}
-                  >
-                    <Image
-                      src={img.url}
-                      alt={img.altText}
-                      fill
-                      sizes="(max-width: 1024px) 7vw, (max-width: 640) 8vw, 20vw"
-                      className="object-cover"
-                    />
-                  </button>
-                </CarouselItem>
-              ))}
-          </CarouselContent>
-        </Carousel>
-      </div>
+        </CarouselContent>
+      </Carousel>
 
       <LightboxDialog
         images={images}

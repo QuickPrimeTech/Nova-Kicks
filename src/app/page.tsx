@@ -19,8 +19,12 @@ export default async function Home() {
       <Marquee />
       <BentoCategories categories={categories} />
       {offers.length > 0 && <CrazyDiscounts offers={offers} />}
-      <LatestProducts products={featuredProducts} />
-      <LimitedProducts products={limitedProducts} />
+      {featuredProducts.length > 0 && (
+        <LatestProducts products={featuredProducts} />
+      )}
+      {limitedProducts.length > 0 && (
+        <LimitedProducts products={limitedProducts} />
+      )}
       <Brands brands={brands} />
       <FindUs />
     </>
